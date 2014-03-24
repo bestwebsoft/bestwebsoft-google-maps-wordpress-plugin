@@ -1,0 +1,19 @@
+.gglmps_container_map {
+	overflow: hidden;
+	clear: both;
+}
+.gglmps_map {
+	max-width: 100%;
+	line-height: 1.35 !important;
+	border: 1px solid #999;
+	box-sizing:         border-box;
+	-moz-box-sizing:    border-box;
+	-webkit-box-sizing: border-box;
+}
+.gglmps_map img {
+	max-width: none !important;
+}
+.gglmps_no_script {
+	margin: 0;
+	padding: 5px;
+}
