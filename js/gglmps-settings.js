@@ -117,7 +117,7 @@
 		});
 		$( '#gglmps_settings_form input, #gglmps_settings_form select' ).on( 'change select', function() {
 			if ( $( this ).attr( 'type' ) != 'submit' ) {
-				$( '#gglmps_updated_notice' ).css( 'display', 'none' );
+				$( '.updated.fade' ).css( 'display', 'none' );
 				$( '#gglmps_update_notice' ).css( 'display', 'block' );
 			}
 		});

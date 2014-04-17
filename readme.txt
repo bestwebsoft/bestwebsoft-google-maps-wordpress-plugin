@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=10&product_id=13
 Tags: google map, google maps, google maps shortcode map, geo, geoceoder, widget map, custom marker, marker tooltip, wp google map, wp google maps, wp map, wp maps
 Requires at least: 3.3
-Tested up to: 3.8.1
-Stable tag: 1.1
+Tested up to: 3.8.2
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,15 +14,18 @@ Easy to set up and insert Google Maps to your website.
 
 This plugin allows you to configure Google Maps and add them to your site quickly and easily. In the Google Maps Editor, you can configure basic settings and add any number of markers. In the Google Maps manager you can view the saved maps and edit them easily. With the help of the shortcode you can insert Google maps in posts and the widgets.
 
+http://www.youtube.com/watch?v=F0YonG9-rus
+
 <a href="http://wordpress.org/plugins/bws-google-maps/faq/" target="_blank">FAQ</a>
+
 <a href="http://support.bestwebsoft.com" target="_blank">Support</a>
+
+<a href="http://bestwebsoft.com/plugin/bws-google-maps-pro/?k=3e09a2fbac0e195ef41a62eb3fdb346e" target="_blank">Upgrade to Pro Version</a>
 
 = Features =
 
 * Actions: Adding markers by address and coordinates.
 * Actions: Editable names and tooltips of the added markers.
-* Actions: Visual search for markers on the map preview.
-* Actions: Auto zoom of the map to display all the markers.
 * Actions: Customize Controls.
 * Actions: Possibility to insert a map into widgets.
 
@@ -93,7 +96,7 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 1. the link to the page where the problem occurs
 2. the name of the plugin and its version. If you are using a pro version - your order number.
 3. the version of your WordPress installation
-4. copy and paste into the message your system status report. Please read more here: <a href="https://docs.google.com/document/d/1Wi2X8RdRGXk9kMszQy1xItJrpN0ncXgioH935MaBKtc/edit" target="_blank">System_Status.pdf</a>
+4. copy and paste into the message your system status report. Please read more here: <a href="https://docs.google.com/document/d/1Wi2X8RdRGXk9kMszQy1xItJrpN0ncXgioH935MaBKtc/edit" target="_blank">Instuction on System Status</a>
 
 == Screenshots ==
 
@@ -103,6 +106,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
  
 == Changelog == 
 
+= V1.2 - 10.04.2014 =
+* Update : We updated all functionality for wordpress 3.8.2.
+
 = V1.1 - 21.03.2014 =
 * Bugfix : Fixed bug with displaying Google Map.
 
@@ -110,6 +116,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Release of BestWebSoft Google Maps plugin.
 
 == Upgrade Notice ==
+
+= V1.2 =
+We updated all functionality for wordpress 3.8.2.
 
 = V1.1 =
 Fixed bug with displaying Google Map.
