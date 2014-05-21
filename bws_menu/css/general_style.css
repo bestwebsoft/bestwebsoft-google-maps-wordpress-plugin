@@ -49,7 +49,10 @@
 /*
 * styles for pro_version settings and tooltip 
 */
-td.bws_pro_version {
+td.bws_pro_version,
+tr.bws_pro_version,
+.nav-tab.bws_plugin_menu_pro_version,
+.nav-tab.bws_plugin_menu_pro_version:hover {
     background: rgba(248, 226, 104, 0.11) url("../images/pattern_bg.png");
     border: 1px solid #AAA;
 }
@@ -113,6 +116,29 @@ table.bws_pro_version td {
 .bws_pro_version_tooltip .bws_info {
     float: left;
     padding-top: 10px;
+}
+.bws_pro_version_tooltip .bws_pro_links {
+    float: right;
+}
+.bws_pro_version_tooltip .bws_trial_info {
+    padding-top: 10px;
+    display: inline-block;
+}
+div.bws_pro_version {
+    padding: 5px 10px;
+}
+a.bws_plugin_pro_version {
+    display: block;
+    background: rgba(248, 226, 104, 0.11) url("../images/pattern_bg.png");
+    border: 1px solid #AAA;
+    padding: 5px;
+    text-decoration: none;
+    color: #666;
+}
+.bws_pro_version_single_link,
+.bws_pro_version_single_link:hover {
+    text-decoration: none;
+    color: #666;
 }
 /* style for mini-block (ex. google map) */
 .bws_pro_version_bloc_mini .bws_pro_version_table_bloc table.bws_pro_version { 

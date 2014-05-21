@@ -52,23 +52,25 @@
 		});
 
 		// Zoom slider
-		$( '#gglmps_zoom_slider' ).slider({
-			value  : $( '#gglmps_basic_zoom' ).val(),
-			min    : 0,
-			max    : $( '#gglmps_basic_map_type' ).data( 'maxZoom' )[ $( '#gglmps_basic_map_type' ).find( 'option:selected' ).val() ],
-			step   : 1,
-			create : function( event, ui ) {
-				$( '#gglmps_zoom_value' ).text( '[' + $( this ).slider( 'value' ) + ']' );
-				$( '#gglmps_basic_zoom' ).hide();
-			},
-			slide : function( event, ui ) {
-				$( '#gglmps_zoom_value' ).text( '[' + ui.value + ']' );
-			},
-			change: function( event, ui ) {
-				$( '#gglmps_basic_zoom' ).val( ui.value );
-				$( '#gglmps_zoom_value' ).text( '[' + ui.value + ']' );
-			}
-		});
+		if ( typeof $( '#gglmps_basic_map_type' ).find( 'option:selected' ).val() != 'undefined' ) {
+			$( '#gglmps_zoom_slider' ).slider({
+				value  : $( '#gglmps_basic_zoom' ).val(),
+				min    : 0,
+				max    : $( '#gglmps_basic_map_type' ).data( 'maxZoom' )[ $( '#gglmps_basic_map_type' ).find( 'option:selected' ).val() ],
+				step   : 1,
+				create : function( event, ui ) {
+					$( '#gglmps_zoom_value' ).text( '[' + $( this ).slider( 'value' ) + ']' );
+					$( '#gglmps_basic_zoom' ).hide();
+				},
+				slide : function( event, ui ) {
+					$( '#gglmps_zoom_value' ).text( '[' + ui.value + ']' );
+				},
+				change: function( event, ui ) {
+					$( '#gglmps_basic_zoom' ).val( ui.value );
+					$( '#gglmps_zoom_value' ).text( '[' + ui.value + ']' );
+				}
+			});
+		}
 
 		// Checking visibility additional options on the settings page
 		if ( $( '#gglmps_settings_additional_options' ).is( ':checked' ) == false ) {

@@ -4,7 +4,7 @@ Plugin Name: BestWebSoft Google Maps
 Plugin URI: http://bestwebsoft.com/plugin/
 Description: Easy to set up and insert Google Maps to your website.
 Author: BestWebSoft
-Version: 1.2
+Version: 1.2.1
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -31,7 +31,8 @@ License: GPLv2 or later
 if ( ! function_exists( 'gglmps_admin_menu' ) ) {
 	function gglmps_admin_menu() {
 		global $bstwbsftwppdtplgns_options, $wpmu, $bstwbsftwppdtplgns_added_menu;
-		$bws_menu_version = '1.2.5';
+		$bws_menu_info = get_plugin_data( plugin_dir_path( __FILE__ ) . "bws_menu/bws_menu.php" );
+		$bws_menu_version = $bws_menu_info["Version"];
 		$base = plugin_basename( __FILE__ );
 
 		if ( ! isset( $bstwbsftwppdtplgns_options ) ) {
@@ -352,6 +353,7 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 			</h2>
 			<h2 class="nav-tab-wrapper">
 				<a class="nav-tab<?php if ( ! isset( $_GET['action'] ) ) echo ' nav-tab-active'; ?>"  href="admin.php?page=bws-google-maps.php"><?php _e( 'Settings', 'gglmps' ); ?></a>
+				<a class="nav-tab" href="http://bestwebsoft.com/plugin/bws-google-maps/#faq" target="_blank"><?php _e( 'FAQ', 'gglmps' ); ?></a>
 				<a class="nav-tab bws_go_pro_tab<?php if ( isset( $_GET['action'] ) && 'go_pro' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=bws-google-maps.php&amp;action=go_pro"><?php _e( 'Go PRO', 'gglmps' ); ?></a>
 			</h2>
 			<noscript>
@@ -1467,8 +1469,11 @@ if ( ! function_exists ( 'gglmps_plugin_banner' ) ) {
 		if ( 'plugins.php' == $hook_suffix ) {   
 			global $wpmu, $gglmps_plugin_info, $bstwbsftwppdtplgns_cookie_add;
 			$banner_array = array(
+				array( 'sndr_hide_banner_on_plugin_page', 'sender/sender.php', '0.5' ),
+				array( 'srrl_hide_banner_on_plugin_page', 'user-role/user-role.php', '1.4' ),				
 				array( 'pdtr_hide_banner_on_plugin_page', 'updater/updater.php', '1.12' ),
-				array( 'cntctfrmtdb_hide_banner_on_plugin_page', 'contact-form-to-db/contact_form_to_db.php', '1.2' ),		
+				array( 'cntctfrmtdb_hide_banner_on_plugin_page', 'contact-form-to-db/contact_form_to_db.php', '1.2' ),
+				array( 'cntctfrmmlt_hide_banner_on_plugin_page', 'contact-form-multi/contact-form-multi.php', '1.0.7' ),	
 				array( 'gglmps_hide_banner_on_plugin_page', 'bws-google-maps/bws-google-maps.php', '1.2' ),		
 				array( 'fcbkbttn_hide_banner_on_plugin_page', 'facebook-button-plugin/facebook-button-plugin.php', '2.29' ),
 				array( 'twttr_hide_banner_on_plugin_page', 'twitter-plugin/twitter.php', '2.34' ),
@@ -1479,7 +1484,7 @@ if ( ! function_exists ( 'gglmps_plugin_banner' ) ) {
 				array( 'cntctfrm_for_ctfrmtdb_hide_banner_on_plugin_page', 'contact-form-plugin/contact_form.php', '3.62' ),
 				array( 'cntctfrm_hide_banner_on_plugin_page', 'contact-form-plugin/contact_form.php', '3.47' ),	
 				array( 'cptch_hide_banner_on_plugin_page', 'captcha/captcha.php', '3.8.4' ),
-				array( 'gllr_hide_banner_on_plugin_page', 'gallery-plugin/gallery-plugin.php', '3.9.1' )				
+				array( 'gllr_hide_banner_on_plugin_page', 'gallery-plugin/gallery-plugin.php', '3.9.1' )						
 			);
 			if ( ! $gglmps_plugin_info )
 				$gglmps_plugin_info = get_plugin_data( __FILE__ );

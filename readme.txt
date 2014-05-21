@@ -1,10 +1,10 @@
 === BestWebSoft Google Maps ===
 Contributors: bestwebsoft
-Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=10&product_id=13
-Tags: google map, google maps, google maps shortcode map, geo, geoceoder, widget map, custom marker, marker tooltip, wp google map, wp google maps, wp map, wp maps
+Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
+Tags: add new map, add google maps, address marker, coordinates, coordinates marker, create a map, custom marker, edit saved map, geo, geoceoder, gogle map, googgle maps, google map, google maps, google maps editor, google maps manager, google maps shortcode map, marker tooltip, saved google maps, widget map, wp google map, wp google maps, wp map, wp maps
 Requires at least: 3.3
-Tested up to: 3.8.2
-Stable tag: 1.2
+Tested up to: 3.9.1
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,7 @@ http://www.youtube.com/watch?v=F0YonG9-rus
 = Translation =
 
 * Russian (ru_RU)
+* Ukrainian (uk)
 
 If you would like to create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files  <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
 
@@ -104,7 +105,11 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 2. Manager of saved maps.
 3. Editor Google Maps.
  
-== Changelog == 
+== Changelog ==
+
+= V1.2.1 - 20.05.2014 =
+* Update : We updated all functionality for wordpress 3.9.1.
+* NEW : The Ukrainian language file is added to the plugin.
 
 = V1.2 - 10.04.2014 =
 * Update : We updated all functionality for wordpress 3.8.2.
@@ -116,6 +121,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Release of BestWebSoft Google Maps plugin.
 
 == Upgrade Notice ==
+
+= V1.2.1 =
+We updated all functionality for wordpress 3.9.1. The Ukrainian language file is added to the plugin.
 
 = V1.2 =
 We updated all functionality for wordpress 3.8.2.
