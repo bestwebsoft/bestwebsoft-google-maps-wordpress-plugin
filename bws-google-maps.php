@@ -4,7 +4,7 @@ Plugin Name: BestWebSoft Google Maps
 Plugin URI: http://bestwebsoft.com/plugin/
 Description: Easy to set up and insert Google Maps to your website.
 Author: BestWebSoft
-Version: 1.2.2
+Version: 1.2.3
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -216,12 +216,12 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 				'language'           => isset( $_REQUEST['gglmps_main_language'] ) ? $_REQUEST['gglmps_main_language'] : $gglmps_default_options['language'],
 				'additional_options' => isset( $_REQUEST['gglmps_settings_additional_options'] ) ? 1 : 0,
 				'basic'              => array(
-					'width'     => isset( $_REQUEST['gglmps_basic_width'] ) && $_REQUEST['gglmps_basic_width'] > 150 ? $_REQUEST['gglmps_basic_width'] : 150,
-					'height'    => isset( $_REQUEST['gglmps_basic_height'] ) && $_REQUEST['gglmps_basic_height'] > 150 ? $_REQUEST['gglmps_basic_height'] : 150,
+					'width'     => isset( $_REQUEST['gglmps_basic_width'] ) && intval( $_REQUEST['gglmps_basic_width'] ) > 150 ? intval( $_REQUEST['gglmps_basic_width'] ) : 150,
+					'height'    => isset( $_REQUEST['gglmps_basic_height'] ) && intval( $_REQUEST['gglmps_basic_height'] ) > 150 ? intval( $_REQUEST['gglmps_basic_height'] ) : 150,
 					'alignment' => isset( $_REQUEST['gglmps_basic_alignment'] ) ? $_REQUEST['gglmps_basic_alignment'] : $gglmps_default_options['basic']['alignment'],
 					'map_type'  => isset( $_REQUEST['gglmps_basic_map_type'] ) ? $_REQUEST['gglmps_basic_map_type'] : $gglmps_default_options['basic']['map_type'],
 					'tilt45'    => isset( $_REQUEST['gglmps_basic_tilt45'] ) ? 1 : 0,
-					'zoom'      => isset( $_REQUEST['gglmps_basic_zoom'] ) && is_numeric( $_REQUEST['gglmps_basic_zoom'] ) ? trim( stripslashes( esc_html( $_REQUEST['gglmps_basic_zoom'] ) ) ) : $gglmps_default_options['basic']['zoom']
+					'zoom'      => isset( $_REQUEST['gglmps_basic_zoom'] ) && is_numeric( intval( $_REQUEST['gglmps_basic_zoom'] ) ) ? intval( $_REQUEST['gglmps_basic_zoom'] ) : $gglmps_default_options['basic']['zoom']
 				),
 				'controls'           => array(
 					'map_type'            => isset( $_REQUEST['gglmps_control_map_type'] ) ? 1 : 0,
@@ -710,7 +710,6 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 * Built-in WP class WP_List_Table.
 */
 class Gglmps_Manager extends WP_List_Table {
-
 	public $gglmps_table_data;
 
 	/*
@@ -744,7 +743,7 @@ class Gglmps_Manager extends WP_List_Table {
 	* Function to display data in columns.
 	*/
 	function column_default( $item, $column_name ) {
-		switch( $column_name ) {
+		switch ( $column_name ) {
 			case 'gglmps-id':
 			case 'title':
 			case 'shortcode':
@@ -758,7 +757,7 @@ class Gglmps_Manager extends WP_List_Table {
 	/*
 	* Function to add checkboxes in the column to the items.
 	*/
-	function column_cb($item) {
+	function column_cb( $item ) {
 		return sprintf( '<input type="checkbox" name="gglmps_manager_mapid[]" value="%d" />', $item['gglmps-id'] );
 	}
 
@@ -863,12 +862,12 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 					$gglmps_map_data = array(
 						'additional_options' => isset( $_REQUEST['gglmps_editor_additional_options'] ) ? 1 : 0,
 						'basic'              => array(
-							'width'     => isset( $_REQUEST['gglmps_basic_width'] ) && $_REQUEST['gglmps_basic_width'] > 150 ? $_REQUEST['gglmps_basic_width'] : 150,
-							'height'    => isset( $_REQUEST['gglmps_basic_height'] ) && $_REQUEST['gglmps_basic_height'] > 150 ? $_REQUEST['gglmps_basic_height'] : 150,
+							'width'     => isset( $_REQUEST['gglmps_basic_width'] ) && intval( $_REQUEST['gglmps_basic_width'] ) > 150 ? intval( $_REQUEST['gglmps_basic_width'] ) : 150,
+							'height'    => isset( $_REQUEST['gglmps_basic_height'] ) && intval( $_REQUEST['gglmps_basic_height'] ) > 150 ? intval( $_REQUEST['gglmps_basic_height'] ) : 150,
 							'alignment' => isset( $_REQUEST['gglmps_basic_alignment'] ) ? $_REQUEST['gglmps_basic_alignment'] : 'left',
 							'map_type'  => isset( $_REQUEST['gglmps_basic_map_type'] ) ? $_REQUEST['gglmps_basic_map_type'] : 'roadmap',
 							'tilt45'    => isset( $_REQUEST['gglmps_basic_tilt45'] ) ? 1 : 0,
-							'zoom'      => isset( $_REQUEST['gglmps_basic_zoom'] ) && is_numeric( $_REQUEST['gglmps_basic_zoom'] ) ? trim( stripslashes( esc_html( $_REQUEST['gglmps_basic_zoom'] ) ) ) : $gglmps_options['basic']['zoom']
+							'zoom'      => isset( $_REQUEST['gglmps_basic_zoom'] ) && is_numeric( intval( $_REQUEST['gglmps_basic_zoom'] ) ) ? intval( $_REQUEST['gglmps_basic_zoom'] ) : $gglmps_options['basic']['zoom']
 						),
 						'controls'           => array(
 							'map_type'            => isset( $_REQUEST['gglmps_control_map_type'] ) ? 1 : 0,
@@ -883,6 +882,11 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 						$gglmps_marker_latlng = $_REQUEST['gglmps_list_marker_latlng'];
 						$gglmps_marker_location = $_REQUEST['gglmps_list_marker_location'];
 						$gglmps_marker_tooltip = $_REQUEST['gglmps_list_marker_tooltip'];
+						foreach ( $gglmps_marker_location as $key => $value ) {
+                            $gglmps_marker_location[ $key ] = stripslashes( esc_html( $value ) );
+                            $gglmps_marker_latlng[ $key ] = stripslashes( esc_html( $gglmps_marker_latlng[ $key ] ) );
+                            $gglmps_marker_tooltip[ $key ] = stripslashes( esc_html( $gglmps_marker_tooltip[ $key ] ) );
+                        }
 						$gglmps_map_data['markers'] = array_map( null, $gglmps_marker_latlng, $gglmps_marker_location, $gglmps_marker_tooltip );
 					}
 					if ( count( $gglmps_maps ) == 0 ) {
@@ -907,12 +911,12 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 					$gglmps_map_data = array(
 						'additional_options' => isset( $_REQUEST['gglmps_editor_additional_options'] ) ? 1 : 0,
 						'basic'              => array(
-							'width'     => isset( $_REQUEST['gglmps_basic_width'] ) && $_REQUEST['gglmps_basic_width'] > 150 ? $_REQUEST['gglmps_basic_width'] : 150,
-							'height'    => isset( $_REQUEST['gglmps_basic_height'] ) && $_REQUEST['gglmps_basic_height'] > 150 ? $_REQUEST['gglmps_basic_height'] : 150,
+							'width'     => isset( $_REQUEST['gglmps_basic_width'] ) && intval( $_REQUEST['gglmps_basic_width'] ) > 150 ? intval( $_REQUEST['gglmps_basic_width'] ) : 150,
+							'height'    => isset( $_REQUEST['gglmps_basic_height'] ) && intval( $_REQUEST['gglmps_basic_height'] ) > 150 ? intval( $_REQUEST['gglmps_basic_height'] ) : 150,
 							'alignment' => isset( $_REQUEST['gglmps_basic_alignment'] ) ? $_REQUEST['gglmps_basic_alignment'] : 'left',
 							'map_type'  => isset( $_REQUEST['gglmps_basic_map_type'] ) ? $_REQUEST['gglmps_basic_map_type'] : 'roadmap',
 							'tilt45'    => isset( $_REQUEST['gglmps_basic_tilt45'] ) ? 1 : 0,
-							'zoom'      => isset( $_REQUEST['gglmps_basic_zoom'] ) && is_numeric( $_REQUEST['gglmps_basic_zoom'] ) ? trim( stripslashes( esc_html( $_REQUEST['gglmps_basic_zoom'] ) ) ) : $gglmps_options['basic']['zoom']
+							'zoom'      => isset( $_REQUEST['gglmps_basic_zoom'] ) && is_numeric( intval( $_REQUEST['gglmps_basic_zoom'] ) ) ? intval( $_REQUEST['gglmps_basic_zoom'] ) : $gglmps_options['basic']['zoom']
 						),
 						'controls'           => array(
 							'map_type'            => isset( $_REQUEST['gglmps_control_map_type'] ) ? 1 : 0,
@@ -927,6 +931,11 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 						$gglmps_marker_latlng = $_REQUEST['gglmps_list_marker_latlng'];
 						$gglmps_marker_location = $_REQUEST['gglmps_list_marker_location'];
 						$gglmps_marker_tooltip = $_REQUEST['gglmps_list_marker_tooltip'];
+						foreach ( $gglmps_marker_location as $key => $value ) {
+                            $gglmps_marker_location[ $key ] = stripslashes( esc_html( $value ) );
+                            $gglmps_marker_latlng[ $key ] = stripslashes( esc_html( $gglmps_marker_latlng[ $key ] ) );
+                            $gglmps_marker_tooltip[ $key ] = stripslashes( esc_html( $gglmps_marker_tooltip[ $key ] ) );
+                        }
 						$gglmps_map_data['markers'] = array_map( null, $gglmps_marker_latlng, $gglmps_marker_location, $gglmps_marker_tooltip );
 					};
 					if ( isset( $gglmps_maps[ $gglmps_editor_mapid ] ) ) {

@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
 Tags: add new map, add google maps, address marker, coordinates, coordinates marker, create a map, custom marker, edit saved map, geo, geoceoder, gogle map, googgle maps, google map, google maps, google maps editor, google maps manager, google maps shortcode map, marker tooltip, saved google maps, widget map, wp google map, wp google maps, wp map, wp maps
 Requires at least: 3.3
-Tested up to: 4.0-beta3
-Stable tag: 1.2.2
+Tested up to: 4.0
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -107,6 +107,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
  
 == Changelog ==
 
+= V1.2.3 - 11.09.2014 =
+* Update : We updated all functionality for wordpress 4.0.
+
 = V1.2.2 - 07.08.2014 =
 * Bugfix : Security Exploit was fixed.
 
@@ -124,6 +127,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Release of BestWebSoft Google Maps plugin.
 
 == Upgrade Notice ==
+
+= V1.2.3 =
+We updated all functionality for wordpress 4.0.
 
 = V1.2.2 =
 Security Exploit was fixed.
