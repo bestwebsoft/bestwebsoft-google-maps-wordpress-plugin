@@ -19,7 +19,7 @@
 				return false;
 			}
 		});
-		
+
 		// Adds a marker to the list markers
 		$( '#gglmps_marker_add' ).on( 'click', function() {
 			var isCoordinates = $( '#gglmps_marker_location' ).val().search( /^[-]?[\d]{1,2}[.][\d]{3,9}[,][-]?[\d]{1,3}[.][\d]{3,9}$/ )
@@ -55,13 +55,16 @@
 						</div>\
 					</li>\
 				';
+
+				var $tooltip = $( '#gglmps_marker_tooltip' ).val().replace( /<script.*?>.*?<\/script>/g, "");
+
 				$marker = $marker.replace( /{gglmps_latlang}/g, $( '#gglmps_marker_latlng' ).val() );
 				$marker = $marker.replace( /{gglmps_location}/g, $( '#gglmps_marker_location' ).val() );
-				$marker = $marker.replace( /{gglmps_tooltip}/g, $( '#gglmps_marker_tooltip' ).val() );
+				$marker = $marker.replace( /{gglmps_tooltip}/g, $tooltip );
 				$marker = $marker.replace( /{delete}/g, gglmps_translation.deleteMarker );
 				$marker = $marker.replace( /{edit}/g, gglmps_translation.editMarker );
 				$marker = $marker.replace( /{find}/g, gglmps_translation.findMarker );
-				$( '#gglmps_markers_container' ).append( $marker );				
+				$( '#gglmps_markers_container' ).append( $marker );
 				$( '#gglmps_marker_cancel' ).hide();
 				$( '#gglmps_marker_latlng' ).val( '' );
 				$( '#gglmps_marker_location' ).val( '' );
@@ -74,7 +77,7 @@
 
 		// Animation marker for visual search on the preview map
 		$( '#gglmps_markers_container' ).on( 'click', '.gglmps_marker_find', function() {
-			var markerIndex = $( this ).parents( '.gglmps_marker' ).index();			
+			var markerIndex = $( this ).parents( '.gglmps_marker' ).index();
 		});
 
 		// Editing marker
@@ -93,11 +96,11 @@
 		// Deleting marker from the list markers
 		$( '#gglmps_markers_container' ).on( 'click', '.gglmps_marker_delete', function() {
 			var markerIndex = $( this ).parents( '.gglmps_marker' ).index(),
-				$marker = $( '#gglmps_markers_container .gglmps_marker' ).eq( markerIndex );			
+				$marker = $( '#gglmps_markers_container .gglmps_marker' ).eq( markerIndex );
 			$marker.remove();
 			$( '#gglmps_marker_cancel' ).trigger( 'click' );
 			if ( $( '#gglmps_markers_container .gglmps_marker' ).size() == 0 ) {
-				$( '#gglmps_markers_container' ).append( '<li class="gglmps_no_markers">' + gglmps_translation.noMarkers + '</li>' );	
+				$( '#gglmps_markers_container' ).append( '<li class="gglmps_no_markers">' + gglmps_translation.noMarkers + '</li>' );
 			}
 		});
 
@@ -118,11 +121,12 @@
 				return;
 			}
 			var markerIndex = $( this ).data( 'markerIndex' ),
-				$marker = $( '#gglmps_markers_container .gglmps_marker' ).eq( markerIndex );
+				$marker = $( '#gglmps_markers_container .gglmps_marker' ).eq( markerIndex ),
+				$tooltip = $( '#gglmps_marker_tooltip' ).val().replace( /<script.*?>.*?<\/script>/g, "");
 			$marker.find( '.gglmps_marker_location' ).text( $( '#gglmps_marker_location' ).val() );
-			$marker.find( '.gglmps_marker_tooltip' ).text( $( '#gglmps_marker_tooltip' ).val() );
+			$marker.find( '.gglmps_marker_tooltip' ).text( $tooltip );
 			$marker.find( '.gglmps_textarea_location' ).text( $( '#gglmps_marker_location' ).val() );
-			$marker.find( '.gglmps_textarea_tooltip' ).text( $( '#gglmps_marker_tooltip' ).val() );			
+			$marker.find( '.gglmps_textarea_tooltip' ).text( $tooltip );
 			$( '#gglmps_marker_update' ).data( 'markerIndex', null ).hide();
 			$( '#gglmps_marker_cancel' ).hide();
 			$( '#gglmps_marker_add' ).show();
@@ -170,9 +174,9 @@
 			'roadmap'   : 21,
 			'terrain'   : 15,
 			'satellite' : 19,
-			'hybrid'    : 19 
+			'hybrid'    : 19
 		});
-		
+
 		$( '#gglmps_zoom_slider' ).slider({
 			value  : $( '#gglmps_basic_zoom' ).val(),
 			min    : 0,

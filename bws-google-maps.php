@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: BestWebSoft Google Maps
-Plugin URI: http://bestwebsoft.com/plugin/
+Plugin URI: http://bestwebsoft.com/products
 Description: Easy to set up and insert Google Maps to your website.
 Author: BestWebSoft
-Version: 1.2.3
+Version: 1.2.4
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -88,6 +88,8 @@ if ( ! function_exists ( 'gglmps_init' ) ) {
 		/* Internationalization. */
 		load_plugin_textdomain( 'gglmps', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
+		gglmps_version_check();
+
 		if ( ! is_admin() || isset( $_GET['page'] ) && ( $_GET['page'] == 'bws-google-maps.php' || $_GET['page'] == 'gglmps_manager' || $_GET['page'] == 'gglmps_editor' ) ) {
 			gglmps_default_options();
 		}
@@ -106,8 +108,6 @@ if ( ! function_exists ( 'gglmps_admin_init' ) ) {
 
 		if ( ! isset( $bws_plugin_info ) || empty( $bws_plugin_info ) )
 			$bws_plugin_info = array( 'id' => '124', 'version' => $gglmps_plugin_info['Version'] );
-
-		gglmps_version_check();
 	}
 }
 
@@ -116,7 +116,7 @@ if ( ! function_exists ( 'gglmps_admin_init' ) ) {
 */
 if ( ! function_exists ( 'gglmps_default_options' ) ) {
 	function gglmps_default_options() {
-		global $wpmu, $gglmps_options, $gglmps_default_options, $gglmps_maps, $gglmps_plugin_info;
+		global $gglmps_options, $gglmps_default_options, $gglmps_maps, $gglmps_plugin_info;
 
 		if ( ! $gglmps_plugin_info ) {
 			if ( ! function_exists( 'get_plugin_data' ) ) {
@@ -146,27 +146,15 @@ if ( ! function_exists ( 'gglmps_default_options' ) ) {
 				'scale'               => 1
 			)
 		);
-		if ( $wpmu == 1 ) {
-			if ( ! get_site_option( 'gglmps_options' ) )
-				add_site_option( 'gglmps_options', $gglmps_default_options, '', 'yes' );
+		if ( ! get_option( 'gglmps_options' ) )
+			add_option( 'gglmps_options', $gglmps_default_options, '', 'yes' );
 
-			$gglmps_options = get_site_option( 'gglmps_options' );
+		$gglmps_options = get_option( 'gglmps_options' );
 
-			if ( ! get_site_option( 'gglmps_maps' ) )
-				add_site_option( 'gglmps_maps', array(), '', 'yes' );
+		if ( ! get_option( 'gglmps_maps' ) )
+			add_option( 'gglmps_maps', array(), '', 'yes' );
 
-			$gglmps_maps = get_site_option( 'gglmps_maps' );
-		} else {
-			if ( ! get_option( 'gglmps_options' ) )
-				add_option( 'gglmps_options', $gglmps_default_options, '', 'yes' );
-
-			$gglmps_options = get_option( 'gglmps_options' );
-
-			if ( ! get_option( 'gglmps_maps' ) )
-				add_option( 'gglmps_maps', array(), '', 'yes' );
-
-			$gglmps_maps = get_option( 'gglmps_maps' );
-		}
+		$gglmps_maps = get_option( 'gglmps_maps' );
 
 		if ( ! isset( $gglmps_options['plugin_option_version'] ) || $gglmps_options['plugin_option_version'] != $gglmps_plugin_info['Version'] ) {
 			$gglmps_options = array_merge( $gglmps_default_options, $gglmps_options );
@@ -185,9 +173,13 @@ if ( ! function_exists ( 'gglmps_version_check' ) ) {
 		$require_wp	= '3.3';
 		$plugin	= plugin_basename( __FILE__ );
 		if ( version_compare( $wp_version, $require_wp, "<" ) ) {
+			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 			if ( is_plugin_active( $plugin ) ) {
 				deactivate_plugins( $plugin );
-				wp_die( "<strong>" . $gglmps_plugin_info['Name'] . " </strong> " . __( 'requires', 'gglmps' ) . " <strong>WordPress " . $require_wp . "</strong> " . __( 'or higher, that is why it has been deactivated! Please upgrade WordPress and try again.', 'gglmps') . "<br /><br />" . __( 'Back to the WordPress', 'gglmps') . " <a href='" . get_admin_url( null, 'plugins.php' ) . "'>" . __( 'Plugins page', 'gglmps') . "</a>." );
+				$admin_url = ( function_exists( 'get_admin_url' ) ) ? get_admin_url( null, 'plugins.php' ) : esc_url( '/wp-admin/plugins.php' );
+				if ( ! $gglmps_plugin_info )
+					$gglmps_plugin_info = get_plugin_data( __FILE__, false );
+				wp_die( "<strong>" . $gglmps_plugin_info['Name'] . " </strong> " . __( 'requires', 'gglmps' ) . " <strong>WordPress " . $require_wp . "</strong> " . __( 'or higher, that is why it has been deactivated! Please upgrade WordPress and try again.', 'gglmps') . "<br /><br />" . __( 'Back to the WordPress', 'gglmps') . " <a href='" . $admin_url . "'>" . __( 'Plugins page', 'gglmps') . "</a>." );
 			}
 		}
 	}
@@ -208,7 +200,7 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 			'pt-PT' => 'Portuguese (Portugal)', 'ro' => 'Romanian', 'ru' => 'Russian', 'sr' => 'Serbian', 'sk' => 'Slovak', 'sl' => 'Slovenian', 'es' => 'Spanish', 'sv' => 'Swedish',
 			'tl' => 'Tagalog', 'ta' => 'Tamil', 'te' => 'Telugu', 'th' => 'Thai', 'tr' => 'Turkish', 'uk' => 'Ukrainian', 'vi' => 'Vietnamese'
 		);
-		$error = "";
+		$error = $message = "";
 
 		if ( isset( $_REQUEST['gglmps_settings_submit'] ) && check_admin_referer( plugin_basename( __FILE__ ) ) ) {
 			$gglmps_options = array(
@@ -233,7 +225,6 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 			);
 			$message = __( "Settings saved.", 'gglmps' );
 			update_option( 'gglmps_options', $gglmps_options );
-
 		}
 
 		/* GO PRO */
@@ -348,12 +339,10 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 		} ?>
 		<div id="gglmps_settings_wrap" class="wrap">
 			<div class="icon32 icon32-bws" id="icon-options-general"></div>
-			<h2 class="gglmps_settings_title">
-				<?php _e( 'BestWebSoft Google Maps Settings', 'gglmps' ); ?>
-			</h2>
+			<h2 class="gglmps_settings_title"><?php _e( 'BestWebSoft Google Maps Settings', 'gglmps' ); ?></h2>
 			<h2 class="nav-tab-wrapper">
 				<a class="nav-tab<?php if ( ! isset( $_GET['action'] ) ) echo ' nav-tab-active'; ?>"  href="admin.php?page=bws-google-maps.php"><?php _e( 'Settings', 'gglmps' ); ?></a>
-				<a class="nav-tab" href="http://bestwebsoft.com/plugin/bws-google-maps/#faq" target="_blank"><?php _e( 'FAQ', 'gglmps' ); ?></a>
+				<a class="nav-tab" href="http://bestwebsoft.com/products/bws-google-maps/faq" target="_blank"><?php _e( 'FAQ', 'gglmps' ); ?></a>
 				<a class="nav-tab bws_go_pro_tab<?php if ( isset( $_GET['action'] ) && 'go_pro' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=bws-google-maps.php&amp;action=go_pro"><?php _e( 'Go PRO', 'gglmps' ); ?></a>
 			</h2>
 			<noscript>
@@ -563,9 +552,9 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 						<div class="bws_pro_version_tooltip">
 							<div class="bws_info">
 								<?php _e( 'Unlock premium options by upgrading to a PRO version.', 'gglmps' ); ?>
-								<a target="_blank" href="http://bestwebsoft.com/plugin/bws-google-maps-pro/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'gglmps' ); ?></a>
+								<a target="_blank" href="http://bestwebsoft.com/products/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'gglmps' ); ?></a>
 							</div>
-							<a class="bws_button" href="http://bestwebsoft.com/plugin/bws-google-maps-pro/?k=5ae35807d562bf6b5c67db88fefece60&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>#purchase" target="_blank" title="BestWebSoft Google Maps Pro">
+							<a class="bws_button" href="http://bestwebsoft.com/products/bws-google-maps/buy/?k=5ae35807d562bf6b5c67db88fefece60&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="BestWebSoft Google Maps Pro">
 								<?php _e( 'Go', 'gglmps' ); ?> <strong>PRO</strong>
 							</a>
 							<div class="clear"></div>
@@ -602,7 +591,7 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 					<form method="post" action="admin.php?page=bws-google-maps.php&amp;action=go_pro">
 						<p>
 							<?php _e( 'You can download and activate', 'gglmps' ); ?>
-							<a href="http://bestwebsoft.com/plugin/bws-google-maps-pro/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="BestWebSoft Google Maps Pro">PRO</a>
+							<a href="http://bestwebsoft.com/products/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="BestWebSoft Google Maps Pro">PRO</a>
 							<?php _e( 'version of this plugin by entering Your license key.', 'gglmps' ); ?><br />
 							<span style="color: #888888;font-size: 10px;">
 								<?php _e( 'You can find your license key on your personal page Client area, by clicking on the link', 'gglmps' ); ?>
@@ -703,117 +692,120 @@ if ( ! function_exists( 'gglmps_manager_page' ) ) {
 }
 
 if ( ! class_exists( 'WP_List_Table' ) ) {
-	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
+	if ( file_exists( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' ) )
+		require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
 
 /*
 * Built-in WP class WP_List_Table.
 */
-class Gglmps_Manager extends WP_List_Table {
-	public $gglmps_table_data;
+if ( class_exists( 'WP_List_Table' ) ) {
+	class Gglmps_Manager extends WP_List_Table {
+		public $gglmps_table_data;
 
-	/*
-	* Constructor of class.
-	*/
-	function __construct() {
-		global $status, $page;
-			parent::__construct( array(
-				'singular'  => __( 'map', 'gglmps' ),
-				'plural'    => __( 'maps', 'gglmps' ),
-				'ajax'      => false
-			)
-		);
-	}
-
-	/*
-	* Function to label the columns.
-	*/
-	function get_columns() {
-		$columns = array(
-			'cb'        => '<input type="checkbox" />',
-			'gglmps-id'	=> __( 'ID', 'gglmps' ),
-			'title'     => __( 'Title', 'gglmps' ),
-			'shortcode' => __( 'Shortcode', 'gglmps' ),
-			'date'      => __( 'Date', 'gglmps' )
-		);
-		return $columns;
-	}
-
-	/*
-	* Function to display data in columns.
-	*/
-	function column_default( $item, $column_name ) {
-		switch ( $column_name ) {
-			case 'gglmps-id':
-			case 'title':
-			case 'shortcode':
-			case 'date':
-				return $item[ $column_name ];
-			default:
-				return print_r( $item, true );
+		/*
+		* Constructor of class.
+		*/
+		function __construct() {
+			global $status, $page;
+				parent::__construct( array(
+					'singular'  => __( 'map', 'gglmps' ),
+					'plural'    => __( 'maps', 'gglmps' ),
+					'ajax'      => false
+				)
+			);
 		}
-	}
 
-	/*
-	* Function to add checkboxes in the column to the items.
-	*/
-	function column_cb( $item ) {
-		return sprintf( '<input type="checkbox" name="gglmps_manager_mapid[]" value="%d" />', $item['gglmps-id'] );
-	}
-
-	/*
-	* Function to add advanced menus for items.
-	*/
-	function column_title( $item ) {
-		$gglmps_manager_paged = isset( $_GET['paged'] ) ? '&paged=' . $_GET['paged'] : '';
-		$actions = array(
-			'edit'   => sprintf( '<a href="admin.php?page=gglmps_editor&gglmps_editor_action=%1$s&gglmps_editor_mapid=%2$d">%3$s</a>', 'edit', $item['gglmps-id'],  __( 'Edit', 'gglmps' ) ),
-			'delete' => sprintf( '<a href="admin.php?page=gglmps_manager&gglmps_manager_action=%1$s&gglmps_manager_mapid=%2$d%3$s">%4$s</a>', 'delete', $item['gglmps-id'], $gglmps_manager_paged, __( 'Delete', 'gglmps' ) )
-		);
-		return sprintf( '%1$s %2$s', $item['title'], $this->row_actions( $actions ) );
-	}
-
-	/*
-	* Function to display message if items not found.
-	*/
-	function no_items() {
-		printf('<i>%s</i>', __( 'Maps not found.', 'gglmps' ) );
-	}
-
-	/*
-	* Function for prepare items to display.
-	*/
-	function prepare_items() {
-		$this->_column_headers = array(
-			$this->get_columns(),
-			array(),
-			array()
-		);
-		$user = get_current_user_id();
-		$screen = get_current_screen();
-		$option = $screen->get_option('per_page', 'option');
-		$per_page = get_user_meta($user, $option, true);
-		if ( empty ( $per_page) || $per_page < 1 ) {
-			$per_page = $screen->get_option( 'per_page', 'default' );
+		/*
+		* Function to label the columns.
+		*/
+		function get_columns() {
+			$columns = array(
+				'cb'        => '<input type="checkbox" />',
+				'gglmps-id'	=> __( 'ID', 'gglmps' ),
+				'title'     => __( 'Title', 'gglmps' ),
+				'shortcode' => __( 'Shortcode', 'gglmps' ),
+				'date'      => __( 'Date', 'gglmps' )
+			);
+			return $columns;
 		}
-		$current_page = $this->get_pagenum();
-		$total_items = count( $this->gglmps_table_data );
-		$this->found_data = array_slice( $this->gglmps_table_data, ( ( $current_page - 1 ) * $per_page ), $per_page );
-		$this->set_pagination_args( array(
-			'total_items' => $total_items,
-			'per_page'    => $per_page
-		) );
-		$this->items = $this->found_data;
-	}
 
-	/*
-	* Function to add support for group actions.
-	*/
-	function get_bulk_actions() {
-		$actions = array(
-			'delete' => __( 'Delete', 'gglmps' )
-		);
-		return $actions;
+		/*
+		* Function to display data in columns.
+		*/
+		function column_default( $item, $column_name ) {
+			switch ( $column_name ) {
+				case 'gglmps-id':
+				case 'title':
+				case 'shortcode':
+				case 'date':
+					return $item[ $column_name ];
+				default:
+					return print_r( $item, true );
+			}
+		}
+
+		/*
+		* Function to add checkboxes in the column to the items.
+		*/
+		function column_cb( $item ) {
+			return sprintf( '<input type="checkbox" name="gglmps_manager_mapid[]" value="%d" />', $item['gglmps-id'] );
+		}
+
+		/*
+		* Function to add advanced menus for items.
+		*/
+		function column_title( $item ) {
+			$gglmps_manager_paged = isset( $_GET['paged'] ) ? '&paged=' . $_GET['paged'] : '';
+			$actions = array(
+				'edit'   => sprintf( '<a href="admin.php?page=gglmps_editor&gglmps_editor_action=%1$s&gglmps_editor_mapid=%2$d">%3$s</a>', 'edit', $item['gglmps-id'],  __( 'Edit', 'gglmps' ) ),
+				'delete' => sprintf( '<a href="admin.php?page=gglmps_manager&gglmps_manager_action=%1$s&gglmps_manager_mapid=%2$d%3$s">%4$s</a>', 'delete', $item['gglmps-id'], $gglmps_manager_paged, __( 'Delete', 'gglmps' ) )
+			);
+			return sprintf( '%1$s %2$s', $item['title'], $this->row_actions( $actions ) );
+		}
+
+		/*
+		* Function to display message if items not found.
+		*/
+		function no_items() {
+			printf('<i>%s</i>', __( 'Maps not found.', 'gglmps' ) );
+		}
+
+		/*
+		* Function for prepare items to display.
+		*/
+		function prepare_items() {
+			$this->_column_headers = array(
+				$this->get_columns(),
+				array(),
+				array()
+			);
+			$user = get_current_user_id();
+			$screen = get_current_screen();
+			$option = $screen->get_option('per_page', 'option');
+			$per_page = get_user_meta($user, $option, true);
+			if ( empty ( $per_page) || $per_page < 1 ) {
+				$per_page = $screen->get_option( 'per_page', 'default' );
+			}
+			$current_page = $this->get_pagenum();
+			$total_items = count( $this->gglmps_table_data );
+			$this->found_data = array_slice( $this->gglmps_table_data, ( ( $current_page - 1 ) * $per_page ), $per_page );
+			$this->set_pagination_args( array(
+				'total_items' => $total_items,
+				'per_page'    => $per_page
+			) );
+			$this->items = $this->found_data;
+		}
+
+		/*
+		* Function to add support for group actions.
+		*/
+		function get_bulk_actions() {
+			$actions = array(
+				'delete' => __( 'Delete', 'gglmps' )
+			);
+			return $actions;
+		}
 	}
 }
 
@@ -1066,7 +1058,7 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 													</div>
 													<div class="gglmps_marker_data">
 														<div class="gglmps_marker_location"><?php echo stripcslashes( $gglmps_marker[1] ); ?></div>
-														<xmp class="gglmps_marker_tooltip"><?php echo stripcslashes( $gglmps_marker[2] ); ?></xmp>
+														<xmp class="gglmps_marker_tooltip"><?php echo html_entity_decode( stripcslashes( $gglmps_marker[2] ) ); ?></xmp>
 														<input class="gglmps_input_latlng" name="gglmps_list_marker_latlng[]" type="hidden" value="<?php echo $gglmps_marker[0]; ?>" />
 														<textarea class="gglmps_textarea_location" name="gglmps_list_marker_location[]"><?php echo stripcslashes( $gglmps_marker[1] ); ?></textarea>
 														<textarea class="gglmps_textarea_tooltip" name="gglmps_list_marker_tooltip[]"><?php echo stripcslashes( $gglmps_marker[2] ); ?></textarea>
@@ -1220,9 +1212,9 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 						<div class="bws_pro_version_tooltip">
 							<div class="bws_info">
 								<?php _e( 'Unlock premium options by upgrading to a PRO version.', 'gglmps' ); ?>
-								<a target="_blank" href="http://bestwebsoft.com/plugin/bws-google-maps-pro/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'gglmps' ); ?></a>
+								<a target="_blank" href="http://bestwebsoft.com/products/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'gglmps' ); ?></a>
 							</div>
-							<a class="bws_button" href="http://bestwebsoft.com/plugin/bws-google-maps-pro/?k=5ae35807d562bf6b5c67db88fefece60&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>#purchase" target="_blank" title="BestWebSoft Google Maps Pro">
+							<a class="bws_button" href="http://bestwebsoft.com/products/bws-google-maps/buy/?k=5ae35807d562bf6b5c67db88fefece60&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="BestWebSoft Google Maps Pro">
 								<?php _e( 'Go', 'gglmps' ); ?> <strong>PRO</strong>
 							</a>
 							<div class="clear"></div>
@@ -1251,9 +1243,9 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 					<div class="bws_pro_version_tooltip">
 						<div class="bws_info">
 							<?php _e( 'Unlock premium options by upgrading to a PRO version.', 'gglmps' ); ?>
-							<a target="_blank" href="http://bestwebsoft.com/plugin/bws-google-maps-pro/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'gglmps' ); ?></a>
+							<a target="_blank" href="http://bestwebsoft.com/products/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'gglmps' ); ?></a>
 						</div>
-						<a class="bws_button" href="http://bestwebsoft.com/plugin/bws-google-maps-pro/?k=5ae35807d562bf6b5c67db88fefece60&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>#purchase" target="_blank" title="BestWebSoft Google Maps Pro">
+						<a class="bws_button" href="http://bestwebsoft.com/products/bws-google-maps/buy/?k=5ae35807d562bf6b5c67db88fefece60&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="BestWebSoft Google Maps Pro">
 							<?php _e( 'Go', 'gglmps' ); ?> <strong>PRO</strong>
 						</a>
 						<div class="clear"></div>
@@ -1362,8 +1354,15 @@ if ( ! function_exists( 'gglmps_frontend_head' ) ) {
 */
 if ( ! function_exists( 'gglmps_shortcode' ) ) {
 	function gglmps_shortcode( $atts ) {
-		global $gglmps_maps;
+		global $gglmps_maps, $gglmps_count;
+		if ( empty( $gglmps_count ) ) {
+			$gglmps_count = 1;
+		}
+		if ( $gglmps_count > 1 ) {
+			return;
+		}
 		if ( ! isset( $atts['id'] ) ) {
+			$gglmps_count++;
 			return sprintf(
 				'<div class="gglmps_map_error">[BestWebSoft Google Maps: %s]</div>',
 				__( 'You have not specified map ID', 'gglmps' )
@@ -1391,16 +1390,17 @@ if ( ! function_exists( 'gglmps_shortcode' ) ) {
 				$gglmps_map_markers = '{';
 				foreach ( $gglmps_map_data['markers'] as $key => $gglmps_marker ) {
 					$gglmps_map_markers .= sprintf(
-						'%1$d:{"latlng":"%2$s","location":"%3$s","tooltip":"%4$s"}',
+						"%d:{'latlng':'%s','location':'%s','tooltip':'%s'}",
 						$key,
 						$gglmps_marker[0],
 						$gglmps_marker[1],
-						$gglmps_marker[2]
+						preg_replace( "|<script.*?>.*?</script>|", "", html_entity_decode( $gglmps_marker[2] ) )
 					);
 					$gglmps_map_markers .= count( $gglmps_map_data['markers'] ) - 1 != $key ? ',' : '';
 				}
 				$gglmps_map_markers .= '}';
 			}
+			$gglmps_count++;
 			return sprintf(
 				'<div class="gglmps_container_map">
 					<div id="%1$s" class="gglmps_map" style="%2$s width: %3$dpx; height: %4$dpx;">
@@ -1431,6 +1431,7 @@ if ( ! function_exists( 'gglmps_shortcode' ) ) {
 				 $gglmps_map_markers
 			);
 		} else {
+			$gglmps_count++;
 			return sprintf(
 				'<div class="gglmps_map_error">[BestWebSoft Google Maps: %1$s ID#%2$d %3$s]</div>',
 				__( 'Map with', 'gglmps' ),
@@ -1475,7 +1476,7 @@ if ( ! function_exists ( 'gglmps_plugin_banner' ) ) {
 	function gglmps_plugin_banner() {
 		global $hook_suffix;
 		if ( 'plugins.php' == $hook_suffix ) {
-			global $wpmu, $gglmps_plugin_info, $bstwbsftwppdtplgns_cookie_add;
+			global $gglmps_plugin_info, $bstwbsftwppdtplgns_cookie_add;
 			$banner_array = array(
 				array( 'lmtttmpts_hide_banner_on_plugin_page', 'limit-attempts/limit-attempts.php', '1.0.2' ),
 				array( 'sndr_hide_banner_on_plugin_page', 'sender/sender.php', '0.5' ),
@@ -1531,7 +1532,7 @@ if ( ! function_exists ( 'gglmps_plugin_banner' ) ) {
 						<div class="gglmps_message bws_banner_on_plugin_page" style="display: none;">
 							<img class="gglmps_close_icon close_icon" title="" src="<?php echo plugins_url( 'images/close_banner.png', __FILE__ ); ?>" alt=""/>
 							<div class="button_div">
-								<a class="button" target="_blank" href="http://bestwebsoft.com/plugin/bws-google-maps-pro/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'gglmps' ); ?></a>
+								<a class="button" target="_blank" href="http://bestwebsoft.com/products/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'gglmps' ); ?></a>
 							</div>
 							<div class="text">
 								<?php _e( "It's time to upgrade your <strong>BestWebSoft Google Maps plugin</strong> to <strong>PRO</strong> version", 'gglmps' ); ?>!<br />
@@ -1558,9 +1559,7 @@ if ( ! function_exists ( 'gglmps_plugin_banner' ) ) {
 if ( ! function_exists( 'gglmps_uninstall' ) ) {
 	function gglmps_uninstall() {
 		delete_option( 'gglmps_options' );
-		delete_site_option( 'gglmps_options' );
 		delete_option( 'gglmps_maps' );
-		delete_site_option( 'gglmps_maps' );
 	}
 }
 

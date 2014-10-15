@@ -99,7 +99,7 @@
 					});
 				markers.push({
 					'marker'     : marker,
-					'infowindow' : infowindow 
+					'infowindow' : infowindow
 				});
 				google.maps.event.addListener( marker, 'click', ( function( marker, infowindow ) {
 					return function() {

@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BestWebSoft Google Maps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-10 17:14+0300\n"
-"PO-Revision-Date: 2014-05-20 14:33+0300\n"
-"Last-Translator: BestWebSoft <support@bestwebsoft.com>\n"
+"POT-Creation-Date: 2014-10-14 17:20+0300\n"
+"PO-Revision-Date: 2014-10-14 17:20+0300\n"
+"Last-Translator: bestwebsoft.com <plugins@bestwebsoft.com>\n"
 "Language-Team: bestwebsoft <plugin@bestwebsoft.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -21,642 +21,648 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 # @ gglmps
-#: bws-google-maps.php:75
-#: bws-google-maps.php:362
+#: bws-google-maps.php:76
+#: bws-google-maps.php:343
 msgid "BestWebSoft Google Maps Settings"
 msgstr "Настройки BestWebSoft Google Maps"
 
 # @ gglmps
-#: bws-google-maps.php:75
 #: bws-google-maps.php:76
+#: bws-google-maps.php:77
 msgid "BWS Google Maps"
 msgstr "BWS Google Maps"
 
 # @ gglmps
-#: bws-google-maps.php:76
-#: bws-google-maps.php:691
+#: bws-google-maps.php:77
+#: bws-google-maps.php:672
 msgid "BestWebSoft Google Maps"
 msgstr "BestWebSoft Google Maps"
 
 # @ gglmps
-#: bws-google-maps.php:77
-#: bws-google-maps.php:1017
+#: bws-google-maps.php:78
+#: bws-google-maps.php:1010
 msgid "Google Maps Editor"
 msgstr "Редактор Google Maps"
 
 # @ gglmps
-#: bws-google-maps.php:77
-#: bws-google-maps.php:692
+#: bws-google-maps.php:78
+#: bws-google-maps.php:673
 msgid "Add New"
 msgstr "Добавить новую"
 
 # @ gglmps
-#: bws-google-maps.php:189
+#: bws-google-maps.php:182
 msgid "requires"
 msgstr "требуется"
 
 # @ gglmps
-#: bws-google-maps.php:189
+#: bws-google-maps.php:182
 msgid "or higher, that is why it has been deactivated! Please upgrade WordPress and try again."
 msgstr "или выше, вот почему плагин был деактивирован! Пожалуйста, обновите WordPress и попробуйте снова."
 
 # @ gglmps
-#: bws-google-maps.php:189
+#: bws-google-maps.php:182
 msgid "Back to the WordPress"
 msgstr "Вернутся на страницу WordPress"
 
-#: bws-google-maps.php:189
+#: bws-google-maps.php:182
 msgid "Plugins page"
 msgstr "Страницу плагинов"
 
 # @ gglmps
-#: bws-google-maps.php:233
+#: bws-google-maps.php:226
 msgid "Settings saved."
 msgstr "Настройки сохранены."
 
-#: bws-google-maps.php:257
-#: bws-google-maps.php:295
+#: bws-google-maps.php:240
+#: bws-google-maps.php:278
 msgid "Wrong license key"
 msgstr "Неправильный лицензионный ключ"
 
-#: bws-google-maps.php:288
+#: bws-google-maps.php:271
 msgid "Something went wrong. Try again later. If the error will appear again, please, contact us <a href=http://support.bestwebsoft.com>BestWebSoft</a>. We are sorry for inconvenience."
 msgstr "Что-то пошло не так. Повторите попытку позже. Если ошибка появится снова, пожалуйста, свяжитесь с нами <a href=http://support.bestwebsoft.com>BestWebSoft</a>. Приносим извинения за неудобства."
 
-#: bws-google-maps.php:297
+#: bws-google-maps.php:280
 msgid "This license key is bind to another site"
 msgstr "Этот лицензионный ключ привязан к другому сайту"
 
-#: bws-google-maps.php:299
-#: bws-google-maps.php:630
+#: bws-google-maps.php:282
+#: bws-google-maps.php:611
 msgid "Unfortunately, you have exceeded the number of available tries per day. Please, upload the plugin manually."
 msgstr "К сожалению, вы превысили количество доступных попыток в день. Пожалуйста, загрузите плагин вручную."
 
-#: bws-google-maps.php:317
+#: bws-google-maps.php:299
 msgid "Failed to open the zip archive. Please, upload the plugin manually"
 msgstr "е удалось открыть архив ZIP. Пожалуйста, загрузите плагин вручную"
 
-#: bws-google-maps.php:323
+#: bws-google-maps.php:305
 msgid "Your server does not support either ZipArchive or Phar. Please, upload the plugin manually"
 msgstr "Ваш сервер не поддерживает ни библиотеку ZipArchive, ни библиотеку Phar. Пожалуйста, загрузите плагин вручную"
 
-#: bws-google-maps.php:327
-#: bws-google-maps.php:336
+#: bws-google-maps.php:309
+#: bws-google-maps.php:318
 msgid "Failed to download the zip archive. Please, upload the plugin manually"
 msgstr "Не удалось загрузить архив плагина. Пожалуйста, загрузите плагин вручную"
 
-#: bws-google-maps.php:340
+#: bws-google-maps.php:322
 msgid "Something went wrong. Try again later or upload the plugin manually. We are sorry for inconvenience."
 msgstr "Что-то пошло не так. Повторите попытку позже. Если ошибка появится снова, пожалуйста, свяжитесь с нами <a href=http://support.bestwebsoft.com>BestWebSoft</a>. Приносим извинения за неудобства."
 
-#: bws-google-maps.php:355
+#: bws-google-maps.php:337
 msgid "Please, enter Your license key"
 msgstr "Пожалуйста, введите Ваш лицензионный ключ"
 
 # @ gglmps
-#: bws-google-maps.php:365
-#: bws-google-maps.php:1454
-#: bws-google-maps.php:1467
+#: bws-google-maps.php:345
+#: bws-google-maps.php:1455
+#: bws-google-maps.php:1468
 msgid "Settings"
 msgstr "Настройки"
 
-#: bws-google-maps.php:366
+# @ gglmps
+#: bws-google-maps.php:346
+#: bws-google-maps.php:1469
+msgid "FAQ"
+msgstr "FAQ"
+
+#: bws-google-maps.php:347
 msgid "Go PRO"
 msgstr "Перейти на PRO версию"
 
 # @ gglmps
-#: bws-google-maps.php:373
-#: bws-google-maps.php:699
-#: bws-google-maps.php:996
+#: bws-google-maps.php:354
+#: bws-google-maps.php:680
+#: bws-google-maps.php:989
 msgid "WARNING:"
 msgstr "ВНИМАНИЕ:"
 
 # @ gglmps
-#: bws-google-maps.php:374
-#: bws-google-maps.php:700
-#: bws-google-maps.php:997
+#: bws-google-maps.php:355
+#: bws-google-maps.php:681
+#: bws-google-maps.php:990
 msgid "BestWebSoft Google Maps only works with JavaScript enabled"
 msgstr "BestWebSoft Google Maps работает только с включенным JavaScript"
 
 # @ gglmps
-#: bws-google-maps.php:382
+#: bws-google-maps.php:363
 msgid "The plugin's settings have been changed. Please, don't forget to click the 'Save Settings' button."
 msgstr "Настройки плагина были изменены. Пожалуйста, не забудьте нажать кнопку 'Сохранить Настройки'."
 
 # @ gglmps
-#: bws-google-maps.php:387
+#: bws-google-maps.php:368
 msgid "These settings are used as default when you create a new map."
 msgstr "Эти настройки будут использоваться по умолчанию при создании новой карты."
 
 # @ gglmps
-#: bws-google-maps.php:390
+#: bws-google-maps.php:371
 msgid "In the"
 msgstr "В"
 
 # @ gglmps
-#: bws-google-maps.php:391
-#: bws-google-maps.php:958
-#: bws-google-maps.php:976
+#: bws-google-maps.php:372
+#: bws-google-maps.php:951
+#: bws-google-maps.php:969
 msgid "Google Maps editor"
 msgstr "Редактор Google Maps"
 
 # @ gglmps
-#: bws-google-maps.php:392
+#: bws-google-maps.php:373
 msgid "you can create a new map and in the"
 msgstr "вы можете создать новую карту, а"
 
 # @ gglmps
-#: bws-google-maps.php:393
-#: bws-google-maps.php:956
-#: bws-google-maps.php:974
+#: bws-google-maps.php:374
+#: bws-google-maps.php:949
+#: bws-google-maps.php:967
 msgid "Google Maps manager"
 msgstr "менеджер Google Maps"
 
 # @ gglmps
-#: bws-google-maps.php:394
+#: bws-google-maps.php:375
 msgid "you can find maps that have been previously saved."
 msgstr "покажет сохраненные ранее карты."
 
 # @ gglmps
-#: bws-google-maps.php:398
+#: bws-google-maps.php:379
 msgid "If you want to insert the map in any place on the site, please use the shortcode"
 msgstr "Для вставки карт в любом месте используйте шорткод"
 
 # @ gglmps
-#: bws-google-maps.php:399
+#: bws-google-maps.php:380
 msgid "where * stands for map ID."
 msgstr "где * это ID карты."
 
 # @ gglmps
-#: bws-google-maps.php:407
+#: bws-google-maps.php:388
 msgid "API Key"
 msgstr "API Ключ"
 
 # @ gglmps
-#: bws-google-maps.php:414
+#: bws-google-maps.php:395
 msgid "Using an API key enables you to monitor your application Maps API usage, and ensures that Google can contact you about your application if necessary. If your application Maps API usage exceeds the"
 msgstr "Применение ключа API позволяет отслеживать показатели использования API Google Maps приложением и при необходимости дает возможность компании Google связаться с вами по поводу вашего приложения. Если показатели использования API Google Maps приложением превысят предусмотренные"
 
 # @ gglmps
-#: bws-google-maps.php:415
+#: bws-google-maps.php:396
 msgid "Usage Limits"
 msgstr "ограничения на использование"
 
 # @ gglmps
-#: bws-google-maps.php:416
+#: bws-google-maps.php:397
 msgid "you must load the Maps API using an API key in order to purchase additional quota. How to create a API key you can find"
 msgstr "то для заказа дополнительных квот загрузка интерфейса должна производиться с использованием ключа API. Как создать API ключ вы можете найти"
 
 # @ gglmps
-#: bws-google-maps.php:417
+#: bws-google-maps.php:398
 msgid "here"
 msgstr "здесь"
 
 # @ gglmps
-#: bws-google-maps.php:424
+#: bws-google-maps.php:405
 msgid "Language"
 msgstr "Язык"
 
 # @ gglmps
-#: bws-google-maps.php:439
-#: bws-google-maps.php:1082
+#: bws-google-maps.php:420
+#: bws-google-maps.php:1074
 msgid "Width (px)"
 msgstr "Ширина (пикс)"
 
 # @ gglmps
-#: bws-google-maps.php:440
-#: bws-google-maps.php:1083
+#: bws-google-maps.php:421
+#: bws-google-maps.php:1075
 msgid "Enter width"
 msgstr "Введите ширину"
 
 # @ gglmps
-#: bws-google-maps.php:443
-#: bws-google-maps.php:1086
+#: bws-google-maps.php:424
+#: bws-google-maps.php:1078
 msgid "Height (px)"
 msgstr "Высота (пикс)"
 
 # @ gglmps
-#: bws-google-maps.php:445
-#: bws-google-maps.php:1088
+#: bws-google-maps.php:426
+#: bws-google-maps.php:1080
 msgid "Enter height"
 msgstr "Введите высоту"
 
 # @ gglmps
-#: bws-google-maps.php:449
-#: bws-google-maps.php:1092
+#: bws-google-maps.php:430
+#: bws-google-maps.php:1084
 msgid "Alignment"
 msgstr "Выравнивание"
 
 # @ gglmps
-#: bws-google-maps.php:452
-#: bws-google-maps.php:1095
+#: bws-google-maps.php:433
+#: bws-google-maps.php:1087
 msgid "Left"
 msgstr "По левому краю"
 
 # @ gglmps
-#: bws-google-maps.php:453
-#: bws-google-maps.php:1096
+#: bws-google-maps.php:434
+#: bws-google-maps.php:1088
 msgid "Center"
 msgstr "По центру"
 
 # @ gglmps
-#: bws-google-maps.php:454
-#: bws-google-maps.php:1097
+#: bws-google-maps.php:435
+#: bws-google-maps.php:1089
 msgid "Right"
 msgstr "По правому краю"
 
 # @ gglmps
-#: bws-google-maps.php:459
-#: bws-google-maps.php:500
-#: bws-google-maps.php:1102
-#: bws-google-maps.php:1143
+#: bws-google-maps.php:440
+#: bws-google-maps.php:481
+#: bws-google-maps.php:1094
+#: bws-google-maps.php:1135
 msgid "Type"
 msgstr "Тип"
 
 # @ gglmps
-#: bws-google-maps.php:462
-#: bws-google-maps.php:1105
+#: bws-google-maps.php:443
+#: bws-google-maps.php:1097
 msgid "Roadmap"
 msgstr "Дорожный"
 
 # @ gglmps
-#: bws-google-maps.php:463
-#: bws-google-maps.php:1106
+#: bws-google-maps.php:444
+#: bws-google-maps.php:1098
 msgid "Terrain"
 msgstr "Рельефный"
 
 # @ gglmps
-#: bws-google-maps.php:464
-#: bws-google-maps.php:1107
+#: bws-google-maps.php:445
+#: bws-google-maps.php:1099
 msgid "Satellite"
 msgstr "Спутниковый"
 
 # @ gglmps
-#: bws-google-maps.php:465
-#: bws-google-maps.php:1108
+#: bws-google-maps.php:446
+#: bws-google-maps.php:1100
 msgid "Hybrid"
 msgstr "Гибридный"
 
 # @ gglmps
-#: bws-google-maps.php:470
-#: bws-google-maps.php:1113
+#: bws-google-maps.php:451
+#: bws-google-maps.php:1105
 msgid "View"
 msgstr "Вид"
 
 # @ gglmps
-#: bws-google-maps.php:473
-#: bws-google-maps.php:1116
+#: bws-google-maps.php:454
+#: bws-google-maps.php:1108
 msgid "This option is only available for the types of map Satellite and Hybrid (if such snapshots are available)."
 msgstr "Эта опция доступна только для Спутникового и Гибридного типа карт (если такие снимки имеются)."
 
 # @ gglmps
-#: bws-google-maps.php:477
-#: bws-google-maps.php:512
-#: bws-google-maps.php:527
-#: bws-google-maps.php:1120
-#: bws-google-maps.php:1159
-#: bws-google-maps.php:1175
+#: bws-google-maps.php:458
+#: bws-google-maps.php:493
+#: bws-google-maps.php:508
+#: bws-google-maps.php:1112
+#: bws-google-maps.php:1151
+#: bws-google-maps.php:1167
 msgid "Zoom"
 msgstr "Масштаб"
 
 # @ gglmps
-#: bws-google-maps.php:489
-#: bws-google-maps.php:537
-#: bws-google-maps.php:1132
-#: bws-google-maps.php:1186
+#: bws-google-maps.php:470
+#: bws-google-maps.php:518
+#: bws-google-maps.php:1124
+#: bws-google-maps.php:1178
 msgid "Controls options"
 msgstr "Настройки элементов управления"
 
 # @ gglmps
-#: bws-google-maps.php:492
-#: bws-google-maps.php:1135
+#: bws-google-maps.php:473
+#: bws-google-maps.php:1127
 msgid "Visibility and actions controls of the map."
 msgstr "Видимость и действия элементов управления карты."
 
 # @ gglmps
-#: bws-google-maps.php:504
-#: bws-google-maps.php:1147
+#: bws-google-maps.php:485
+#: bws-google-maps.php:1139
 msgid "Pan"
 msgstr "Перемещение"
 
 # @ gglmps
-#: bws-google-maps.php:508
-#: bws-google-maps.php:1151
-#: bws-google-maps.php:1155
+#: bws-google-maps.php:489
+#: bws-google-maps.php:1143
+#: bws-google-maps.php:1147
 msgid "Rotate"
 msgstr "Вращение"
 
 # @ gglmps
-#: bws-google-maps.php:516
-#: bws-google-maps.php:1163
+#: bws-google-maps.php:497
+#: bws-google-maps.php:1155
 msgid "Scale"
-msgstr "Масштаб"
+msgstr "Шкала"
 
 # @ gglmps
-#: bws-google-maps.php:531
-#: bws-google-maps.php:1180
+#: bws-google-maps.php:512
+#: bws-google-maps.php:1172
 msgid "Auto"
 msgstr "Авто"
 
 # @ gglmps
-#: bws-google-maps.php:532
-#: bws-google-maps.php:1181
+#: bws-google-maps.php:513
+#: bws-google-maps.php:1173
 msgid "The map will be scaled to display all markers."
 msgstr "Карта будет масштабироваться для отображения всех маркеров."
 
 # @ gglmps
-#: bws-google-maps.php:541
-#: bws-google-maps.php:1190
+#: bws-google-maps.php:522
+#: bws-google-maps.php:1182
 msgid "Street View"
 msgstr "Уличный Вид"
 
 # @ gglmps
-#: bws-google-maps.php:545
-#: bws-google-maps.php:1194
+#: bws-google-maps.php:526
+#: bws-google-maps.php:1186
 msgid "Overview Map"
 msgstr "Обзорная Карта"
 
 # @ gglmps
-#: bws-google-maps.php:549
-#: bws-google-maps.php:1198
+#: bws-google-maps.php:530
+#: bws-google-maps.php:1190
 msgid "Overview Map Opened"
 msgstr "Обзорная Карта Открыта"
 
 # @ gglmps
-#: bws-google-maps.php:553
-#: bws-google-maps.php:1202
+#: bws-google-maps.php:534
+#: bws-google-maps.php:1194
 msgid "Draggable"
 msgstr "Перемещение Мышью"
 
 # @ gglmps
-#: bws-google-maps.php:557
-#: bws-google-maps.php:1206
+#: bws-google-maps.php:538
+#: bws-google-maps.php:1198
 msgid "Double Click"
 msgstr "Двойной Клик"
 
 # @ gglmps
-#: bws-google-maps.php:561
-#: bws-google-maps.php:1210
+#: bws-google-maps.php:542
+#: bws-google-maps.php:1202
 msgid "Scroll Wheel"
 msgstr "Колесо Мыши"
 
-#: bws-google-maps.php:567
-#: bws-google-maps.php:1216
+#: bws-google-maps.php:548
+#: bws-google-maps.php:1208
 msgid "If you upgrade to Pro version all your settings will be saved."
 msgstr "При установке Pro версии плагина, все ваши настройки сохраняются."
 
-#: bws-google-maps.php:574
-#: bws-google-maps.php:1223
-#: bws-google-maps.php:1254
+#: bws-google-maps.php:555
+#: bws-google-maps.php:1215
+#: bws-google-maps.php:1246
 msgid "Unlock premium options by upgrading to a PRO version."
 msgstr "Активируйте премиум опции обновившись до PRO версии."
 
-#: bws-google-maps.php:575
-#: bws-google-maps.php:1224
-#: bws-google-maps.php:1255
-#: bws-google-maps.php:1531
+#: bws-google-maps.php:556
+#: bws-google-maps.php:1216
+#: bws-google-maps.php:1247
+#: bws-google-maps.php:1536
 msgid "Learn More"
 msgstr "Подробнее"
 
-#: bws-google-maps.php:578
-#: bws-google-maps.php:1227
-#: bws-google-maps.php:1258
+#: bws-google-maps.php:559
+#: bws-google-maps.php:1219
+#: bws-google-maps.php:1250
 msgid "Go"
 msgstr "Перейти на"
 
 # @ gglmps
-#: bws-google-maps.php:585
+#: bws-google-maps.php:566
 msgid "Save Settings"
 msgstr "Сохранить Настройки"
 
-#: bws-google-maps.php:590
+#: bws-google-maps.php:571
 msgid "If you enjoy our plugin, please give it 5 stars on WordPress"
 msgstr "Если вам понравился плагин то поставте нам 5 звезд на WordPress"
 
-#: bws-google-maps.php:591
+#: bws-google-maps.php:572
 msgid "Rate the plugin"
 msgstr "Оценить плагин"
 
-#: bws-google-maps.php:594
+#: bws-google-maps.php:575
 msgid "If there is something wrong about it, please contact us"
 msgstr "Если у вас есть какие-то вопросы, обращайтесь"
 
-#: bws-google-maps.php:605
+#: bws-google-maps.php:586
 msgid "Congratulations! The PRO version of the plugin is successfully download and activated."
 msgstr "Поздравляем! PRO версия плагина была успешно загружена и активирована."
 
-#: bws-google-maps.php:607
+#: bws-google-maps.php:588
 msgid "Please, go to"
 msgstr "Пожалуйста, перейдите на"
 
-#: bws-google-maps.php:607
+#: bws-google-maps.php:588
 msgid "the setting page"
 msgstr "страницу настроек"
 
-#: bws-google-maps.php:608
+#: bws-google-maps.php:589
 msgid "You will be redirected automatically in 5 seconds."
 msgstr "Вы будете перенаправлены автоматически через 5 секунд."
 
-#: bws-google-maps.php:613
+#: bws-google-maps.php:594
 msgid "You can download and activate"
 msgstr "Вы можете скачать и активировать"
 
-#: bws-google-maps.php:615
+#: bws-google-maps.php:596
 msgid "version of this plugin by entering Your license key."
 msgstr "версию этого плагина, введя ваш лицензионный ключ."
 
-#: bws-google-maps.php:617
+#: bws-google-maps.php:598
 msgid "You can find your license key on your personal page Client area, by clicking on the link"
 msgstr "Вы можете найти ваш лицензионный ключ на вашей личной странице Client area, нажав на ссылку"
 
-#: bws-google-maps.php:619
+#: bws-google-maps.php:600
 msgid "(your username is the email you specify when purchasing the product)."
 msgstr "(ваше имя пользователя - это электронный адрес, указанный при покупке продукта)."
 
-#: bws-google-maps.php:627
-#: bws-google-maps.php:637
+#: bws-google-maps.php:608
+#: bws-google-maps.php:618
 msgid "Go!"
 msgstr "Перейти!"
 
 # @ gglmps
-#: bws-google-maps.php:731
+#: bws-google-maps.php:713
 msgid "map"
 msgstr "карта"
 
 # @ gglmps
-#: bws-google-maps.php:732
+#: bws-google-maps.php:714
 msgid "maps"
 msgstr "карты"
 
 # @ gglmps
-#: bws-google-maps.php:744
+#: bws-google-maps.php:726
 msgid "ID"
 msgstr "ID"
 
 # @ gglmps
-#: bws-google-maps.php:745
+#: bws-google-maps.php:727
 msgid "Title"
 msgstr "Название"
 
 # @ gglmps
-#: bws-google-maps.php:746
+#: bws-google-maps.php:728
 msgid "Shortcode"
 msgstr "Шорткод"
 
 # @ gglmps
-#: bws-google-maps.php:747
+#: bws-google-maps.php:729
 msgid "Date"
 msgstr "Дата"
 
 # @ gglmps
-#: bws-google-maps.php:780
-#: bws-google-maps.php:1064
-#: bws-google-maps.php:1307
+#: bws-google-maps.php:762
+#: bws-google-maps.php:1056
+#: bws-google-maps.php:1299
 msgid "Edit"
 msgstr "Изменить"
 
 # @ gglmps
-#: bws-google-maps.php:781
-#: bws-google-maps.php:824
-#: bws-google-maps.php:1063
-#: bws-google-maps.php:1306
+#: bws-google-maps.php:763
+#: bws-google-maps.php:806
+#: bws-google-maps.php:1055
+#: bws-google-maps.php:1298
 msgid "Delete"
 msgstr "Удалить"
 
 # @ gglmps
-#: bws-google-maps.php:790
+#: bws-google-maps.php:772
 msgid "Maps not found."
 msgstr "Карты не найдены."
 
 # @ gglmps
-#: bws-google-maps.php:837
+#: bws-google-maps.php:820
 msgid "Save Map"
 msgstr "Сохранить Карту"
 
 # @ gglmps
-#: bws-google-maps.php:838
+#: bws-google-maps.php:821
 msgid "Update Map"
 msgstr "Обновить Карту"
 
 # @ gglmps
-#: bws-google-maps.php:871
-#: bws-google-maps.php:915
+#: bws-google-maps.php:854
+#: bws-google-maps.php:903
 msgid "No title"
 msgstr "Без названия"
 
 # @ gglmps
-#: bws-google-maps.php:953
-#: bws-google-maps.php:971
-#: bws-google-maps.php:1437
+#: bws-google-maps.php:946
+#: bws-google-maps.php:964
+#: bws-google-maps.php:1438
 msgid "Map with"
 msgstr "Карта с"
 
 # @ gglmps
-#: bws-google-maps.php:955
-#: bws-google-maps.php:973
+#: bws-google-maps.php:948
+#: bws-google-maps.php:966
 msgid "not found! You can return to the"
 msgstr "не найдена! Вы можете вернуться в"
 
 # @ gglmps
-#: bws-google-maps.php:957
-#: bws-google-maps.php:975
+#: bws-google-maps.php:950
+#: bws-google-maps.php:968
 msgid "or create new map in the"
 msgstr "или создать новую карту в"
 
 # @ gglmps
-#: bws-google-maps.php:1005
+#: bws-google-maps.php:998
 msgid "Map has been updated."
 msgstr "Карта была обновлена."
 
 # @ gglmps
-#: bws-google-maps.php:1012
+#: bws-google-maps.php:1005
 msgid "To insert this map use a shortcode"
 msgstr "Для вставки этой карты используйте шорткод"
 
 # @ gglmps
-#: bws-google-maps.php:1023
+#: bws-google-maps.php:1016
 msgid "Map Title"
 msgstr "Название Карты"
 
 # @ gglmps
-#: bws-google-maps.php:1025
+#: bws-google-maps.php:1018
 msgid "Enter title"
 msgstr "Введите название"
 
 # @ gglmps
-#: bws-google-maps.php:1029
+#: bws-google-maps.php:1022
 msgid "Marker Location"
 msgstr "Месторасположение Маркера"
 
 # @ gglmps
-#: bws-google-maps.php:1031
+#: bws-google-maps.php:1024
 msgid "Enter location or coordinates"
 msgstr "Ведите месторасположение или координаты"
 
 # @ gglmps
-#: bws-google-maps.php:1033
+#: bws-google-maps.php:1026
 msgid "You should enter coordinates in decimal degrees with no spaces or you can use a right click on the preview map to get coordinates automatically. Example coordinates: 41.40338,2.17403."
 msgstr "Координаты должны быть введены в десятичных градусах без пробелов или получены по правому клику мыши по карте предпросмотра. Пример координат: 41.40338,2.17403."
 
 # @ gglmps
-#: bws-google-maps.php:1040
+#: bws-google-maps.php:1032
 msgid "Marker Tooltip"
 msgstr "Подсказка Маркера"
 
 # @ gglmps
-#: bws-google-maps.php:1042
+#: bws-google-maps.php:1034
 msgid "Enter tooltip"
 msgstr "Введите подсказку"
 
 # @ gglmps
-#: bws-google-maps.php:1043
+#: bws-google-maps.php:1035
 msgid "You can use HTML tags and attributes."
 msgstr "Вы можете использовать HTML теги и атрибуты."
 
 # @ gglmps
-#: bws-google-maps.php:1045
+#: bws-google-maps.php:1037
 msgid "Add marker to list"
 msgstr "Добавить маркер в список"
 
 # @ gglmps
-#: bws-google-maps.php:1046
+#: bws-google-maps.php:1038
 msgid "Update marker"
 msgstr "Обновить маркер"
 
 # @ gglmps
-#: bws-google-maps.php:1047
+#: bws-google-maps.php:1039
 msgid "Cancel"
 msgstr "Отмена"
 
 # @ gglmps
-#: bws-google-maps.php:1052
+#: bws-google-maps.php:1044
 msgid "Markers List"
 msgstr "Список Маркеров"
 
 # @ gglmps
-#: bws-google-maps.php:1057
-#: bws-google-maps.php:1309
+#: bws-google-maps.php:1049
+#: bws-google-maps.php:1301
 msgid "No markers"
 msgstr "Нет маркеров"
 
 # @ gglmps
-#: bws-google-maps.php:1065
-#: bws-google-maps.php:1308
+#: bws-google-maps.php:1057
+#: bws-google-maps.php:1300
 msgid "Find"
 msgstr "Найти"
 
 # @ gglmps
-#: bws-google-maps.php:1274
+#: bws-google-maps.php:1266
 msgid "Map(s)"
 msgstr "Карт(а)"
 
 # @ gglmps
-#: bws-google-maps.php:1310
+#: bws-google-maps.php:1302
 msgid "Get coordinates"
 msgstr "Получить координаты"
 
 # @ gglmps
-#: bws-google-maps.php:1370
+#: bws-google-maps.php:1369
 msgid "You have not specified map ID"
 msgstr "Вы не указали ID карты"
 
@@ -671,25 +677,20 @@ msgid "HELP"
 msgstr "ПОМОЩЬ"
 
 # @ gglmps
-#: bws-google-maps.php:1439
+#: bws-google-maps.php:1440
 msgid "not found"
 msgstr "не найдена"
 
 # @ gglmps
-#: bws-google-maps.php:1468
-msgid "FAQ"
-msgstr "FAQ"
-
-# @ gglmps
-#: bws-google-maps.php:1469
+#: bws-google-maps.php:1470
 msgid "Support"
 msgstr "Поддержка"
 
-#: bws-google-maps.php:1534
+#: bws-google-maps.php:1539
 msgid "It's time to upgrade your <strong>BestWebSoft Google Maps plugin</strong> to <strong>PRO</strong> version"
 msgstr "Пора обновить ваш <strong>плагин BestWebSoft Google Maps</strong> до <strong>PRO</strong> версии"
 
-#: bws-google-maps.php:1535
+#: bws-google-maps.php:1540
 msgid "Extend standard plugin functionality with new great options"
 msgstr "Расширение стандартного функционала плагина новыми опциями"
 
