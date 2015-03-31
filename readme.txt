@@ -1,10 +1,10 @@
-=== BestWebSoft Google Maps ===
+=== Google Maps by BestWebSoft ===
 Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
 Tags: add new map, add google maps, address marker, coordinates, coordinates marker, create a map, custom marker, edit saved map, geo, geoceoder, gogle map, googgle maps, google map, google maps, google maps editor, google maps manager, google maps shortcode map, marker tooltip, saved google maps, widget map, wp google map, wp google maps, wp map, wp maps
 Requires at least: 3.3
-Tested up to: 4.1
-Stable tag: 1.2.5
+Tested up to: 4.1.1
+Stable tag: 1.2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,7 +17,6 @@ This plugin allows you to configure Google Maps and add them to your site quickl
 http://www.youtube.com/watch?v=F0YonG9-rus
 
 <a href="http://wordpress.org/plugins/bws-google-maps/faq/" target="_blank">FAQ</a>
-
 <a href="http://support.bestwebsoft.com" target="_blank">Support</a>
 
 <a href="http://bestwebsoft.com/products/bws-google-maps/?k=3e09a2fbac0e195ef41a62eb3fdb346e" target="_blank">Upgrade to Pro Version</a>
@@ -34,7 +33,7 @@ http://www.youtube.com/watch?v=F0YonG9-rus
 * Russian (ru_RU)
 * Ukrainian (uk)
 
-If you would like to create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files  <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
+If you would like to create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
 
 = Technical support =
 
@@ -48,10 +47,12 @@ We can fix some things for free for the users who provide translation of our plu
 
 1. Upload the `bws-google-maps` folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin using the 'Plugins' menu in your WordPress admin panel.
-3. You can configure main settings in WordPress admin panel in the "BWS Plugins"> "BWS Google Maps".
-4. To create a new map, use the Google Maps editor in WordPress admin panel in the "BWS Google Maps"> "Add New".
+3. You can configure main settings in WordPress admin panel in the "BWS Plugins"> "Google Maps".
+4. To create a new map, use the Google Maps editor in WordPress admin panel in the "Google Maps"> "Add New".
 5. You can manage your saved maps in WordPress admin panel in "Google Maps".
 6. Create a page or post or add a text widget and insert the shortcode [bws_googlemaps id=*] in the text, where * is the map ID.
+
+<a href="https://docs.google.com/document/d/1xKvTlWPo5l-Jy8qJPBsee9rkPjiltZvbdZCefFckz2o/edit" target="_blank">View a PDF version of Step-by-step Instruction on Google Maps by BestWebSoft Installation</a>.
 
 == Frequently Asked Questions ==
 
@@ -107,6 +108,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
  
 == Changelog ==
 
+= V1.2.6 - 31.03.2015 =
+* Bugfix : Plugin optimization is done.
+* Update : We updated all functionality for WordPress 4.1.1.
+
 = V1.2.5 - 09.01.2015 =
 * Update : BWS plugins section is updated.
 * Update : We updated all functionality for WordPress 4.1.
@@ -132,9 +137,12 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Bugfix : Fixed bug with displaying Google Map.
 
 = V1.0 - 20.01.2013 =
-* NEW : Release of BestWebSoft Google Maps plugin.
+* NEW : Release of Google Maps by BestWebSoft plugin.
 
 == Upgrade Notice ==
+
+= V1.2.6 =
+Plugin optimization is done. We updated all functionality for WordPress 4.1.1
 
 = V1.2.5 =
 BWS plugins section is updated. We updated all functionality for WordPress 4.1.
@@ -158,4 +166,4 @@ We updated all functionality for wordpress 3.8.2.
 Fixed bug with displaying Google Map.
 
 = V1.0 =
-The BestWebSoft Google Maps plugin is ready for use.
+The Google Maps by BestWebSoft plugin is ready for use.
