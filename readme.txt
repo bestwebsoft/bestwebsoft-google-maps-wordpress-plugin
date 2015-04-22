@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
 Tags: add new map, add google maps, address marker, coordinates, coordinates marker, create a map, custom marker, edit saved map, geo, geoceoder, gogle map, googgle maps, google map, google maps, google maps editor, google maps manager, google maps shortcode map, marker tooltip, saved google maps, widget map, wp google map, wp google maps, wp map, wp maps
 Requires at least: 3.3
-Tested up to: 4.1.1
-Stable tag: 1.2.6
+Tested up to: 4.2-RC3
+Stable tag: 1.2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,6 +15,8 @@ Easy to set up and insert Google Maps to your website.
 This plugin allows you to configure Google Maps and add them to your site quickly and easily. In the Google Maps Editor, you can configure basic settings and add any number of markers. In the Google Maps manager you can view the saved maps and edit them easily. With the help of the shortcode you can insert Google maps in posts and the widgets.
 
 http://www.youtube.com/watch?v=F0YonG9-rus
+
+<a href="http://www.youtube.com/watch?v=3pXs5t18vL4" target="_blank">Video instruction on Installation</a>
 
 <a href="http://wordpress.org/plugins/bws-google-maps/faq/" target="_blank">FAQ</a>
 <a href="http://support.bestwebsoft.com" target="_blank">Support</a>
@@ -53,6 +55,8 @@ We can fix some things for free for the users who provide translation of our plu
 6. Create a page or post or add a text widget and insert the shortcode [bws_googlemaps id=*] in the text, where * is the map ID.
 
 <a href="https://docs.google.com/document/d/1xKvTlWPo5l-Jy8qJPBsee9rkPjiltZvbdZCefFckz2o/edit" target="_blank">View a PDF version of Step-by-step Instruction on Google Maps by BestWebSoft Installation</a>.
+
+http://www.youtube.com/watch?v=3pXs5t18vL4
 
 == Frequently Asked Questions ==
 
@@ -108,6 +112,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
  
 == Changelog ==
 
+= V1.2.7 - 22.04.2015 =
+* Bugfix : We fixed bug with displaying the list of maps.
+
 = V1.2.6 - 31.03.2015 =
 * Bugfix : Plugin optimization is done.
 * Update : We updated all functionality for WordPress 4.1.1.
@@ -140,6 +147,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Release of Google Maps by BestWebSoft plugin.
 
 == Upgrade Notice ==
+
+= V1.2.7 =
+We fixed bug with displaying the list of maps.
 
 = V1.2.6 =
 Plugin optimization is done. We updated all functionality for WordPress 4.1.1
