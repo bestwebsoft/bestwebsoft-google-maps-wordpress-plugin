@@ -4,7 +4,7 @@ Plugin Name: Google Maps by BestWebSoft
 Plugin URI: http://bestwebsoft.com/products
 Description: Easy to set up and insert Google Maps to your website.
 Author: BestWebSoft
-Version: 1.2.7
+Version: 1.2.8
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -31,9 +31,9 @@ License: GPLv2 or later
 if ( ! function_exists( 'gglmps_admin_menu' ) ) {
 	function gglmps_admin_menu() {
 		bws_add_general_menu( plugin_basename( __FILE__ ) );
-		add_submenu_page( 'bws_plugins', 'Google Maps ' . __( 'Settings', 'gglmps' ), 'Google Maps', 'manage_options', 'bws-google-maps.php', 'gglmps_settings_page' );
+		add_submenu_page( 'bws_plugins', __( 'Google Maps Settings', 'gglmps' ), 'Google Maps', 'manage_options', 'bws-google-maps.php', 'gglmps_settings_page' );
 		$hook = add_menu_page( 'Google Maps', 'Google Maps', 'edit_posts', 'gglmps_manager', 'gglmps_manager_page', plugins_url( "bws_menu/images/px.png", __FILE__ ), '54.1' );
-		add_submenu_page( 'gglmps_manager', 'Google Maps ' . __( 'Editor', 'gglmps' ), __( 'Add New', 'gglmps' ), 'manage_options', 'gglmps_editor', 'gglmps_editor_page' );
+		add_submenu_page( 'gglmps_manager', __( 'Google Maps Editor', 'gglmps' ), __( 'Add New', 'gglmps' ), 'manage_options', 'gglmps_editor', 'gglmps_editor_page' );
 		add_action( "load-$hook", 'gglmps_screen_options' );
 	}
 }
@@ -1262,7 +1262,7 @@ if ( ! function_exists ( 'gglmps_plugin_banner' ) ) {
 		global $hook_suffix;
 		if ( 'plugins.php' == $hook_suffix ) {
 			global $gglmps_plugin_info;
-			bws_plugin_banner( $gglmps_plugin_info, 'gglmps', 'bws-google-maps', 'f546edd672c2e16f8359dcb48f9d2fff', '124', 'http://ps.w.org/bws-google-maps/assets/icon-128x128.png' );
+			bws_plugin_banner( $gglmps_plugin_info, 'gglmps', 'bws-google-maps', 'f546edd672c2e16f8359dcb48f9d2fff', '124', '//ps.w.org/bws-google-maps/assets/icon-128x128.png' );
 		}
 	}
 }
