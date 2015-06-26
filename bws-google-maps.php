@@ -4,7 +4,7 @@ Plugin Name: Google Maps by BestWebSoft
 Plugin URI: http://bestwebsoft.com/products
 Description: Easy to set up and insert Google Maps to your website.
 Author: BestWebSoft
-Version: 1.2.8
+Version: 1.2.9
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -128,7 +128,7 @@ if ( ! function_exists ( 'gglmps_default_options' ) ) {
 */
 if ( ! function_exists( 'gglmps_settings_page' ) ) {
 	function gglmps_settings_page() {
-		global $gglmps_options, $gglmps_default_options,$gglmps_plugin_info, $wp_version;
+		global $gglmps_options, $gglmps_default_options, $gglmps_plugin_info, $wp_version;
 		$plugin_basename = plugin_basename( __FILE__ );
 		$gglmps_lang_codes = array(
 			'ar' => 'Arabic', 'eu' => 'Basque', 'bn' => 'Bengali', 'bg' => 'Bilgarian', 'ca' => 'Catalan', 'zh-CN' => 'Chinese (Simplified)', 'zh-TW' => 'Chinese (Traditional)',
@@ -166,6 +166,14 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 			update_option( 'gglmps_options', $gglmps_options );
 		}
 
+		/*## Add restore function */
+		if ( isset( $_REQUEST['bws_restore_confirm'] ) && check_admin_referer( $plugin_basename, 'bws_settings_nonce_name' ) ) {
+			$gglmps_options = $gglmps_default_options;
+			update_option( 'gglmps_options', $gglmps_options );			
+			$message = __( 'All plugin settings were restored.', 'gglmps' );
+		}		
+		/* end ##*/
+
 		/* GO PRO */
 		if ( isset( $_GET['action'] ) && 'go_pro' == $_GET['action'] ) {
 			$go_pro_result = bws_go_pro_tab_check( $plugin_basename );
@@ -191,217 +199,222 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 					</p>
 				</div><!-- .error -->
 			</noscript><!-- noscript -->
-			<div class="updated fade"<?php if ( ! isset( $_REQUEST['gglmps_settings_submit'] ) || "" != $error ) echo " style=\"display:none\""; ?>><p><strong><?php echo $message; ?></strong></p></div>
+			<div class="updated fade"<?php if ( '' == $message || "" != $error ) echo " style=\"display:none\""; ?>><p><strong><?php echo $message; ?></strong></p></div>
 			<div class="error" <?php if ( "" == $error ) echo "style=\"display:none\""; ?>><p><strong><?php echo $error; ?></strong></p></div>
 			<div id="gglmps_update_notice" class="updated fade">
 				<p><?php _e( "The plugin's settings have been changed. Please, don't forget to click the 'Save Settings' button.", 'gglmps' ); ?></p>
 			</div><!-- #ggglmps_update_notice -->
-			<?php if ( ! isset( $_GET['action'] ) ) { ?>
-				<div id="gglmps_settings_notice" class="updated">
-					<p>
-						<?php _e( 'These settings are used as default when you create a new map.', 'gglmps' ); ?><br />
-						<?php printf(
-							'%1$s <a href="admin.php?page=gglmps_editor">%2$s</a> %3$s <a href="admin.php?page=gglmps_manager">%4$s</a> %5$s',
-							__( 'In the', 'gglmps' ),
-							__( 'Google Maps editor', 'gglmps' ),
-							__( 'you can create a new map and in the', 'gglmps' ),
-							__( 'Google Maps manager', 'gglmps' ),
-							__( 'you can find maps that have been previously saved.', 'gglmps' )
-						 ); ?><br />
-						<?php printf(
-							'%1$s [bws_googlemaps id=*], %2$s',
-							__( 'If you want to insert the map in any place on the site, please use the shortcode', 'gglmps' ),
-							__( 'where * stands for map ID.', 'gglmps' )
-						); ?><br />
-					</p>
-				</div><!-- #gglmps_settings_notice -->
-				<form id="gglmps_settings_form" name="gglmps_settings_form" method="post" action="admin.php?page=bws-google-maps.php">
-					<table class="gglmps_settings_table form-table">
-						<tbody>
-							<tr valign="middle">
-								<th><label for="gglmps_main_api_key"l><?php _e( 'API Key', 'gglmps' ); ?></labe></th>
-								<td>
-									<div style="max-width: 600px;">
-										<input id="gglmps_main_api_key" name="gglmps_main_api_key" type="text" value="<?php echo $gglmps_options['api_key']; ?>">
-										<span class="gglmps_settings_tooltip">
-											<?php printf(
-												'%1$s <a href="https://developers.google.com/maps/documentation/javascript/usage#usage_limits" target="_blank">%2$s</a>, %3$s <a href="https://developers.google.com/maps/documentation/javascript/tutorial#api_key" target="_blank">%4$s</a>.',
-												__( 'Using an API key enables you to monitor your application Maps API usage, and ensures that Google can contact you about your application if necessary. If your application Maps API usage exceeds the', 'gglmps' ),
-												__( 'Usage Limits', 'gglmps' ),
-												__( 'you must load the Maps API using an API key in order to purchase additional quota. How to create a API key you can find', 'gglmps' ),
-												__( 'here', 'gglmps' )
-											); ?>
-										</span>
-									</div>
-								</td>
-							</tr>
-							<tr valign="middle">
-								<th><label for="gglmps_main_language"><?php _e( 'Language', 'gglmps' ); ?></label></th>
-								<td>
-									<select id="gglmps_main_language" name="gglmps_main_language">
-										<?php foreach ( $gglmps_lang_codes as $key => $lang ) {
-											printf(
-												'<option value="%1$s" %2$s>%3$s</option>',
-												$key,
-												$gglmps_options['language'] == $key ? 'selected="selected"' : '',
-												$lang
-											);
-										} ?>
-									</select>
-								</td>
-							</tr>
-							<tr valign="middle">
-								<th><label for="gglmps_basic_width"><?php _e( 'Width (px)', 'gglmps' ); ?></label></th>
-								<td><input id="gglmps_basic_width" name="gglmps_basic_width" type="text" maxlength="4" value="<?php echo $gglmps_options['basic']['width']; ?>" placeholder="<?php _e( 'Enter width', 'gglmps' ); ?>"></td>
-							</tr>
-							<tr valign="middle">
-								<th><label for="gglmps_basic_height"><?php _e( 'Height (px)', 'gglmps' ); ?></label></th>
-								<td>
-									<input id="gglmps_basic_height" name="gglmps_basic_height" type="text" maxlength="4" value="<?php echo $gglmps_options['basic']['height']; ?>" placeholder="<?php _e( 'Enter height', 'gglmps' ); ?>">
-								</td>
-							</tr>
-							<tr valign="middle">
-								<th><label for="gglmps_basic_alignment"><?php _e( 'Alignment', 'gglmps' ); ?></label></th>
-								<td>
-									<select id="gglmps_basic_alignment" name="gglmps_basic_alignment">
-										<option value="left" <?php if ( $gglmps_options['basic']['alignment'] == 'left' ) echo 'selected'; ?>><?php _e( 'Left', 'gglmps' ); ?></option>
-										<option value="center" <?php if ( $gglmps_options['basic']['alignment'] == 'center' ) echo 'selected'; ?>><?php _e( 'Center', 'gglmps' ); ?></option>
-										<option value="right" <?php if ( $gglmps_options['basic']['alignment'] == 'right' ) echo 'selected'; ?>><?php _e( 'Right', 'gglmps' ); ?></option>
-									</select>
-								</td>
-							</tr>
-							<tr valign="middle">
-								<th><label for="gglmps_basic_map_type"><?php _e( 'Type', 'gglmps' ); ?></label></th>
-								<td>
-									<select id="gglmps_basic_map_type" name="gglmps_basic_map_type">
-										<option value="roadmap" <?php if ( $gglmps_options['basic']['map_type'] == 'roadmap' ) echo 'selected'; ?>><?php _e( 'Roadmap', 'gglmps' ); ?></option>
-										<option value="terrain" <?php if ( $gglmps_options['basic']['map_type'] == 'terrain' ) echo 'selected'; ?>><?php _e( 'Terrain', 'gglmps' ); ?></option>
-										<option value="satellite" <?php if ( $gglmps_options['basic']['map_type'] == 'satellite' ) echo 'selected'; ?>><?php _e( 'Satellite', 'gglmps' ); ?></option>
-										<option value="hybrid" <?php if ( $gglmps_options['basic']['map_type'] == 'hybrid' ) echo 'selected'; ?>><?php _e( 'Hybrid', 'gglmps' ); ?></option>
-									</select>
-								</td>
-							</tr>
-							<tr valign="middle">
-								<th><label for="gglmps_basic_tilt45"><?php _e( 'View', 'gglmps' ); ?>&nbsp;45&deg;</label></th>
-								<td>
-									<input id="gglmps_basic_tilt45" name="gglmps_basic_tilt45" type="checkbox" <?php if ( $gglmps_options['basic']['tilt45'] == 1 ) echo 'checked="checked"'; ?> />
-									<span class="gglmps_settings_tooltip"><?php _e( 'This option is only available for the types of map Satellite and Hybrid (if such snapshots are available).', 'gglmps' ); ?></span>
-								</td>
-							</tr>
-							<tr valign="middle">
-								<th><label for="gglmps_basic_auto_zoom"><?php _e( 'Zoom', 'gglmps' ); ?></label></th>
-								<td>
-									<div id="gglmps_zoom_wrap">
-										<div id="gglmps_zoom_slider"></div>
-										<span id="gglmps_zoom_value"></span>
-									</div>
-									<input id="gglmps_basic_zoom" name="gglmps_basic_zoom" type="text" maxlength="2" value="<?php echo $gglmps_options['basic']['zoom']; ?>">
-								</td>
-							</tr>
-							<tr valign="middle">
-								<th>
-									<input id="gglmps_settings_additional_options" name="gglmps_settings_additional_options" type="checkbox" <?php if ( $gglmps_options['additional_options'] == 1 ) echo 'checked="checked"'; ?> />
-									<label for="gglmps_settings_additional_options"><?php _e( 'Controls options', 'gglmps' ); ?></label>
-								</th>
-								<td>
-									<span class="gglmps_settings_tooltip"><?php _e( 'Visibility and actions controls of the map.', 'gglmps' ); ?></span>
-								</td>
-							</tr>
-							<tr class="gglmps_settings_additional_options" valign="middle">
-								<th>&nbsp;</th>
-								<td>
-									<p class="gglmps_settings_additional_option">
-										<input id="gglmps_control_map_type" name="gglmps_control_map_type" type="checkbox" <?php if ( $gglmps_options['controls']['map_type'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_map_type"><?php _e( 'Type', 'gglmps' ); ?></label>
-									</p>
-									<p class="gglmps_settings_additional_option">
-										<input id="gglmps_control_pan" name="gglmps_control_pan" type="checkbox" <?php if ( $gglmps_options['controls']['pan'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_pan"><?php _e( 'Pan', 'gglmps' ); ?></label>
-									</p>
-									<p class="gglmps_settings_additional_option">
-										<input id="gglmps_control_rotate" name="gglmps_control_rotate" type="checkbox" <?php if ( $gglmps_options['controls']['rotate'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_rotate"><?php _e( 'Rotate', 'gglmps' ); ?></label>
-									</p>
-									<p class="gglmps_settings_additional_option">
-										<input id="gglmps_control_zoom" name="gglmps_control_zoom" type="checkbox" <?php if ( $gglmps_options['controls']['zoom'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_zoom"><?php _e( 'Zoom', 'gglmps' ); ?></label>
-									</p>
-									<p class="gglmps_settings_additional_option">
-										<input id="gglmps_control_scale" name="gglmps_control_scale" type="checkbox" <?php if ( $gglmps_options['controls']['scale'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_scale"><?php _e( 'Scale', 'gglmps' ); ?></label>
-									</p>
-								</td>
-							</tr>
-						</tbody>
-					</table><!-- .gglmps_settings_table -->
-					<div class="bws_pro_version_bloc">
-						<div class="bws_pro_version_table_bloc">
-							<div class="bws_table_bg"></div>
-							<table class="form-table bws_pro_version">
+			<?php if ( ! isset( $_GET['action'] ) ) {
+				if ( isset( $_REQUEST['bws_restore_default'] ) && check_admin_referer( $plugin_basename, 'bws_settings_nonce_name' ) ) {
+					bws_form_restore_default_confirm( $plugin_basename );
+				} else { ?>
+					<div id="gglmps_settings_notice" class="updated">
+						<p>
+							<?php _e( 'These settings are used as default when you create a new map.', 'gglmps' ); ?><br />
+							<?php printf(
+								'%1$s <a href="admin.php?page=gglmps_editor">%2$s</a> %3$s <a href="admin.php?page=gglmps_manager">%4$s</a> %5$s',
+								__( 'In the', 'gglmps' ),
+								__( 'Google Maps editor', 'gglmps' ),
+								__( 'you can create a new map and in the', 'gglmps' ),
+								__( 'Google Maps manager', 'gglmps' ),
+								__( 'you can find maps that have been previously saved.', 'gglmps' )
+							 ); ?><br />
+							<?php printf(
+								'%1$s [bws_googlemaps id=*], %2$s',
+								__( 'If you want to insert the map in any place on the site, please use the shortcode', 'gglmps' ),
+								__( 'where * stands for map ID.', 'gglmps' )
+							); ?><br />
+						</p>
+					</div><!-- #gglmps_settings_notice -->
+					<form id="gglmps_settings_form" name="gglmps_settings_form" method="post" action="admin.php?page=bws-google-maps.php">
+						<table class="gglmps_settings_table form-table">
+							<tbody>
 								<tr valign="middle">
-									<th><label><?php _e( 'Zoom', 'gglmps' ); ?></label></th>
+									<th><?php _e( 'API Key', 'gglmps' ); ?></th>
 									<td>
-										<p class="gglmps-zoom-container">
-											<input disabled="disabled" name="gglmpspr_basic_auto_zoom" type="checkbox" />
-											<label><?php _e( 'Auto', 'gglmps' ); ?></label>
-											<span class="gglmps_settings_tooltip"><?php _e( 'The map will be scaled to display all markers.', 'gglmps' ); ?></span>
-										</p>
+										<div style="max-width: 600px;">
+											<input id="gglmps_main_api_key" name="gglmps_main_api_key" type="text" maxlength='250' value="<?php echo $gglmps_options['api_key']; ?>">
+											<span class="gglmps_settings_tooltip">
+												<?php printf(
+													'%1$s <a href="https://developers.google.com/maps/documentation/javascript/usage#usage_limits" target="_blank">%2$s</a>, %3$s <a href="https://developers.google.com/maps/documentation/javascript/tutorial#api_key" target="_blank">%4$s</a>.',
+													__( 'Using an API key enables you to monitor your application Maps API usage, and ensures that Google can contact you about your application if necessary. If your application Maps API usage exceeds the', 'gglmps' ),
+													__( 'Usage Limits', 'gglmps' ),
+													__( 'you must load the Maps API using an API key in order to purchase additional quota. How to create a API key you can find', 'gglmps' ),
+													__( 'here', 'gglmps' )
+												); ?>
+											</span>
+										</div>
 									</td>
 								</tr>
 								<tr valign="middle">
-									<th><?php _e( 'Controls options', 'gglmps' ); ?></th>
+									<th><?php _e( 'Language', 'gglmps' ); ?></th>
+									<td>
+										<select id="gglmps_main_language" name="gglmps_main_language">
+											<?php foreach ( $gglmps_lang_codes as $key => $lang ) {
+												printf(
+													'<option value="%1$s" %2$s>%3$s</option>',
+													$key,
+													$gglmps_options['language'] == $key ? 'selected="selected"' : '',
+													$lang
+												);
+											} ?>
+										</select>
+									</td>
+								</tr>
+								<tr valign="middle">
+									<th><?php _e( 'Width (px)', 'gglmps' ); ?></th>
+									<td><input id="gglmps_basic_width" name="gglmps_basic_width" type="number" min="150" max="10000" value="<?php echo $gglmps_options['basic']['width']; ?>" placeholder="<?php _e( 'Enter width', 'gglmps' ); ?>"></td>
+								</tr>
+								<tr valign="middle">
+									<th><label for="gglmps_basic_height"><?php _e( 'Height (px)', 'gglmps' ); ?></label></th>
+									<td>
+										<input id="gglmps_basic_height" name="gglmps_basic_height" type="number" min="150" max="10000" value="<?php echo $gglmps_options['basic']['height']; ?>" placeholder="<?php _e( 'Enter height', 'gglmps' ); ?>">
+									</td>
+								</tr>
+								<tr valign="middle">
+									<th><label for="gglmps_basic_alignment"><?php _e( 'Alignment', 'gglmps' ); ?></label></th>
+									<td>
+										<select id="gglmps_basic_alignment" name="gglmps_basic_alignment">
+											<option value="left" <?php if ( $gglmps_options['basic']['alignment'] == 'left' ) echo 'selected'; ?>><?php _e( 'Left', 'gglmps' ); ?></option>
+											<option value="center" <?php if ( $gglmps_options['basic']['alignment'] == 'center' ) echo 'selected'; ?>><?php _e( 'Center', 'gglmps' ); ?></option>
+											<option value="right" <?php if ( $gglmps_options['basic']['alignment'] == 'right' ) echo 'selected'; ?>><?php _e( 'Right', 'gglmps' ); ?></option>
+										</select>
+									</td>
+								</tr>
+								<tr valign="middle">
+									<th><label for="gglmps_basic_map_type"><?php _e( 'Type', 'gglmps' ); ?></label></th>
+									<td>
+										<select id="gglmps_basic_map_type" name="gglmps_basic_map_type">
+											<option value="roadmap" <?php if ( $gglmps_options['basic']['map_type'] == 'roadmap' ) echo 'selected'; ?>><?php _e( 'Roadmap', 'gglmps' ); ?></option>
+											<option value="terrain" <?php if ( $gglmps_options['basic']['map_type'] == 'terrain' ) echo 'selected'; ?>><?php _e( 'Terrain', 'gglmps' ); ?></option>
+											<option value="satellite" <?php if ( $gglmps_options['basic']['map_type'] == 'satellite' ) echo 'selected'; ?>><?php _e( 'Satellite', 'gglmps' ); ?></option>
+											<option value="hybrid" <?php if ( $gglmps_options['basic']['map_type'] == 'hybrid' ) echo 'selected'; ?>><?php _e( 'Hybrid', 'gglmps' ); ?></option>
+										</select>
+									</td>
+								</tr>
+								<tr valign="middle">
+									<th><label for="gglmps_basic_tilt45"><?php _e( 'View', 'gglmps' ); ?>&nbsp;45&deg;</label></th>
+									<td>
+										<input id="gglmps_basic_tilt45" name="gglmps_basic_tilt45" type="checkbox" <?php if ( $gglmps_options['basic']['tilt45'] == 1 ) echo 'checked="checked"'; ?> />
+										<span class="gglmps_settings_tooltip"><?php _e( 'This option is only available for the types of map Satellite and Hybrid (if such snapshots are available).', 'gglmps' ); ?></span>
+									</td>
+								</tr>
+								<tr valign="middle">
+									<th><label for="gglmps_basic_auto_zoom"><?php _e( 'Zoom', 'gglmps' ); ?></label></th>
+									<td>
+										<div id="gglmps_zoom_wrap">
+											<div id="gglmps_zoom_slider"></div>
+											<span id="gglmps_zoom_value"></span>
+										</div>
+										<input id="gglmps_basic_zoom" name="gglmps_basic_zoom" type="number" min='0' max='21' value="<?php echo $gglmps_options['basic']['zoom']; ?>">
+									</td>
+								</tr>
+								<tr valign="middle">
+									<th>
+										<input id="gglmps_settings_additional_options" name="gglmps_settings_additional_options" type="checkbox" <?php if ( $gglmps_options['additional_options'] == 1 ) echo 'checked="checked"'; ?> />
+										<label for="gglmps_settings_additional_options"><?php _e( 'Controls options', 'gglmps' ); ?></label>
+									</th>
+									<td>
+										<span class="gglmps_settings_tooltip"><?php _e( 'Visibility and actions controls of the map.', 'gglmps' ); ?></span>
+									</td>
+								</tr>
+								<tr class="gglmps_settings_additional_options" valign="middle">
+									<th>&nbsp;</th>
 									<td>
 										<p class="gglmps_settings_additional_option">
-										<input disabled="disabled" name="gglmpspr_control_street_view" type="checkbox" />
-											<label><?php _e( 'Street View', 'gglmps' ); ?></label>
+											<input id="gglmps_control_map_type" name="gglmps_control_map_type" type="checkbox" <?php if ( $gglmps_options['controls']['map_type'] == 1 ) echo 'checked="checked"'; ?> />
+											<label for="gglmps_control_map_type"><?php _e( 'Type', 'gglmps' ); ?></label>
 										</p>
-										<p class="gglmpspr_settings_additional_option">
-											<input disabled="disabled" name="gglmpspr_control_overview_map" type="checkbox" />
-											<label><?php _e( 'Overview Map', 'gglmps' ); ?></label>
+										<p class="gglmps_settings_additional_option">
+											<input id="gglmps_control_pan" name="gglmps_control_pan" type="checkbox" <?php if ( $gglmps_options['controls']['pan'] == 1 ) echo 'checked="checked"'; ?> />
+											<label for="gglmps_control_pan"><?php _e( 'Pan', 'gglmps' ); ?></label>
 										</p>
-										<p class="gglmpspr_settings_additional_option">
-											<input disabled="disabled" name="gglmpspr_control_overview_map_opened" type="checkbox" />
-											<label><?php _e( 'Overview Map Opened', 'gglmps' ); ?></label>
+										<p class="gglmps_settings_additional_option">
+											<input id="gglmps_control_rotate" name="gglmps_control_rotate" type="checkbox" <?php if ( $gglmps_options['controls']['rotate'] == 1 ) echo 'checked="checked"'; ?> />
+											<label for="gglmps_control_rotate"><?php _e( 'Rotate', 'gglmps' ); ?></label>
 										</p>
-										<p class="gglmpspr_settings_additional_option">
-											<input disabled="disabled" name="gglmpspr_control_map_draggable" type="checkbox" />
-											<label><?php _e( 'Draggable', 'gglmps' ); ?></label>
+										<p class="gglmps_settings_additional_option">
+											<input id="gglmps_control_zoom" name="gglmps_control_zoom" type="checkbox" <?php if ( $gglmps_options['controls']['zoom'] == 1 ) echo 'checked="checked"'; ?> />
+											<label for="gglmps_control_zoom"><?php _e( 'Zoom', 'gglmps' ); ?></label>
 										</p>
-										<p class="gglmpspr_settings_additional_option">
-											<input disabled="disabled" name="gglmpspr_control_double_click" type="checkbox" />
-											<label><?php _e( 'Double Click', 'gglmps' ); ?></label>
-										</p>
-										<p class="gglmpspr_settings_additional_option">
-											<input disabled="disabled" name="gglmpspr_control_scroll_wheel" type="checkbox" />
-											<label><?php _e( 'Scroll Wheel', 'gglmps' ); ?></label>
+										<p class="gglmps_settings_additional_option">
+											<input id="gglmps_control_scale" name="gglmps_control_scale" type="checkbox" <?php if ( $gglmps_options['controls']['scale'] == 1 ) echo 'checked="checked"'; ?> />
+											<label for="gglmps_control_scale"><?php _e( 'Scale', 'gglmps' ); ?></label>
 										</p>
 									</td>
 								</tr>
-								<tr valign="top">
-									<th scope="row" colspan="2">
-										* <?php _e( 'If you upgrade to Pro version all your settings will be saved.', 'gglmps' ); ?>
-									</th>
-								</tr>
-							</table>
-						</div>
-						<div class="bws_pro_version_tooltip">
-							<div class="bws_info">
-								<?php _e( 'Unlock premium options by upgrading to a PRO version.', 'gglmps' ); ?>
-								<a target="_blank" href="http://bestwebsoft.com/products/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'gglmps' ); ?></a>
+							</tbody>
+						</table><!-- .gglmps_settings_table -->
+						<div class="bws_pro_version_bloc">
+							<div class="bws_pro_version_table_bloc">
+								<div class="bws_table_bg"></div>
+								<table class="form-table bws_pro_version">
+									<tr valign="middle">
+										<th><?php _e( 'Zoom', 'gglmps' ); ?></th>
+										<td>
+											<p class="gglmps-zoom-container">
+												<input disabled="disabled" name="gglmpspr_basic_auto_zoom" type="checkbox" />
+												<label><?php _e( 'Auto', 'gglmps' ); ?></label>
+												<span class="gglmps_settings_tooltip"><?php _e( 'The map will be scaled to display all markers.', 'gglmps' ); ?></span>
+											</p>
+										</td>
+									</tr>
+									<tr valign="middle">
+										<th><?php _e( 'Controls options', 'gglmps' ); ?></th>
+										<td>
+											<p class="gglmps_settings_additional_option">
+											<input disabled="disabled" name="gglmpspr_control_street_view" type="checkbox" />
+												<label><?php _e( 'Street View', 'gglmps' ); ?></label>
+											</p>
+											<p class="gglmpspr_settings_additional_option">
+												<input disabled="disabled" name="gglmpspr_control_overview_map" type="checkbox" />
+												<label><?php _e( 'Overview Map', 'gglmps' ); ?></label>
+											</p>
+											<p class="gglmpspr_settings_additional_option">
+												<input disabled="disabled" name="gglmpspr_control_overview_map_opened" type="checkbox" />
+												<label><?php _e( 'Overview Map Opened', 'gglmps' ); ?></label>
+											</p>
+											<p class="gglmpspr_settings_additional_option">
+												<input disabled="disabled" name="gglmpspr_control_map_draggable" type="checkbox" />
+												<label><?php _e( 'Draggable', 'gglmps' ); ?></label>
+											</p>
+											<p class="gglmpspr_settings_additional_option">
+												<input disabled="disabled" name="gglmpspr_control_double_click" type="checkbox" />
+												<label><?php _e( 'Double Click', 'gglmps' ); ?></label>
+											</p>
+											<p class="gglmpspr_settings_additional_option">
+												<input disabled="disabled" name="gglmpspr_control_scroll_wheel" type="checkbox" />
+												<label><?php _e( 'Scroll Wheel', 'gglmps' ); ?></label>
+											</p>
+										</td>
+									</tr>
+									<tr valign="top">
+										<th scope="row" colspan="2">
+											* <?php _e( 'If you upgrade to Pro version all your settings will be saved.', 'gglmps' ); ?>
+										</th>
+									</tr>
+								</table>
 							</div>
-							<a class="bws_button" href="http://bestwebsoft.com/products/bws-google-maps/buy/?k=5ae35807d562bf6b5c67db88fefece60&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Google Maps Pro">
-								<?php _e( 'Go', 'gglmps' ); ?> <strong>PRO</strong>
-							</a>
-							<div class="clear"></div>
+							<div class="bws_pro_version_tooltip">
+								<div class="bws_info">
+									<?php _e( 'Unlock premium options by upgrading to a PRO version.', 'gglmps' ); ?>
+									<a target="_blank" href="http://bestwebsoft.com/products/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'gglmps' ); ?></a>
+								</div>
+								<a class="bws_button" href="http://bestwebsoft.com/products/bws-google-maps/buy/?k=5ae35807d562bf6b5c67db88fefece60&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Google Maps Pro">
+									<?php _e( 'Go', 'gglmps' ); ?> <strong>PRO</strong>
+								</a>
+								<div class="clear"></div>
+							</div>
 						</div>
-					</div>
-					<p>
-						<?php wp_nonce_field( plugin_basename( __FILE__ ) ); ?>
-						<input class="button-primary" id="gglmps_settings_submit" name="gglmps_settings_submit" type="submit" value="<?php _e( 'Save Settings', 'gglmps' ) ?>" />
-					</p>
-				</form><!-- #gglmps_settings_form -->
-				<?php bws_plugin_reviews_block( $gglmps_plugin_info['Name'], 'bws-google-maps' ); ?>
-			<?php } elseif ( 'go_pro' == $_GET['action'] ) { 
+						<p>
+							<?php wp_nonce_field( $plugin_basename ); ?>
+							<input class="button-primary" id="gglmps_settings_submit" name="gglmps_settings_submit" type="submit" value="<?php _e( 'Save Settings', 'gglmps' ) ?>" />
+						</p>
+					</form><!-- #gglmps_settings_form -->
+					<?php bws_form_restore_default_settings( $plugin_basename );
+					bws_plugin_reviews_block( $gglmps_plugin_info['Name'], 'bws-google-maps' );
+				}
+			} elseif ( 'go_pro' == $_GET['action'] ) { 
 				bws_go_pro_tab( $gglmps_plugin_info, $plugin_basename, 'bws-google-maps.php', 'bws-google-maps-pro.php', 'bws-google-maps-pro/bws-google-maps-pro.php', 'bws-google-maps', 'f546edd672c2e16f8359dcb48f9d2fff', '124', isset( $go_pro_result['pro_plugin_is_activated'] ) ); 
 			} ?>
 		</div><!-- #gglmps_settings_wrap -->
@@ -853,12 +866,12 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 							</tr>
 							<tr valign="middle">
 								<th><label for="gglmps_basic_width"><?php _e( 'Width (px)', 'gglmps' ); ?></label></th>
-								<td><input id="gglmps_basic_width" name="gglmps_basic_width" type="text" maxlength="4" value="<?php echo $gglmps_map_data['basic']['width']; ?>" placeholder="<?php _e( 'Enter width', 'gglmps' ); ?>"></td>
+								<td><input id="gglmps_basic_width" name="gglmps_basic_width" type="number" min="150" max="10000" value="<?php echo $gglmps_map_data['basic']['width']; ?>" placeholder="<?php _e( 'Enter width', 'gglmps' ); ?>"></td>
 							</tr>
 							<tr valign="middle">
 								<th><label for="gglmps_basic_height"><?php _e( 'Height (px)', 'gglmps' ); ?></label></th>
 								<td>
-									<input id="gglmps_basic_height" name="gglmps_basic_height" type="text" maxlength="4" value="<?php echo $gglmps_map_data['basic']['height']; ?>" placeholder="<?php _e( 'Enter height', 'gglmps' ); ?>">
+									<input id="gglmps_basic_height" name="gglmps_basic_height" type="number" min="150" max="10000" value="<?php echo $gglmps_map_data['basic']['height']; ?>" placeholder="<?php _e( 'Enter height', 'gglmps' ); ?>">
 								</td>
 							</tr>
 							<tr valign="middle">
@@ -896,7 +909,7 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 										<div id="gglmps_zoom_slider"></div>
 										<span id="gglmps_zoom_value"></span>
 									</div>
-									<input id="gglmps_basic_zoom" name="gglmps_basic_zoom" type="text" maxlength="2" value="<?php echo $gglmps_map_data['basic']['zoom']; ?>">
+									<input id="gglmps_basic_zoom" name="gglmps_basic_zoom" type="number" min='0' max='21' value="<?php echo $gglmps_map_data['basic']['zoom']; ?>">
 								</td>
 							</tr>
 							<tr valign="middle">
