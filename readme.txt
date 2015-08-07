@@ -3,14 +3,14 @@ Contributors: bestwebsoft
 Donate link: http://bestwebsoft.com/donate/
 Tags: add new map, add google maps, address marker, coordinates, coordinates marker, create a map, custom marker, edit saved map, geo, geoceoder, gogle map, googgle maps, google map, google maps, google maps editor, google maps manager, google maps shortcode map, marker tooltip, saved google maps, widget map, wp google map, wp google maps, wp map, wp maps
 Requires at least: 3.3
-Tested up to: 4.2.2
-Stable tag: 1.2.9
+Tested up to: 4.2.4
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Easy to set up and insert Google Maps to your website.
 
-== Description ==
+== Description ==  
 
 This plugin allows you to configure Google Maps and add them to your site quickly and easily. In the Google Maps Editor, you can configure basic settings and add any number of markers. In the Google Maps manager you can view the saved maps and edit them easily. With the help of the shortcode you can insert Google maps in posts and the widgets.
 
@@ -19,6 +19,7 @@ http://www.youtube.com/watch?v=F0YonG9-rus
 <a href="http://www.youtube.com/watch?v=3pXs5t18vL4" target="_blank">Video instruction on Installation</a>
 
 <a href="http://wordpress.org/plugins/bws-google-maps/faq/" target="_blank">FAQ</a>
+
 <a href="http://support.bestwebsoft.com" target="_blank">Support</a>
 
 <a href="http://bestwebsoft.com/products/bws-google-maps/?k=3e09a2fbac0e195ef41a62eb3fdb346e" target="_blank">Upgrade to Pro Version</a>
@@ -103,7 +104,7 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 1. the link to the page where the problem occurs
 2. the name of the plugin and its version. If you are using a pro version - your order number.
 3. the version of your WordPress installation
-4. copy and paste into the message your system status report. Please read more here: <a href="https://docs.google.com/document/d/1Wi2X8RdRGXk9kMszQy1xItJrpN0ncXgioH935MaBKtc/edit" target="_blank">Instuction on System Status</a>
+4. copy and paste into the message your system status report. Please read more here: <a href="https://docs.google.com/document/d/1Wi2X8RdRGXk9kMszQy1xItJrpN0ncXgioH935MaBKtc/edit" target="_blank">Instruction on System Status</a>
 
 == Screenshots ==
 
@@ -112,6 +113,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 3. Editor Google Maps.
  
 == Changelog ==
+
+= V1.3.0 - 07.08.2015 =
+* Update : We updated all functionality for wordpress 4.2.4.
 
 = V1.2.9 - 26.06.2015 =
 * NEW : Ability to restore settings to defaults.
@@ -154,6 +158,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Release of Google Maps by BestWebSoft plugin.
 
 == Upgrade Notice ==
+
+= V1.3.0 = 
+We updated all functionality for wordpress 4.2.4.
 
 = V1.2.9 =
 Ability to restore settings to defaults.

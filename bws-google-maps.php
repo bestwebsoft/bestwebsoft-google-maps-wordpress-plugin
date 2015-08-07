@@ -4,7 +4,7 @@ Plugin Name: Google Maps by BestWebSoft
 Plugin URI: http://bestwebsoft.com/products
 Description: Easy to set up and insert Google Maps to your website.
 Author: BestWebSoft
-Version: 1.2.9
+Version: 1.3.0
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -56,7 +56,7 @@ if ( ! function_exists ( 'gglmps_init' ) ) {
 		}
 
 		/* Function check if plugin is compatible with current WP version  */
-		bws_wp_version_check( plugin_basename( __FILE__ ), $gglmps_plugin_info, "3.3" );
+		bws_wp_version_check( plugin_basename( __FILE__ ), $gglmps_plugin_info, '3.3' );
 
 		if ( ! is_admin() || isset( $_GET['page'] ) && ( $_GET['page'] == 'bws-google-maps.php' || $_GET['page'] == 'gglmps_manager' || $_GET['page'] == 'gglmps_editor' ) ) {
 			gglmps_default_options();
@@ -397,7 +397,7 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 							</div>
 							<div class="bws_pro_version_tooltip">
 								<div class="bws_info">
-									<?php _e( 'Unlock premium options by upgrading to a PRO version.', 'gglmps' ); ?>
+									<?php _e( 'Unlock premium options by upgrading to PRO version.', 'gglmps' ); ?>
 									<a target="_blank" href="http://bestwebsoft.com/products/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'gglmps' ); ?></a>
 								</div>
 								<a class="bws_button" href="http://bestwebsoft.com/products/bws-google-maps/buy/?k=5ae35807d562bf6b5c67db88fefece60&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Google Maps Pro">
@@ -1006,7 +1006,7 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 						</div>
 						<div class="bws_pro_version_tooltip">
 							<div class="bws_info">
-								<?php _e( 'Unlock premium options by upgrading to a PRO version.', 'gglmps' ); ?>
+								<?php _e( 'Unlock premium options by upgrading to PRO version.', 'gglmps' ); ?>
 								<a target="_blank" href="http://bestwebsoft.com/products/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'gglmps' ); ?></a>
 							</div>
 							<a class="bws_button" href="http://bestwebsoft.com/products/bws-google-maps/buy/?k=5ae35807d562bf6b5c67db88fefece60&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Google Maps Pro">
@@ -1037,7 +1037,7 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 					</div>
 					<div class="bws_pro_version_tooltip">
 						<div class="bws_info">
-							<?php _e( 'Unlock premium options by upgrading to a PRO version.', 'gglmps' ); ?>
+							<?php _e( 'Unlock premium options by upgrading to PRO version.', 'gglmps' ); ?>
 							<a target="_blank" href="http://bestwebsoft.com/products/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'gglmps' ); ?></a>
 						</div>
 						<a class="bws_button" href="http://bestwebsoft.com/products/bws-google-maps/buy/?k=5ae35807d562bf6b5c67db88fefece60&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Google Maps Pro">
