@@ -1,35 +1,35 @@
 === Google Maps by BestWebSoft ===
 Contributors: bestwebsoft
 Donate link: http://bestwebsoft.com/donate/
-Tags: add new map, add google maps, address marker, coordinates, coordinates marker, create a map, custom marker, edit saved map, geo, geoceoder, gogle map, googgle maps, google map, google maps, google maps editor, google maps manager, google maps shortcode map, marker tooltip, saved google maps, widget map, wp google map, wp google maps, wp map, wp maps
-Requires at least: 3.3
-Tested up to: 4.2.4
-Stable tag: 1.3.0
+Tags: add custom markers, add marker tooltip, add google sitemap plugin, add map, add maps, add google maps, add new map, add new maps, add markers, add address marker, address marker, best plugin, best google plugin, best google sitemaps plugin,  coordinates, coordinates marker, create a map, custom marker, edit saved map, free, free plugins, free google plugins, free google sitemaps plugin, geo, geoceoder,  gogle, gogole, googel, googgle, google, gogle map, googgle maps, google map, google maps, google maps editor, google maps manager, google maps shortcode map, marker, marker tooltip, saved google maps, widget map, wp plugin, wp free plugin, wp google map, wp google maps, wp map, wp maps, wordpress google map, wordpress google maps, wordpress map, wordpress maps, wordpress plugin, wordpress free plugin
+Requires at least: 3.8
+Tested up to: 4.3.1
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Easy to set up and insert Google Maps to your website.
 
-== Description ==  
+== Description ==
 
 This plugin allows you to configure Google Maps and add them to your site quickly and easily. In the Google Maps Editor, you can configure basic settings and add any number of markers. In the Google Maps manager you can view the saved maps and edit them easily. With the help of the shortcode you can insert Google maps in posts and the widgets.
 
 http://www.youtube.com/watch?v=F0YonG9-rus
 
-<a href="http://www.youtube.com/watch?v=3pXs5t18vL4" target="_blank">Video instruction on Installation</a>
+<a href="http://www.youtube.com/watch?v=3pXs5t18vL4" target="_blank">Google Maps by BestWebSoft Video instruction on Installation</a>
 
-<a href="http://wordpress.org/plugins/bws-google-maps/faq/" target="_blank">FAQ</a>
+<a href="http://wordpress.org/plugins/bws-google-maps/faq/" target="_blank">Google Maps by BestWebSoft FAQ</a>
 
-<a href="http://support.bestwebsoft.com" target="_blank">Support</a>
+<a href="http://support.bestwebsoft.com" target="_blank">Google Maps by BestWebSoft Support</a>
 
-<a href="http://bestwebsoft.com/products/bws-google-maps/?k=3e09a2fbac0e195ef41a62eb3fdb346e" target="_blank">Upgrade to Pro Version</a>
+<a href="http://bestwebsoft.com/products/bws-google-maps/?k=3e09a2fbac0e195ef41a62eb3fdb346e" target="_blank">Upgrade to Google Maps Pro by BestWebSoft</a>
 
 = Features =
 
-* Actions: Adding markers by address and coordinates.
-* Actions: Editable names and tooltips of the added markers.
-* Actions: Customize Controls.
-* Actions: Possibility to insert a map into widgets.
+* Adding markers by address and coordinates.
+* Editable names and tooltips of the added markers.
+* Customize Controls.
+* Possibility to insert a map into widgets.
 
 = Translation =
 
@@ -108,11 +108,16 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Screenshots ==
 
-1. Plugin Main Setting.
+1. Plugin setting page.
 2. Manager of saved maps.
-3. Editor Google Maps.
+3. Google Maps Editor.
+4. Displaying Google Map in the front-end.
  
 == Changelog ==
+
+= V1.3.1 - 06.10.2015 =
+* NEW : A button for Google Maps shortcode inserting to the content was added.
+* Update : Textdomain was changed.
 
 = V1.3.0 - 07.08.2015 =
 * Update : We updated all functionality for wordpress 4.2.4.
@@ -158,6 +163,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Release of Google Maps by BestWebSoft plugin.
 
 == Upgrade Notice ==
+
+= V1.3.1 =
+A button for Google Maps shortcode inserting to the content was added. Textdomain was changed.
 
 = V1.3.0 = 
 We updated all functionality for wordpress 4.2.4.

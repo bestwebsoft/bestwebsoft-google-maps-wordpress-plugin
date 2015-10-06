@@ -10,6 +10,24 @@
 #gglmps_settings_notice,
 #gglmps_editor_notice {
 	border-left: 4px solid #2ea2cc !important;
+	padding: 7px 12px;
+}
+@media screen and (min-width: 800px) {
+	#gglmps_settings_notice .bws_help_box.dashicons,
+	#gglmps_editor_notice .bws_help_box.dashicons {
+		vertical-align: top;
+	}
+}
+@media screen and (max-width: 600px) {
+	#gglmps_settings_notice .bws_help_box,
+	#gglmps_editor_notice .bws_help_box {
+		display: block;
+		text-align: left;
+	}
+	.rtl #gglmps_settings_notice .bws_help_box,
+	.rtl #gglmps_editor_notice .bws_help_box {
+		text-align: right;
+	}
 }
 .gglmps_settings_title,
 .gglmps_editor_title {

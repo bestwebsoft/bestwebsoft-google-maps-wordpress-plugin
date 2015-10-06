@@ -117,11 +117,5 @@
 				$( '#gglmps_basic_zoom' ).val( 21 );
 			}
 		});
-		$( '#gglmps_settings_form input, #gglmps_settings_form select' ).on( 'change select', function() {
-			if ( $( this ).attr( 'type' ) != 'submit' ) {
-				$( '.updated.fade' ).css( 'display', 'none' );
-				$( '#gglmps_update_notice' ).css( 'display', 'block' );
-			}
-		});
 	}); // end document ready
 })( jQuery );
