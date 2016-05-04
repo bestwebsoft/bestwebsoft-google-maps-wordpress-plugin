@@ -6,7 +6,7 @@ Description: Easy to set up and insert Google Maps to your website.
 Author: BestWebSoft
 Text Domain: bws-google-maps
 Domain Path: /languages
-Version: 1.3.1
+Version: 1.3.2
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -33,12 +33,17 @@ License: GPLv2 or later
 if ( ! function_exists( 'gglmps_admin_menu' ) ) {
 	function gglmps_admin_menu() {
 		global $submenu;
-		bws_add_general_menu( plugin_basename( __FILE__ ) );
-		add_submenu_page( 'bws_plugins', __( 'Google Maps Settings', 'bws-google-maps' ), 'Google Maps', 'manage_options', 'bws-google-maps.php', 'gglmps_settings_page' );
+		bws_general_menu();
+		$settings = add_submenu_page( 'bws_plugins', __( 'Google Maps Settings', 'bws-google-maps' ), 'Google Maps', 'manage_options', 'bws-google-maps.php', 'gglmps_settings_page' );
 		$hook = add_menu_page( 'Google Maps', 'Google Maps', 'edit_posts', 'gglmps_manager', 'gglmps_manager_page', plugins_url( "bws_menu/images/px.png", __FILE__ ), '54.1' );
-		add_submenu_page( 'gglmps_manager', __( 'Google Maps Editor', 'bws-google-maps' ), __( 'Add New', 'bws-google-maps' ), 'manage_options', 'gglmps_editor', 'gglmps_editor_page' );
+		$gglmps_manager = add_submenu_page( 'gglmps_manager', __( 'Google Maps Editor', 'bws-google-maps' ), __( 'Add New', 'bws-google-maps' ), 'manage_options', 'gglmps_editor', 'gglmps_editor_page' );
+		
 		add_action( "load-$hook", 'gglmps_screen_options' );
-		$submenu['gglmps_manager'][] = array( __( 'Settings', 'bws-google-maps' ), 'manage_options', admin_url( 'admin.php?page=bws-google-maps.php' ) );
+		add_action( 'load-' . $settings, 'gglmps_add_tabs' );
+		add_action( 'load-' . $gglmps_manager, 'gglmps_add_tabs' );
+		
+		if ( isset( $submenu['gglmps_manager'] ) )
+			$submenu['gglmps_manager'][] = array( __( 'Settings', 'bws-google-maps' ), 'manage_options', admin_url( 'admin.php?page=bws-google-maps.php' ) );
 	}
 }
 
@@ -205,10 +210,9 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 				$message = $go_pro_result['message'];
 		} ?>
 		<div id="gglmps_settings_wrap" class="wrap">
-			<h2 class="gglmps_settings_title"><?php _e( 'Google Maps Settings', 'bws-google-maps' ); ?></h2>
+			<h1 class="gglmps_settings_title"><?php _e( 'Google Maps Settings', 'bws-google-maps' ); ?></h1>
 			<h2 class="nav-tab-wrapper">
 				<a class="nav-tab<?php if ( ! isset( $_GET['action'] ) ) echo ' nav-tab-active'; ?>"  href="admin.php?page=bws-google-maps.php"><?php _e( 'Settings', 'bws-google-maps' ); ?></a>
-				<a class="nav-tab" href="http://bestwebsoft.com/products/bws-google-maps/faq" target="_blank"><?php _e( 'FAQ', 'bws-google-maps' ); ?></a>
 				<a class="nav-tab bws_go_pro_tab<?php if ( isset( $_GET['action'] ) && 'go_pro' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=bws-google-maps.php&amp;action=go_pro"><?php _e( 'Go PRO', 'bws-google-maps' ); ?></a>
 			</h2>
 			<noscript>
@@ -244,13 +248,13 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 						 ); ?></p>
 						<?php printf( 
 							__( 'Please add the map by clicking on %s button', 'bws-google-maps' ), 
-							'<span class="bws_code"><img src="' . plugins_url( 'bws-google-maps/bws_menu/images/shortcode-icon.png' ) . '" alt=""/></span>'
+							'<code><img style="vertical-align: sub;" src="' . plugins_url( 'bws_menu/images/shortcode-icon.png', __FILE__ ) . '" alt=""/></code>'
 						); ?>
-						<div class="bws_help_box<?php if ( $wp_version >= '3.9' ) echo ' dashicons dashicons-editor-help'; ?>">
+						<div class="bws_help_box dashicons dashicons-editor-help">
 							<div class="bws_hidden_help_text" style="min-width: 180px;">
 								<?php printf( 
 									__( "You can add the map to your content by clicking on %s button in the content edit block using the Visual mode. If the button isn't displayed, please use the shortcode %s, where * stands for map ID", 'bws-google-maps' ), 
-									'<code><img src="' . plugins_url( 'bws-google-maps/bws_menu/images/shortcode-icon.png' ) . '" alt="" /></code>',
+									'<code><img style="vertical-align: sub;" src="' . plugins_url( 'bws_menu/images/shortcode-icon.png', __FILE__ ) . '" alt="" /></code>',
 									'<span class="bws_code">[bws_googlemaps id=*]</span>'
 								); ?>
 							</div>
@@ -493,10 +497,10 @@ if ( ! function_exists( 'gglmps_manager_page' ) ) {
 		$gglmps_manager->gglmps_table_data = $gglmps_result;
 		$gglmps_manager->prepare_items(); ?>
 		<div class="wrap">
-			<h2 class="gglmps_manager_title">
+			<h1 class="gglmps_manager_title">
 				<?php _e( 'Google Maps', 'bws-google-maps' ); ?>
 				<a class="add-new-h2" href="admin.php?page=gglmps_editor"><?php _e( 'Add New', 'bws-google-maps' )?></a>
-			</h2>
+			</h1>
 			<noscript>
 				<div class="error">
 					<p>
@@ -827,20 +831,20 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 				<div id="gglmps_editor_notice" class="updated">
 					<?php printf( 
 						__( 'To insert this map use %s button', 'bws-google-maps' ), 
-						'<span class="bws_code"><img src="' . plugins_url( 'bws-google-maps/bws_menu/images/shortcode-icon.png' ) . '" alt=""/></span>'
+						'<code><img style="vertical-align: sub;" src="' . plugins_url( 'bws_menu/images/shortcode-icon.png', __FILE__ ) . '" alt=""/></code>'
 					); ?>
-					<div class="bws_help_box<?php if ( $wp_version >= '3.9' ) echo ' dashicons dashicons-editor-help'; ?>">
+					<div class="bws_help_box dashicons dashicons-editor-help">
 						<div class="bws_hidden_help_text" style="min-width: 180px;">
 							<?php printf( 
 								__( "You can add the map to your content by clicking on %s button in the content edit block using the Visual mode. If the button isn't displayed, please use the shortcode %s", 'bws-google-maps' ), 
-								'<code><img src="' . plugins_url( 'bws-google-maps/bws_menu/images/shortcode-icon.png' ) . '" alt="" /></code>',
+								'<code><img style="vertical-align: sub;" src="' . plugins_url( 'bws_menu/images/shortcode-icon.png', __FILE__ ) . '" alt="" /></code>',
 								'<span class="bws_code">[bws_googlemaps id=' . $gglmps_editor_mapid . ']</span>'
 							); ?>
 						</div>
 					</div>
 				</div><!-- #gglmpspr_editor_notice -->
 			<?php } ?>
-			<h2 class="gglmps_editor_title"><?php _e( 'Google Maps Editor', 'bws-google-maps' ); ?></h2>
+			<h1 class="gglmps_editor_title"><?php _e( 'Google Maps Editor', 'bws-google-maps' ); ?></h1>
 			<div id="gglmps_editor_settings">
 				<form id="gglmps_editor_form" name="gglmps_editor_form" method="post" action="<?php echo $gglmps_editor_form_action; ?>">
 					<table class="gglmps_editor_table form-table">
@@ -1091,12 +1095,25 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 */
 if ( ! function_exists ( 'gglmps_screen_options' ) ) {
 	function gglmps_screen_options() {
+		gglmps_add_tabs();
 		$args = array(
 			'label'   => __( 'Map(s)', 'bws-google-maps' ),
 			'default' => 20,
 			'option'  => 'gglmps_maps_per_page'
 		);
 		add_screen_option( 'per_page', $args );
+	}
+}
+
+/* add help tab  */
+if ( ! function_exists( 'gglmps_add_tabs' ) ) {
+	function gglmps_add_tabs() {
+		$screen = get_current_screen();
+		$args = array(
+			'id'		=> 'gglmps',
+			'section'	=> '200538659'
+		);
+		bws_help_tab( $screen, $args );
 	}
 }
 

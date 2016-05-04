@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: http://bestwebsoft.com/donate/
 Tags: add custom markers, add marker tooltip, add google sitemap plugin, add map, add maps, add google maps, add new map, add new maps, add markers, add address marker, address marker, best plugin, best google plugin, best google sitemaps plugin,  coordinates, coordinates marker, create a map, custom marker, edit saved map, free, free plugins, free google plugins, free google sitemaps plugin, geo, geoceoder,  gogle, gogole, googel, googgle, google, gogle map, googgle maps, google map, google maps, google maps editor, google maps manager, google maps shortcode map, marker, marker tooltip, saved google maps, widget map, wp plugin, wp free plugin, wp google map, wp google maps, wp map, wp maps, wordpress google map, wordpress google maps, wordpress map, wordpress maps, wordpress plugin, wordpress free plugin
 Requires at least: 3.8
-Tested up to: 4.3.1
-Stable tag: 1.3.1
+Tested up to: 4.4
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -115,6 +115,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
  
 == Changelog ==
 
+= V1.3.2 - 04.12.2015 =
+* Bugfix : The bug with plugin menu duplicating was fixed.
+
 = V1.3.1 - 06.10.2015 =
 * NEW : A button for Google Maps shortcode inserting to the content was added.
 * Update : Textdomain was changed.
@@ -163,6 +166,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Release of Google Maps by BestWebSoft plugin.
 
 == Upgrade Notice ==
+
+= V1.3.2 =
+The bug with plugin menu duplicating was fixed.
 
 = V1.3.1 =
 A button for Google Maps shortcode inserting to the content was added. Textdomain was changed.
