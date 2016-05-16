@@ -14,6 +14,23 @@
 			}
 		});
 
+
+		/* Check availability of Rotate Map control */
+		if ( $( '#gglmps_basic_tilt45' ).is( ':checked' ) ) {
+			$( '#gglmps_control_rotate' ).attr( 'disabled', false );
+		} else {
+			$( '#gglmps_control_rotate' ).attr( 'disabled', true );
+		}
+
+		/* Disable rotate map control if Map View 45° is not checked  */
+		$( '#gglmps_basic_tilt45' ).on( 'change', function() {
+			if ( $( this ).is( ':checked' ) ) {
+				$( '#gglmps_control_rotate' ).attr( 'disabled', false );
+			} else {
+				$( '#gglmps_control_rotate' ).attr( 'disabled', true );
+			}
+		} );
+
 		// Check availability preview map auto zoom
 		if ( $( '#gglmps_basic_auto_zoom' ).is( ':checked' ) ) {
 			$( '#gglmps_zoom_wrap' ).hide();

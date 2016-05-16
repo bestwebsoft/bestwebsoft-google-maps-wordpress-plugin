@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: http://bestwebsoft.com/donate/
 Tags: add custom markers, add marker tooltip, add google sitemap plugin, add map, add maps, add google maps, add new map, add new maps, add markers, add address marker, address marker, best plugin, best google plugin, best google sitemaps plugin,  coordinates, coordinates marker, create a map, custom marker, edit saved map, free, free plugins, free google plugins, free google sitemaps plugin, geo, geoceoder,  gogle, gogole, googel, googgle, google, gogle map, googgle maps, google map, google maps, google maps editor, google maps manager, google maps shortcode map, marker, marker tooltip, saved google maps, widget map, wp plugin, wp free plugin, wp google map, wp google maps, wp map, wp maps, wordpress google map, wordpress google maps, wordpress map, wordpress maps, wordpress plugin, wordpress free plugin
 Requires at least: 3.8
-Tested up to: 4.4
-Stable tag: 1.3.2
+Tested up to: 4.5.2
+Stable tag: 1.3.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,8 @@ http://www.youtube.com/watch?v=F0YonG9-rus
 * Customize Controls.
 * Possibility to insert a map into widgets.
 
+If you have a feature, suggestion or idea you'd like to see in the plugin, we'd love to hear about it! <a href="http://support.bestwebsoft.com/hc/en-us/requests/new" target="_blank">Suggest a Feature</a>
+
 = Translation =
 
 * Russian (ru_RU)
@@ -40,13 +42,13 @@ If you would like to create your own language pack or update the existing one, y
 
 = Technical support =
 
-Dear users, our plugins are available for free download. If you have any questions or recommendations regarding the functionality of our plugins (existing options, new options, current issues), please feel free to contact us. Please note that we accept requests in English only. All messages in another languages won't be accepted.
+Dear users, our plugins are available for free download. If you have any questions or recommendations regarding the functionality of our plugins (existing options, new options, current issues), please feel free to contact us. Please note that we accept requests in English only. All messages in other languages won't be accepted.
 
 If you notice any bugs in the plugin's work, you can notify us about it and we'll investigate and fix the issue then. Your request should contain URL of the website, issues description and WordPress admin panel credentials.
 Moreover we can customize the plugin according to your requirements. It's a paid service (as a rule it costs $40, but the price can vary depending on the amount of the necessary changes and their complexity). Please note that we could also include this or that feature (developed for you) in the next release and share with the other users then.
 We can fix some things for free for the users who provide translation of our plugin into their native language (this should be a new translation of a certain plugin, you can check available translations on the official plugin page).
 
-== Installation == 
+== Installation ==
 
 1. Upload the `bws-google-maps` folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin using the 'Plugins' menu in your WordPress admin panel.
@@ -65,10 +67,6 @@ http://www.youtube.com/watch?v=3pXs5t18vL4
 
 To add a new marker enter in marker location address and select from dropdown menu list desired address or just enter coordinates.
 
-= How can I add a new marker if the address and coordinates are unknown? =
-
-To add a new marker, if the address and coordinates are unknown, use the right-click on the map preview, and select "get the coordinates".
-
 = How many markers can I add? =
 
 You can add any number of markers.
@@ -76,10 +74,6 @@ You can add any number of markers.
 = Can I edit the name or tooltip of the added marker? =
 
 Yes, you can do it by clicking on the `edit` button on the marker in the list of the added markers.
-
-= How can I find the necessary marker if I have a lot of added markers on the map preview? =
-
-For visual search of the necessary marker on the map preview, click the marker button `find` in the list of the added markers and this marker will create animation on the map preview.
 
 = Can I delete marker from markers list? =
 
@@ -108,12 +102,16 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Screenshots ==
 
-1. Plugin setting page.
-2. Manager of saved maps.
-3. Google Maps Editor.
-4. Displaying Google Map in the front-end.
- 
+1. Displaying Google Map in the front-end.
+2. Plugin setting page.
+3. Manager of saved maps.
+4. Google Maps Editor.
+
 == Changelog ==
+
+= V1.3.3 - 16.05.2016 =
+* NEW : Ability to add custom styles.
+* Update : Pan control was removed since deprecated.
 
 = V1.3.2 - 04.12.2015 =
 * Bugfix : The bug with plugin menu duplicating was fixed.
@@ -128,7 +126,7 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 = V1.2.9 - 26.06.2015 =
 * NEW : Ability to restore settings to defaults.
 
-= V1.2.8 - 19.05.2015 = 
+= V1.2.8 - 19.05.2015 =
 * Update : We updated all functionality for wordpress 4.2.2.
 
 = V1.2.7 - 22.04.2015 =
@@ -167,19 +165,22 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Upgrade Notice ==
 
+= V1.3.3 =
+Ability to add custom styles. Pan control was removed since deprecated.
+
 = V1.3.2 =
 The bug with plugin menu duplicating was fixed.
 
 = V1.3.1 =
 A button for Google Maps shortcode inserting to the content was added. Textdomain was changed.
 
-= V1.3.0 = 
+= V1.3.0 =
 We updated all functionality for wordpress 4.2.4.
 
 = V1.2.9 =
 Ability to restore settings to defaults.
 
-= V1.2.8 = 
+= V1.2.8 =
 We updated all functionality for wordpress 4.2.2.
 
 = V1.2.7 =

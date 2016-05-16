@@ -43,7 +43,6 @@
 						<div class="gglmps_marker_control">\
 							<span class="gglmps_marker_delete">{delete}</span>\
 							<span class="gglmps_marker_edit">{edit}</span>\
-							<span class="gglmps_marker_find">{find}</span>\
 							<span class="gglmps_marker_latlng">[{gglmps_latlang}]</span>\
 						</div>\
 						<div class="gglmps_marker_data">\
@@ -63,7 +62,6 @@
 				$marker = $marker.replace( /{gglmps_tooltip}/g, $tooltip );
 				$marker = $marker.replace( /{delete}/g, gglmps_translation.deleteMarker );
 				$marker = $marker.replace( /{edit}/g, gglmps_translation.editMarker );
-				$marker = $marker.replace( /{find}/g, gglmps_translation.findMarker );
 				$( '#gglmps_markers_container' ).append( $marker );
 				$( '#gglmps_marker_cancel' ).hide();
 				$( '#gglmps_marker_latlng' ).val( '' );
@@ -73,11 +71,6 @@
 					$( '.gglmps_no_markers' ).remove();
 				}
 			});
-		});
-
-		// Animation marker for visual search on the preview map
-		$( '#gglmps_markers_container' ).on( 'click', '.gglmps_marker_find', function() {
-			var markerIndex = $( this ).parents( '.gglmps_marker' ).index();
 		});
 
 		// Editing marker
@@ -142,6 +135,22 @@
 			$( '#gglmps_basic_tilt45' ).attr( 'disabled', true );
 		}
 
+		/* Check availability of Rotate Map control */
+		if ( $( '#gglmps_basic_tilt45' ).is( ':checked' ) ) {
+			$( '#gglmps_control_rotate' ).attr( 'disabled', false );
+		} else {
+			$( '#gglmps_control_rotate' ).attr( 'disabled', true );
+		}
+
+		/* Disable rotate map control if Map View 45° is not checked */
+		$( '#gglmps_basic_tilt45' ).on( 'change', function() {
+			if ( $( this ).is( ':checked' ) ) {
+				$( '#gglmps_control_rotate' ).attr( 'disabled', false );
+			} else {
+				$( '#gglmps_control_rotate' ).attr( 'disabled', true );
+			}
+		} );
+
 		// Change map type in the preview map and check availability Map View 45° when changed map type
 		$( '#gglmps_basic_map_type' ).on( 'change', function() {
 			if ( $( this ).find( 'option:selected' ).val() == 'satellite' || $( this ).find( 'option:selected' ).val() == 'hybrid' ) {
@@ -149,6 +158,10 @@
 			} else {
 				$( '#gglmps_basic_tilt45' ).attr( 'disabled', true );
 			}
+			$( '#gglmps_zoom_slider' ).slider( {
+				max : $( '#gglmps_basic_map_type' ).data( 'maxZoom' )[ $( '#gglmps_basic_map_type' ).find( 'option:selected' ).val() ],
+				value  : $( '#gglmps_basic_zoom' ).val(),
+			} );
 		});
 
 		// Hide zoom slider if auto zoom is checked
@@ -177,10 +190,22 @@
 			'hybrid'    : 19
 		});
 
+		/* Get max zoom */
+		$( '#gglmps_basic_map_type' ).on( 'change', function() {
+			var maxZoom = $( '#gglmps_basic_map_type' ).data( 'maxZoom' )[ $( this ).find( 'option:selected' ).val() ];
+			if ( $( '#gglmps_basic_zoom' ).val() >  maxZoom ) {
+				$( '#gglmps_basic_zoom' ).val( maxZoom );
+			}
+			$( '#gglmps_zoom_slider' ).slider({
+				value  : $( '#gglmps_basic_zoom' ).val(),
+				max    : maxZoom
+			});
+		});
+
 		$( '#gglmps_zoom_slider' ).slider({
 			value  : $( '#gglmps_basic_zoom' ).val(),
 			min    : 0,
-			max    : $( '#gglmps_basic_map_type' ).data( 'maxZoom' )[ $( this ).find( 'option:selected' ).val() ],
+			max    : $( '#gglmps_basic_map_type' ).data( 'maxZoom' )[ $( '#gglmps_basic_map_type' ).find( 'option:selected' ).val() ],
 			step   : 1,
 			create : function( event, ui ) {
 				$( '#gglmps_zoom_value' ).text( '[' + $( this ).slider( 'value' ) + ']' );
