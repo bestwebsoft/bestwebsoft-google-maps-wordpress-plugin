@@ -1,149 +1,121 @@
 ( function( $ ) {
-	$( document ).ready(function() {
-		// Display Google Map
+	$( document ).ready( function() {
+		gglmps_map();
+	});
+}) ( jQuery );
+
+/* Display Google Map */
+function gglmps_map() {
+	( function( $ ) {
 		$( '.gglmps_map' ).each( function() {
-			var container = $( this ).attr( 'id' );
-			$( '#' + container ).bws_googlemaps({
-				'mapType'                   : gglmps_map_data['basic']['map_type'],
-				'tilt45'                    : gglmps_map_data['basic']['tilt45'] ? true : false,
-				'autoZoom'                  : gglmps_map_data['basic']['auto_zoom'] ? true : false,
-				'zoom'                      : Number( gglmps_map_data['basic']['zoom'] ),
-				'mapTypeControl'            : gglmps_map_data['controls']['map_type'] ? true : false,
-				'panControl'                : gglmps_map_data['controls']['pan'] ? true : false,
-				'rotateControl'             : gglmps_map_data['controls']['rotate'] ? true : false,
-				'zoomControl'               : gglmps_map_data['controls']['zoom'] ? true : false,
-				'scaleControl'              : gglmps_map_data['controls']['scale'] ? true : false,
+			var map_data_basic =  JSON.parse( $( this ).attr( 'data-basic' ) ),
+				map_data_controls = JSON.parse( $( this ).attr( 'data-controls' ) ),
+				map_data_markers = JSON.parse( $( this ).attr( 'data-markers' ) );		
+
+			$( this ).bws_googlemaps( {
+				'mapType'                   : map_data_basic['map_type'],
+				'tilt45'                    : map_data_basic['tilt45'] ? true : false,
+				'autoZoom'                  : map_data_basic['auto_zoom'] ? true : false,
+				'zoom'                      : Number( map_data_basic['zoom'] ),
+				'mapTypeControl'            : map_data_controls['map_type'] ? true : false,
+				'panControl'                : map_data_controls['pan'] ? true : false,
+				'rotateControl'             : map_data_controls['rotate'] ? true : false,
+				'zoomControl'               : map_data_controls['zoom'] ? true : false,
+				'scaleControl'              : map_data_controls['scale'] ? true : false,
 				'streetViewControl'         : false,
 				'overviewMapControl'        : false,
 				'overviewMapControlOptions' : false,
 				'draggable'                 : false,
 				'disableDoubleClickZoom'    : false,
 				'scrollwheel'               : false
-			});
-			// Add markers to the Google Map
-			$( '#' + gglmps_map_data['container'] ).bws_googlemaps( 'addMarker', new function() {
-				var markers = [];
-				for ( var marker in gglmps_map_data['markers'] ) {
-					markers.push( gglmps_map_data['markers'][marker] );
-				}
-				return markers;
-			});
+			}, map_data_markers );
 		});
-	});
-}) ( jQuery );
+	}) ( jQuery );
+}
 
-// BWS Google Maps plugin
+/* BWS Google Maps function */
 ( function( $ ) {
-	var methods = {
-		'init' : function( options ) {
-			if ( typeof google == 'undefined' ) {
-				return;
-			}
-			var mapOptions = $.extend({
-				'mapType'                   : 'roadmap',
-				'mapTypeId'                 : google.maps.MapTypeId[options.mapType.toUpperCase()],
-				'tilt45'                    : true,
-				'autoZoom'                  : true,
-				'center'                    : new google.maps.LatLng( 39.639538,-103.007813 ),
-				'zoom'                      : 3,
-				'draggableCursor'           : 'default',
-				'mapTypeControl'            : true,
-				'panControl'                : true,
-				'rotateControl'             : true,
-				'zoomControl'               : true,
-				'scaleControl'              : true,
-				'streetViewControl'         : true,
-				'overviewMapControl'        : false,
-				'overviewMapControlOptions' : { 'opened' : false },
-				'draggable'                 : true,
-				'disableDoubleClickZoom'    : false,
-				'scrollwheel'               : true
-			}, options );
-			this.each(function() {
-				var $this = $( this ),
-					container = $( this ).attr( 'id' );
-				if ( ! container ) {
-					return;
-				}
-				var map = new google.maps.Map( document.getElementById( container ), mapOptions );
-				if ( mapOptions.tilt45 ) {
-					map.setTilt( 45 );
-				} else {
-					map.setTilt( 0 );
-				}
-				$( this ).data( 'data', {
-					'container' : container,
-					'map'       : map,
-					'options'   : mapOptions,
-					'markers'   : []
-				});
-			});
-		},
-		'appendMarker' : function( data ) {
-			this.each(function() {
-				var $this = $( this ),
-					map = $this.data( 'data' )['map'],
-					options = $this.data( 'data' )['options'],
-					container = $( '#' + $this.data( 'data' )['container'] ),
-					markers = $this.data( 'data' )['markers'],
-					bounds = new google.maps.LatLngBounds(),
-					lat = data.latlng.split( ',' )[0],
-					lng = data.latlng.split( ',' )[1],
-					marker = new google.maps.Marker({
-						position : new google.maps.LatLng( lat, lng ),
-						map      : map
-					}),
-					infowindow = new google.maps.InfoWindow({
-						content  : data.tooltip,
-						maxWidth : container.width() - 20
-					});
-				markers.push({
-					'marker'     : marker,
-					'infowindow' : infowindow
-				});
-				google.maps.event.addListener( marker, 'click', ( function( marker, infowindow ) {
-					return function() {
-						if ( infowindow.getContent() != '' ) {
-							center = map.getCenter();
-							infowindow.open( map, marker );
-						}
-					}
-				})( marker, infowindow ));
-				google.maps.event.addListener( infowindow, 'closeclick', function() {
-					map.panTo( center );
-				});
-				$.each( markers, function( index, markers ) {
-					bounds.extend( markers['marker'].position );
-				});
-				map.fitBounds( bounds );
-				if ( ! options.autoZoom ) {
-					var boundsListener = google.maps.event.addListener( map, 'bounds_changed', function() {
-						map.setZoom( options.zoom );
-						google.maps.event.removeListener( boundsListener );
-					});
-				}
-			});
-		}, //end appendMarker
-		'addMarker' : function ( data ) {
-			this.each(function() {
-				var $this = $( this );
-				if ( data instanceof Array ) {
-					for ( var i in data ) {
-						methods.appendMarker.call( $this, data[ i ] );
-					}
-				} else if ( data instanceof Object ) {
-					methods.appendMarker.call( $this, data );
-				}
-			});
-		}
-	} // end methods
-	jQuery.fn.bws_googlemaps = function( method ) {
-		if ( methods[ method ] ) {
-			return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ) );
-		} else if ( typeof method === 'object' || ! method ) {
-			return methods.init.apply( this, arguments );
+	jQuery.fn.bws_googlemaps = function( options, markers_options ) {
+		if ( typeof google == 'undefined' )
+			return;
+
+		var map_markers = markers_options;
+
+		var mapOptions = $.extend({
+			'mapType'                   : 'roadmap',
+			'mapTypeId'                 : google.maps.MapTypeId[options.mapType.toUpperCase()],
+			'tilt45'                    : true,
+			'autoZoom'                  : true,
+			'center'                    : new google.maps.LatLng( 39.639538,-103.007813 ),
+			'zoom'                      : 3,
+			'draggableCursor'           : 'default',
+			'mapTypeControl'            : true,
+			'panControl'                : true,
+			'rotateControl'             : true,
+			'zoomControl'               : true,
+			'scaleControl'              : true,
+			'streetViewControl'         : true,
+			'overviewMapControl'        : false,
+			'overviewMapControlOptions' : { 'opened' : false },
+			'draggable'                 : true,
+			'disableDoubleClickZoom'    : false,
+			'scrollwheel'               : true
+		}, options );
+
+		var map = new google.maps.Map( document.getElementById( this.attr( 'id' ) ), mapOptions );
+
+		if ( mapOptions.tilt45 ) {
+			map.setTilt( 45 );
 		} else {
-			$.error( 'Method ' + method + ' not found!' );
+			map.setTilt( 0 );
+		}
+
+		var markers = [];
+
+		for ( var i in map_markers ) {
+			
+			var data = map_markers[ i ],
+				bounds = new google.maps.LatLngBounds(),
+				lat = data.latlng.split( ',' )[0],
+				lng = data.latlng.split( ',' )[1].trim(),
+				marker = new google.maps.Marker({
+					position : new google.maps.LatLng( lat, lng ),
+					map      : map
+				}),
+				infowindow = new google.maps.InfoWindow({
+					content  : data.tooltip,
+					maxWidth : this.width() - 20
+				});
+
+			markers.push({
+				'marker'     : marker,
+				'infowindow' : infowindow
+			});
+			
+			google.maps.event.addListener( marker, 'click', ( function( marker, infowindow ) {
+				return function() {
+					if ( infowindow.getContent() != '' ) {
+						center = map.getCenter();
+						infowindow.open( map, marker );
+					}
+				}
+			})( marker, infowindow ));
+			
+			google.maps.event.addListener( infowindow, 'closeclick', function() {
+				map.panTo( center );
+			});
+
+			$.each( markers, function( index, markers ) {
+				bounds.extend( markers['marker'].position );
+			});
+			map.fitBounds( bounds );
+		}
+
+		if ( ! mapOptions.autoZoom ) {
+			var boundsListener = google.maps.event.addListener( map, 'bounds_changed', function() {					
+				map.setZoom( mapOptions.zoom );
+				google.maps.event.removeListener( boundsListener );
+			});
 		}
 	}
 })( jQuery );

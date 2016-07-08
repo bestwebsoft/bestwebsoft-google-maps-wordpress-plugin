@@ -119,20 +119,17 @@
 			}
 		});
 
-		// Save or update main settings
-		$( '#gglmps_settings_form' ).on( 'submit', function() {
-			if ( $( '#gglmps_basic_width' ).val() < 150 ) {
-				$( '#gglmps_basic_width' ).val( 150 );
+		/* Resizing width of the map*/
+		$( '#gglmps_basic_width, select[name="gglmps_basic_width_unit"]' ).on( 'change', function() {
+			if ( 'px' == $( 'select[name=gglmps_basic_width_unit]' ).val() ) {
+				if ( $( '#gglmps_basic_width' ).val() < 150 ) {
+					$( '#gglmps_basic_width' ).val( 150 );
+				}
+			} else {
+				if ( $( '#gglmps_basic_width' ).val() > 100 ) {
+					$( '#gglmps_basic_width' ).val( 100 );
+				}
 			}
-			if ( $( '#gglmps_basic_height' ).val() < 150 ) {
-				$( '#gglmps_basic_height' ).val( 150 );
-			}
-			if ( $( '#gglmps_basic_zoom' ).val() < 0 ) {
-				$( '#gglmps_basic_zoom' ).val( 0 );
-			}
-			if ( $( '#gglmps_basic_zoom' ).val() > 21 ) {
-				$( '#gglmps_basic_zoom' ).val( 21 );
-			}
-		});
-	}); // end document ready
+		} );
+	});
 })( jQuery );

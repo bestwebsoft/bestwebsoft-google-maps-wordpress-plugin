@@ -1,12 +1,6 @@
 /*
 * BWS Google Maps styles
 */
-#adminmenu #toplevel_page_gglmps_manager div.wp-menu-image {
-	background: url("../images/menu_single.png") no-repeat scroll center 8px transparent;
-}
-#adminmenu #toplevel_page_gglmps_manager.wp-not-current-submenu div.wp-menu-image {
-	opacity: 0.7;
-}
 #gglmps_settings_notice,
 #gglmps_editor_notice {
 	border-left: 4px solid #2ea2cc !important;
@@ -257,4 +251,8 @@
 .gglmps_settings_additional_option,
 .gglmps_editor_additional_option {
 	margin: 0 0 5px 0 !important;
+}
+.gglmps_inline * {
+	width: auto !important;
+	display: inline-block !important;
 }

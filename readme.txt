@@ -1,18 +1,20 @@
 === Google Maps by BestWebSoft ===
 Contributors: bestwebsoft
 Donate link: http://bestwebsoft.com/donate/
-Tags: add custom markers, add marker tooltip, add google sitemap plugin, add map, add maps, add google maps, add new map, add new maps, add markers, add address marker, address marker, best plugin, best google plugin, best google sitemaps plugin,  coordinates, coordinates marker, create a map, custom marker, edit saved map, free, free plugins, free google plugins, free google sitemaps plugin, geo, geoceoder,  gogle, gogole, googel, googgle, google, gogle map, googgle maps, google map, google maps, google maps editor, google maps manager, google maps shortcode map, marker, marker tooltip, saved google maps, widget map, wp plugin, wp free plugin, wp google map, wp google maps, wp map, wp maps, wordpress google map, wordpress google maps, wordpress map, wordpress maps, wordpress plugin, wordpress free plugin
+Tags: add custom markers, add maps, add google maps, add new map, address marker, google maps, coordinates marker, google maps manager, marker tooltip, widget map, google maps editor, saved google maps
 Requires at least: 3.8
-Tested up to: 4.5.2
-Stable tag: 1.3.3
+Tested up to: 4.5.3
+Stable tag: 1.3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Easy to set up and insert Google Maps to your website.
+Add customized Google maps to WordPress posts, pages and widgets.
 
 == Description ==
 
-This plugin allows you to configure Google Maps and add them to your site quickly and easily. In the Google Maps Editor, you can configure basic settings and add any number of markers. In the Google Maps manager you can view the saved maps and edit them easily. With the help of the shortcode you can insert Google maps in posts and the widgets.
+With this plugin you can add Google Maps to your site and configure them quickly and easily. 
+With Google Maps Editor you're able to configure basic settings and add any number of markers, and using Google Maps Manager you can view the saved maps and edit them with ease. 
+Plugin is really easy-to-use - you can insert Google maps in posts and the widgets via the shortcode.
 
 http://www.youtube.com/watch?v=F0YonG9-rus
 
@@ -38,7 +40,7 @@ If you have a feature, suggestion or idea you'd like to see in the plugin, we'd 
 * Russian (ru_RU)
 * Ukrainian (uk)
 
-If you would like to create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
+If you would like to create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com/hc/en-us/requests/new" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
 
 = Technical support =
 
@@ -52,7 +54,7 @@ We can fix some things for free for the users who provide translation of our plu
 
 1. Upload the `bws-google-maps` folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin using the 'Plugins' menu in your WordPress admin panel.
-3. You can configure main settings in WordPress admin panel in the "BWS Plugins"> "Google Maps".
+3. You can configure main settings in WordPress admin panel in the "BWS Panel"> "Google Maps".
 4. To create a new map, use the Google Maps editor in WordPress admin panel in the "Google Maps"> "Add New".
 5. You can manage your saved maps in WordPress admin panel in "Google Maps".
 6. Create a page or post or add a text widget and insert the shortcode [bws_googlemaps id=*] in the text, where * is the map ID.
@@ -109,6 +111,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
+= V1.3.4 - 08.07.2016 =
+* NEW : Ability to set width in %, not px.
+
 = V1.3.3 - 16.05.2016 =
 * NEW : Ability to add custom styles.
 * Update : Pan control was removed since deprecated.
@@ -164,6 +169,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Release of Google Maps by BestWebSoft plugin.
 
 == Upgrade Notice ==
+
+= V1.3.4 =
+Ability to set width in %, not px.
 
 = V1.3.3 =
 Ability to add custom styles. Pan control was removed since deprecated.
