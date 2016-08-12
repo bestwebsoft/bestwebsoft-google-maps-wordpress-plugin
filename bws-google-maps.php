@@ -6,7 +6,7 @@ Description: Add customized Google maps to WordPress posts, pages and widgets.
 Author: BestWebSoft
 Text Domain: bws-google-maps
 Domain Path: /languages
-Version: 1.3.4
+Version: 1.3.5
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -86,7 +86,7 @@ if ( ! function_exists ( 'gglmps_admin_init' ) ) {
 	function gglmps_admin_init() {
 		global $bws_plugin_info, $gglmps_plugin_info, $bws_shortcode_list;
 
-		if ( ! isset( $bws_plugin_info ) || empty( $bws_plugin_info ) )
+		if ( empty( $bws_plugin_info ) )
 			$bws_plugin_info = array( 'id' => '124', 'version' => $gglmps_plugin_info['Version'] );
 		/* add Google Maps to global $bws_shortcode_list  */
 		$bws_shortcode_list['gglmps'] = array( 'name' => 'Google Maps', 'js_function' => 'gglmps_shortcode_init' );
@@ -227,6 +227,9 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 		} ?>
 		<div id="gglmps_settings_wrap" class="wrap">
 			<h1 class="gglmps_settings_title"><?php _e( 'Google Maps Settings', 'bws-google-maps' ); ?></h1>
+			<ul class="subsubsub gglmps_how_to_use">
+				<li><a href="https://docs.google.com/document/d/1sY7nLypbL7Mv_F95eQ_xFkdRs_VjG8h2kBpuRg_IbxY/" target="_blank"><?php _e( 'How to Use Step-by-step Instruction', 'bws-google-maps' ); ?></a></li>
+			</ul>
 			<h2 class="nav-tab-wrapper">
 				<a class="nav-tab<?php if ( ! isset( $_GET['action'] ) ) echo ' nav-tab-active'; ?>" href="admin.php?page=bws-google-maps.php">
 					<?php _e( 'Basic', 'bws-google-maps' ); ?>
@@ -560,7 +563,7 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 											<br class="clear">
 										</div><!-- .tablenav-top -->
 										<div class="clear"></div>
-										<div class="theme-browser rendered">
+										<div class="theme-browser content-filterable rendered">
 											<div class="themes">
 												<?php $themes = array(
 													array( 
@@ -627,11 +630,13 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 																<button disabled="disabled" class="button button-primary"><?php _e( 'Install', 'bws-google-maps' ); ?></button>
 															<?php } ?>
 														</div>
-														<?php if ( 1 == $value['is-installed'] ) { ?>
-															<div class="theme-installed">
-																<?php _ex( 'Already Installed', 'style is installed', 'bws-google-maps' ); ?>
-															</div>
-														<?php } ?>
+														<?php if ( 1 == $value['is-installed'] ) { 
+															if ( $wp_version < '4.6' ) { ?>
+																<div class="theme-installed"><?php _ex( 'Already Installed', 'style is installed', 'bws-google-maps' ); ?></div>
+															<?php } else { ?>
+																<div class="notice notice-success notice-alt inline"><p><?php _e( 'Installed', 'bws-google-maps' ); ?></p></div>
+															<?php }
+														} ?>
 													</div><!-- .theme -->
 												<?php } ?>
 												<div class="clear"></div>

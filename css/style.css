@@ -256,3 +256,19 @@
 	width: auto !important;
 	display: inline-block !important;
 }
+/* link to instruction */
+.gglmps_how_to_use {
+	float: right;
+}
+.rtl .gglmps_how_to_use {
+	float: left;
+}
+@media only screen and ( max-width: 782px ) {
+	.gglmps_how_to_use {
+		float: none;
+		text-align: left;
+	}
+	.rtl .gglmps_how_to_use {
+		text-align: right;
+	}
+}

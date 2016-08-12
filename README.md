@@ -1,7 +1,9 @@
 <a href="http://bestwebsoft.com/products/bws-google-maps/" target=_blank>Google Maps WordPress Plugin</a>
 ========================
 
-This plugin allows you to configure Google Maps and add them to your site quickly and easily. In the Google Maps Editor, you can configure basic settings and add any number of markers. In the Google Maps manager you can view the saved maps and edit them easily. With the help of the shortcode you can insert Google maps in posts and the widgets.
+With this plugin you can add Google Maps to your site and configure them quickly and easily. 
+With Google Maps Editor you're able to configure basic settings and add any number of markers, and using Google Maps Manager you can view the saved maps and edit them with ease. 
+Plugin is really easy-to-use - you can insert Google maps in posts and the widgets via the shortcode.
 
 <img src="http://bestwebsoft.com/wp-content/uploads/2014/09/google-maps-banner-website.jpg" />
 
