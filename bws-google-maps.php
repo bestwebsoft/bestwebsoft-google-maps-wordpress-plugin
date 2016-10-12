@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Google Maps by BestWebSoft
-Plugin URI: http://bestwebsoft.com/products/bws-google-maps/
+Plugin URI: http://bestwebsoft.com/products/wordpress/plugins/bws-google-maps/
 Description: Add customized Google maps to WordPress posts, pages and widgets.
 Author: BestWebSoft
 Text Domain: bws-google-maps
@@ -464,7 +464,7 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 									<div class="bws_info">
 										<?php _e( 'Unlock premium options by upgrading to Pro version', 'bws-google-maps' ); ?>
 									</div>
-									<a class="bws_button" target="_blank" href="http://bestwebsoft.com/products/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'bws-google-maps' ); ?></a>
+									<a class="bws_button" target="_blank" href="http://bestwebsoft.com/products/wordpress/plugins/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'bws-google-maps' ); ?></a>
 									<div class="clear"></div>
 								</div>
 							</div>
@@ -669,7 +669,7 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 						<div class="bws_info">
 							<?php _e( 'Unlock premium options by upgrading to Pro version', 'bws-google-maps' ); ?>
 						</div>
-						<a class="bws_button" target="_blank" href="http://bestwebsoft.com/products/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'bws-google-maps' ); ?></a>
+						<a class="bws_button" target="_blank" href="http://bestwebsoft.com/products/wordpress/plugins/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'bws-google-maps' ); ?></a>
 						<div class="clear"></div>
 					</div>
 				</div>
@@ -1262,7 +1262,7 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 								<div class="bws_info">
 									<?php _e( 'Unlock premium options by upgrading to Pro version', 'bws-google-maps' ); ?>
 								</div>
-								<a class="bws_button" target="_blank" href="http://bestwebsoft.com/products/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'bws-google-maps' ); ?></a>
+								<a class="bws_button" target="_blank" href="http://bestwebsoft.com/products/wordpress/plugins/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'bws-google-maps' ); ?></a>
 								<div class="clear"></div>
 							</div>
 						</div>
@@ -1291,7 +1291,7 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 						<div class="bws_info">
 							<?php _e( 'Unlock premium options by upgrading to Pro version', 'bws-google-maps' ); ?>
 						</div>
-						<a class="bws_button" target="_blank" href="http://bestwebsoft.com/products/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'bws-google-maps' ); ?></a>
+						<a class="bws_button" target="_blank" href="http://bestwebsoft.com/products/wordpress/plugins/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'bws-google-maps' ); ?></a>
 						<div class="clear"></div>
 					</div>
 				</div>

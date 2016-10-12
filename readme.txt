@@ -3,7 +3,7 @@ Contributors: bestwebsoft
 Donate link: http://bestwebsoft.com/donate/
 Tags: add custom markers, add maps, add google maps, add new map, address marker, google maps, coordinates marker, google maps manager, marker tooltip, widget map, google maps editor, saved google maps
 Requires at least: 3.8
-Tested up to: 4.6
+Tested up to: 4.6.1
 Stable tag: 1.3.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,43 +12,94 @@ Add customized Google maps to WordPress posts, pages and widgets.
 
 == Description ==
 
-With this plugin you can add Google Maps to your site and configure them quickly and easily. 
-With Google Maps Editor you're able to configure basic settings and add any number of markers, and using Google Maps Manager you can view the saved maps and edit them with ease. 
-Plugin is really easy-to-use - you can insert Google maps in posts and the widgets via the shortcode.
+Google Maps plugin adds custom maps to WordPress website posts, pages and widgets. Add unlimited markers, configure type, alignment and styles. Choose the control options, customize the appearance, view and edit your saved maps easily. 
+
+Let your customers find any location quickly!
+
+[View Demo](http://bestwebsoft.com/demo-for-google-maps-pro/)
 
 http://www.youtube.com/watch?v=F0YonG9-rus
 
-<a href="http://www.youtube.com/watch?v=3pXs5t18vL4" target="_blank">Google Maps by BestWebSoft Video instruction on Installation</a>
+= Free Features =
 
-<a href="http://wordpress.org/plugins/bws-google-maps/faq/" target="_blank">Google Maps by BestWebSoft FAQ</a>
+* Add unlimited maps via shortcode to:
+	* Pages
+	* Posts
+	* Widgets
+* Customize map:
+	* Title
+	* Marker location
+	* Marker tooltip
+	* Width
+	* Height
+* Choose map display language
+* Choose map alignment:
+	* Left
+	* Right
+	* Center
+* Set map type:
+	* Roadmap
+	* Terrain
+	* Satellite
+	* Hybrid
+* Enable 45° view option
+* Change zoom level
+* Enable control options:
+	* Type
+	* Rotate
+	* Zoom
+	* Scale
+* Add custom code via plugin settings page
+* Compatible with latest WordPress version
+* Incredibly simple settings for fast setup without modifying code
+* Detailed step-by-step documentation and videos
 
-<a href="http://support.bestwebsoft.com" target="_blank">Google Maps by BestWebSoft Support</a>
+> **Pro Features**
+>
+> All features from Free version included plus:
+>
+> * Enable additional control options:
+> 	* Street view
+> 	* Draggable
+> 	* Double click
+> 	* Scroll Wheel
+> * Enable auto zoom option
+> * Preview maps in the Editor
+> * Choose different color schemes with Snazzy Maps
+> * Configure all subsites on the network
+> * Get answer to your support question within one business day ([Support Policy](http://bestwebsoft.com/support-policy/))
+>
+> [Upgrade to Pro Now](http://bestwebsoft.com/products/wordpress/plugins/bws-google-maps/?k=3e09a2fbac0e195ef41a62eb3fdb346e)
 
-<a href="http://bestwebsoft.com/products/bws-google-maps/?k=3e09a2fbac0e195ef41a62eb3fdb346e" target="_blank">Upgrade to Google Maps Pro by BestWebSoft</a>
+If you have a feature suggestion or idea you'd like to see in the plugin, we'd love to hear about it! [Suggest a Feature](http://support.bestwebsoft.com/hc/en-us/requests/new)
 
-= Features =
+= Documentation & Videos =
 
-* Adding markers by address and coordinates.
-* Editable names and tooltips of the added markers.
-* Customize Controls.
-* Possibility to insert a map into widgets.
+* [[Doc] How to Use](https://docs.google.com/document/d/1sY7nLypbL7Mv_F95eQ_xFkdRs_VjG8h2kBpuRg_IbxY/)
+* [[Doc] Installation](https://docs.google.com/document/d/1xKvTlWPo5l-Jy8qJPBsee9rkPjiltZvbdZCefFckz2o/)
+* [[Doc] Purchase, Installation & Configuration](https://docs.google.com/document/d/1fD2yLIs0fLWK6u8_LpOLvDm0kWw70bVgmrFRaKM8rlk/)
+* [[Video] Installation Instruction](https://www.youtube.com/watch?v=3pXs5t18vL4)
 
-If you have a feature, suggestion or idea you'd like to see in the plugin, we'd love to hear about it! <a href="http://support.bestwebsoft.com/hc/en-us/requests/new" target="_blank">Suggest a Feature</a>
+= Help & Support =
+
+Visit our Help Center if you have any questions, our friendly Support Team is happy to help — <http://support.bestwebsoft.com/>
 
 = Translation =
 
 * Russian (ru_RU)
 * Ukrainian (uk)
 
-If you would like to create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com/hc/en-us/requests/new" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
+Some of these translations are not complete. We are constantly adding new features which should be translated. If you would like to create your own language pack or update the existing one, you can send [the text of PO and MO files](http://codex.wordpress.org/Translating_WordPress) to [BestWebSoft](http://support.bestwebsoft.com/hc/en-us/requests/new) and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO [files Poedit](http://www.poedit.net/download.php).
 
-= Technical support =
+= Recommended Plugins =
 
-Dear users, our plugins are available for free download. If you have any questions or recommendations regarding the functionality of our plugins (existing options, new options, current issues), please feel free to contact us. Please note that we accept requests in English only. All messages in other languages won't be accepted.
+* [Updater](http://bestwebsoft.com/products/wordpress/plugins/updater/?k=9cca4721ad8558600716e625ee098d79) – Automatically check and update WordPress website core with all installed plugins and themes to the latest versions.
 
-If you notice any bugs in the plugin's work, you can notify us about it and we'll investigate and fix the issue then. Your request should contain URL of the website, issues description and WordPress admin panel credentials.
-Moreover we can customize the plugin according to your requirements. It's a paid service (as a rule it costs $40, but the price can vary depending on the amount of the necessary changes and their complexity). Please note that we could also include this or that feature (developed for you) in the next release and share with the other users then.
-We can fix some things for free for the users who provide translation of our plugin into their native language (this should be a new translation of a certain plugin, you can check available translations on the official plugin page).
+= Donate =
+
+Donations play an important role in supporting open-source projects. We greatly appreciate any donation you can make to help us continue further development of free products.
+
+[Donate Now](http://bestwebsoft.com/donate/)
 
 == Installation ==
 
@@ -59,7 +110,7 @@ We can fix some things for free for the users who provide translation of our plu
 5. You can manage your saved maps in WordPress admin panel in "Google Maps".
 6. Create a page or post or add a text widget and insert the shortcode [bws_googlemaps id=*] in the text, where * is the map ID.
 
-<a href="https://docs.google.com/document/d/1xKvTlWPo5l-Jy8qJPBsee9rkPjiltZvbdZCefFckz2o/edit" target="_blank">View a PDF version of Step-by-step Instruction on Google Maps by BestWebSoft Installation</a>.
+[View a PDF version of Step-by-step Instruction on Google Maps by BestWebSoft Installation](https://docs.google.com/document/d/1xKvTlWPo5l-Jy8qJPBsee9rkPjiltZvbdZCefFckz2o/)
 
 http://www.youtube.com/watch?v=3pXs5t18vL4
 
@@ -95,12 +146,12 @@ Yes, you can do it in the settings controls.
 
 = I have some problems with the plugin's work. What Information should I provide to receive proper support? =
 
-Please make sure that the problem hasn't been discussed yet on our forum (<a href="http://support.bestwebsoft.com" target="_blank">http://support.bestwebsoft.com</a>). If no, please provide the following data along with your problem's description:
+Please make sure that the problem hasn't been discussed yet on our forum (<http://support.bestwebsoft.com>). If no, please provide the following data along with your problem's description:
 
 1. the link to the page where the problem occurs
 2. the name of the plugin and its version. If you are using a pro version - your order number.
 3. the version of your WordPress installation
-4. copy and paste into the message your system status report. Please read more here: <a href="https://docs.google.com/document/d/1Wi2X8RdRGXk9kMszQy1xItJrpN0ncXgioH935MaBKtc/edit" target="_blank">Instruction on System Status</a>
+4. copy and paste into the message your system status report. Please read more here: [Instruction on System Status](https://docs.google.com/document/d/1Wi2X8RdRGXk9kMszQy1xItJrpN0ncXgioH935MaBKtc/edit)
 
 == Screenshots ==
 
