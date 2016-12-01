@@ -1,9 +1,7 @@
-<a href="http://bestwebsoft.com/products/bws-google-maps/" target=_blank>Google Maps WordPress Plugin</a>
+<a href="http://bestwebsoft.com/products/wordpress/plugins/bws-google-maps/" target=_blank>Google Maps WordPress Plugin</a>
 ========================
 
 Add customized Google maps to WordPress posts, pages and widgets.
-
-<img src="http://bestwebsoft.com/wp-content/uploads/2014/09/google-maps-banner-website.jpg" />
 
 <p>Google Maps plugin adds custom maps to WordPress website posts, pages and widgets. Add unlimited markers, configure type, alignment and styles. Choose the control options, customize the appearance, view and edit your saved maps easily.</p>
 
