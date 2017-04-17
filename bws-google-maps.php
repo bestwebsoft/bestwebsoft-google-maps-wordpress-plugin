@@ -1,17 +1,17 @@
 <?php
 /*
 Plugin Name: Google Maps by BestWebSoft
-Plugin URI: http://bestwebsoft.com/products/wordpress/plugins/bws-google-maps/
+Plugin URI: https://bestwebsoft.com/products/wordpress/plugins/bws-google-maps/
 Description: Add customized Google maps to WordPress posts, pages and widgets.
 Author: BestWebSoft
 Text Domain: bws-google-maps
 Domain Path: /languages
-Version: 1.3.5
-Author URI: http://bestwebsoft.com/
+Version: 1.3.6
+Author URI: https://bestwebsoft.com/
 License: GPLv2 or later
 */
 
-/*  © Copyright 2016 BestWebSoft  ( http://support.bestwebsoft.com )
+/*  © Copyright 2017 BestWebSoft  ( https://support.bestwebsoft.com )
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as
@@ -35,7 +35,7 @@ if ( ! function_exists( 'gglmps_admin_menu' ) ) {
 		global $submenu;
 		bws_general_menu();
 		$settings = add_submenu_page( 'bws_panel', __( 'Google Maps Settings', 'bws-google-maps' ), 'Google Maps', 'manage_options', 'bws-google-maps.php', 'gglmps_settings_page' );
-		$hook = add_menu_page( 'Google Maps', 'Google Maps', 'edit_posts', 'gglmps_manager', 'gglmps_manager_page', plugins_url( "images/menu_single.png", __FILE__ ), '54.1' );
+		$hook = add_menu_page( 'Google Maps', 'Google Maps', 'edit_posts', 'gglmps_manager', 'gglmps_manager_page', 'dashicons-location', '54.1' );
 		$gglmps_manager = add_submenu_page( 'gglmps_manager', __( 'Google Maps Editor', 'bws-google-maps' ), __( 'Add New', 'bws-google-maps' ), 'manage_options', 'gglmps_editor', 'gglmps_editor_page' );
 		
 		add_action( "load-$hook", 'gglmps_screen_options' );
@@ -277,13 +277,13 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 						 ); ?></p>
 						<?php printf( 
 							__( 'Please add the map by clicking on %s button', 'bws-google-maps' ), 
-							'<code><img style="vertical-align: sub;" src="' . plugins_url( 'bws_menu/images/shortcode-icon.png', __FILE__ ) . '" alt=""/></code>'
+							'<span class="bws_code"><span class="bwsicons bwsicons-shortcode"></span></span>'
 						); ?>
 						<div class="bws_help_box dashicons dashicons-editor-help">
 							<div class="bws_hidden_help_text" style="min-width: 180px;">
 								<?php printf( 
 									__( "You can add the map to your content by clicking on %s button in the content edit block using the Visual mode. If the button isn't displayed, please use the shortcode %s, where * stands for map ID", 'bws-google-maps' ), 
-									'<code><img style="vertical-align: sub;" src="' . plugins_url( 'bws_menu/images/shortcode-icon.png', __FILE__ ) . '" alt="" /></code>',
+									'<span class="bws_code"><span class="bwsicons bwsicons-shortcode"></span></span>',
 									'<span class="bws_code">[bws_googlemaps id=*]</span>'
 								); ?>
 							</div>
@@ -461,10 +461,7 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 									</table>
 								</div>
 								<div class="bws_pro_version_tooltip">
-									<div class="bws_info">
-										<?php _e( 'Unlock premium options by upgrading to Pro version', 'bws-google-maps' ); ?>
-									</div>
-									<a class="bws_button" target="_blank" href="http://bestwebsoft.com/products/wordpress/plugins/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'bws-google-maps' ); ?></a>
+									<a class="bws_button" target="_blank" href="https://bestwebsoft.com/products/wordpress/plugins/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'bws-google-maps' ); ?></a>
 									<div class="clear"></div>
 								</div>
 							</div>
@@ -666,10 +663,7 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 						</div><!-- #gglmps_appearance_block -->
 					</div>
 					<div class="bws_pro_version_tooltip">
-						<div class="bws_info">
-							<?php _e( 'Unlock premium options by upgrading to Pro version', 'bws-google-maps' ); ?>
-						</div>
-						<a class="bws_button" target="_blank" href="http://bestwebsoft.com/products/wordpress/plugins/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'bws-google-maps' ); ?></a>
+						<a class="bws_button" target="_blank" href="https://bestwebsoft.com/products/wordpress/plugins/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'bws-google-maps' ); ?></a>
 						<div class="clear"></div>
 					</div>
 				</div>
@@ -1038,13 +1032,13 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 				<div id="gglmps_editor_notice" class="updated">
 					<?php printf( 
 						__( 'To insert this map use %s button', 'bws-google-maps' ), 
-						'<code><img style="vertical-align: sub;" src="' . plugins_url( 'bws_menu/images/shortcode-icon.png', __FILE__ ) . '" alt=""/></code>'
+						'<span class="bws_code"><span class="bwsicons bwsicons-shortcode"></span></span>'
 					); ?>
 					<div class="bws_help_box dashicons dashicons-editor-help">
 						<div class="bws_hidden_help_text" style="min-width: 180px;">
 							<?php printf( 
 								__( "You can add the map to your content by clicking on %s button in the content edit block using the Visual mode. If the button isn't displayed, please use the shortcode %s", 'bws-google-maps' ), 
-								'<code><img style="vertical-align: sub;" src="' . plugins_url( 'bws_menu/images/shortcode-icon.png', __FILE__ ) . '" alt="" /></code>',
+								'<span class="bws_code"><span class="bwsicons bwsicons-shortcode"></span></span>',
 								'<span class="bws_code">[bws_googlemaps id=' . $gglmps_editor_mapid . ']</span>'
 							); ?>
 						</div>
@@ -1259,10 +1253,7 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 								</table>
 							</div>
 							<div class="bws_pro_version_tooltip">
-								<div class="bws_info">
-									<?php _e( 'Unlock premium options by upgrading to Pro version', 'bws-google-maps' ); ?>
-								</div>
-								<a class="bws_button" target="_blank" href="http://bestwebsoft.com/products/wordpress/plugins/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'bws-google-maps' ); ?></a>
+								<a class="bws_button" target="_blank" href="https://bestwebsoft.com/products/wordpress/plugins/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'bws-google-maps' ); ?></a>
 								<div class="clear"></div>
 							</div>
 						</div>
@@ -1288,10 +1279,7 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 						</table>
 					</div>
 					<div class="bws_pro_version_tooltip">
-						<div class="bws_info">
-							<?php _e( 'Unlock premium options by upgrading to Pro version', 'bws-google-maps' ); ?>
-						</div>
-						<a class="bws_button" target="_blank" href="http://bestwebsoft.com/products/wordpress/plugins/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'bws-google-maps' ); ?></a>
+						<a class="bws_button" target="_blank" href="https://bestwebsoft.com/products/wordpress/plugins/bws-google-maps/?k=f546edd672c2e16f8359dcb48f9d2fff&pn=124&v=<?php echo $gglmps_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>"><?php _e( 'Learn More', 'bws-google-maps' ); ?></a>
 						<div class="clear"></div>
 					</div>
 				</div>
@@ -1478,7 +1466,7 @@ if ( ! function_exists( 'gglmps_shortcode' ) ) {
 					<div id="%1$s" class="gglmps_map" style="%2$s width: %3$s; height: %4$s;" data-basic="%7$s" data-controls="%8$s" data-markers="%9$s">
 						<noscript>
 							<p class="gglmps_no_script">
-								[Google Maps: %5$s <a href="http://www.google.ru/support/bin/answer.py?answer=23852" target="_blank">%6$s</a>]
+								[Google Maps: %5$s <a href="https://support.google.com/answer/23852" target="_blank">%6$s</a>]
 							</p>
 						</noscript>
 					</div>
@@ -1583,8 +1571,8 @@ if ( ! function_exists ( 'gglmps_register_action_links' ) ) {
 		if ( $file == plugin_basename( __FILE__ ) ) {
 			if ( ! is_network_admin() )
 				$links[] = sprintf( '<a href="admin.php?page=bws-google-maps.php">%s</a>', __( 'Settings', 'bws-google-maps' ) );
-			$links[] = sprintf( '<a href="http://wordpress.org/plugins/bws-google-maps/faq/" target="_blank">%s</a>', __( 'FAQ', 'bws-google-maps' ) );
-			$links[] = sprintf( '<a href="http://support.bestwebsoft.com">%s</a>', __( 'Support', 'bws-google-maps' ) );
+			$links[] = sprintf( '<a href="https://support.bestwebsoft.com/hc/en-us/sections/200538659" target="_blank">%s</a>', __( 'FAQ', 'bws-google-maps' ) );
+			$links[] = sprintf( '<a href="https://support.bestwebsoft.com">%s</a>', __( 'Support', 'bws-google-maps' ) );
 		}
 		return $links;
 	}

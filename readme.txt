@@ -1,10 +1,10 @@
 === Google Maps by BestWebSoft ===
 Contributors: bestwebsoft
-Donate link: http://bestwebsoft.com/donate/
+Donate link: https://bestwebsoft.com/donate/
 Tags: add custom markers, add maps, add google maps, add new map, address marker, google maps, coordinates marker, google maps manager, marker tooltip, widget map, google maps editor, saved google maps
 Requires at least: 3.8
-Tested up to: 4.6.1
-Stable tag: 1.3.5
+Tested up to: 4.7.3
+Stable tag: 1.3.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,9 +16,9 @@ Google Maps plugin adds custom maps to WordPress website posts, pages and widget
 
 Let your customers find any location quickly!
 
-[View Demo](http://bestwebsoft.com/demo-for-google-maps-pro/)
+[View Demo](https://bestwebsoft.com/demo-for-google-maps-pro/)
 
-http://www.youtube.com/watch?v=F0YonG9-rus
+https://www.youtube.com/watch?v=F0YonG9-rus
 
 = Free Features =
 
@@ -67,39 +67,33 @@ http://www.youtube.com/watch?v=F0YonG9-rus
 > * Preview maps in the Editor
 > * Choose different color schemes with Snazzy Maps
 > * Configure all subsites on the network
-> * Get answer to your support question within one business day ([Support Policy](http://bestwebsoft.com/support-policy/))
+> * Get answer to your support question within one business day ([Support Policy](https://bestwebsoft.com/support-policy/))
 >
-> [Upgrade to Pro Now](http://bestwebsoft.com/products/wordpress/plugins/bws-google-maps/?k=3e09a2fbac0e195ef41a62eb3fdb346e)
+> [Upgrade to Pro Now](https://bestwebsoft.com/products/wordpress/plugins/bws-google-maps/?k=3e09a2fbac0e195ef41a62eb3fdb346e)
 
-If you have a feature suggestion or idea you'd like to see in the plugin, we'd love to hear about it! [Suggest a Feature](http://support.bestwebsoft.com/hc/en-us/requests/new)
+If you have a feature suggestion or idea you'd like to see in the plugin, we'd love to hear about it! [Suggest a Feature](https://support.bestwebsoft.com/hc/en-us/requests/new)
 
 = Documentation & Videos =
 
 * [[Doc] How to Use](https://docs.google.com/document/d/1sY7nLypbL7Mv_F95eQ_xFkdRs_VjG8h2kBpuRg_IbxY/)
-* [[Doc] Installation](https://docs.google.com/document/d/1xKvTlWPo5l-Jy8qJPBsee9rkPjiltZvbdZCefFckz2o/)
-* [[Doc] Purchase, Installation & Configuration](https://docs.google.com/document/d/1fD2yLIs0fLWK6u8_LpOLvDm0kWw70bVgmrFRaKM8rlk/)
+* [[Doc] Installation](https://docs.google.com/document/d/1-hvn6WRvWnOqj5v5pLUk7Awyu87lq5B_dO-Tv-MC9JQ/)
+* [[Doc] Purchase](https://docs.google.com/document/d/1EUdBVvnm7IHZ6y0DNyldZypUQKpB8UVPToSc_LdOYQI/)
 * [[Video] Installation Instruction](https://www.youtube.com/watch?v=3pXs5t18vL4)
 
 = Help & Support =
 
-Visit our Help Center if you have any questions, our friendly Support Team is happy to help — <http://support.bestwebsoft.com/>
+Visit our Help Center if you have any questions, our friendly Support Team is happy to help — <https://support.bestwebsoft.com/>
 
 = Translation =
 
 * Russian (ru_RU)
 * Ukrainian (uk)
 
-Some of these translations are not complete. We are constantly adding new features which should be translated. If you would like to create your own language pack or update the existing one, you can send [the text of PO and MO files](http://codex.wordpress.org/Translating_WordPress) to [BestWebSoft](http://support.bestwebsoft.com/hc/en-us/requests/new) and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO [files Poedit](http://www.poedit.net/download.php).
+Some of these translations are not complete. We are constantly adding new features which should be translated. If you would like to create your own language pack or update the existing one, you can send [the text of PO and MO files](https://codex.wordpress.org/Translating_WordPress) to [BestWebSoft](https://support.bestwebsoft.com/hc/en-us/requests/new) and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO [files Poedit](https://www.poedit.net/download.php).
 
 = Recommended Plugins =
 
-* [Updater](http://bestwebsoft.com/products/wordpress/plugins/updater/?k=9cca4721ad8558600716e625ee098d79) – Automatically check and update WordPress website core with all installed plugins and themes to the latest versions.
-
-= Donate =
-
-Donations play an important role in supporting open-source projects. We greatly appreciate any donation you can make to help us continue further development of free products.
-
-[Donate Now](http://bestwebsoft.com/donate/)
+* [Updater](https://bestwebsoft.com/products/wordpress/plugins/updater/?k=9cca4721ad8558600716e625ee098d79) – Automatically check and update WordPress website core with all installed plugins and themes to the latest versions.
 
 == Installation ==
 
@@ -110,15 +104,19 @@ Donations play an important role in supporting open-source projects. We greatly 
 5. You can manage your saved maps in WordPress admin panel in "Google Maps".
 6. Create a page or post or add a text widget and insert the shortcode [bws_googlemaps id=*] in the text, where * is the map ID.
 
-[View a PDF version of Step-by-step Instruction on Google Maps by BestWebSoft Installation](https://docs.google.com/document/d/1xKvTlWPo5l-Jy8qJPBsee9rkPjiltZvbdZCefFckz2o/)
+[View a PDF version of Step-by-step Instruction on Google Maps by BestWebSoft Installation](https://docs.google.com/document/d/1-hvn6WRvWnOqj5v5pLUk7Awyu87lq5B_dO-Tv-MC9JQ/)
 
-http://www.youtube.com/watch?v=3pXs5t18vL4
+https://www.youtube.com/watch?v=3pXs5t18vL4
 
 == Frequently Asked Questions ==
 
-= How I can add a new marker ? =
+= How I can add a new marker? =
 
-To add a new marker enter in marker location address and select from dropdown menu list desired address or just enter coordinates.
+To add a new marker, please enter an address in marker location and select desired address from dropdown menu list or just enter coordinates.
+
+= I don't know the coordinates, is there a way to solve this? =
+
+To add a new marker, if the address and coordinates are unknown, use the right-click on the map preview, and select “get the coordinates”.
 
 = How many markers can I add? =
 
@@ -126,41 +124,40 @@ You can add any number of markers.
 
 = Can I edit the name or tooltip of the added marker? =
 
-Yes, you can do it by clicking on the `edit` button on the marker in the list of the added markers.
+Yes, you can do it by clicking on the edit button on the marker in the list of the added markers.
 
-= Can I delete marker from markers list? =
+= Is it possible to delete markers? =
 
-Yes, you can do it by pressed on marker button `delete` in the added markers list.
+Yes, you can do it by pressing the marker button "delete" in the added markers list.
 
-= What is auto zoom and can I set up zoom manually? =
+= I have a lot of markers and it's hard to navigate through this list. Is there an easy way to find a certain marker? =
 
-Auto zoom is automatic selection of maximum zoom to display all markers on the map. If you want set up zoom manually, just turn off auto zoom.
+For the visual search of the necessary marker on the map preview, click the marker button find in the list of the added markers and this marker will create animation on the map preview.
 
-= Why can I see not all the added markers? =
-
-Try to turn off auto zoom and set up zoom manually.
-
-= Can I set up map controls? =
+= I'd like to set up map controls. Can I do it? =
 
 Yes, you can do it in the settings controls.
 
 = I have some problems with the plugin's work. What Information should I provide to receive proper support? =
 
-Please make sure that the problem hasn't been discussed yet on our forum (<http://support.bestwebsoft.com>). If no, please provide the following data along with your problem's description:
+Please make sure that the problem hasn't been discussed yet on our forum (<https://support.bestwebsoft.com>). If no, please provide the following data along with your problem's description:
 
-1. the link to the page where the problem occurs
-2. the name of the plugin and its version. If you are using a pro version - your order number.
-3. the version of your WordPress installation
-4. copy and paste into the message your system status report. Please read more here: [Instruction on System Status](https://docs.google.com/document/d/1Wi2X8RdRGXk9kMszQy1xItJrpN0ncXgioH935MaBKtc/edit)
+- The link to the page where the problem occurs
+- The name of the plugin and its version. If you are using a pro version - your order number.
+- The version of your WordPress installation
+- Copy and paste into the message your system status report. Please read more here:: [Instruction on System Status](https://docs.google.com/document/d/1Wi2X8RdRGXk9kMszQy1xItJrpN0ncXgioH935MaBKtc/)
 
 == Screenshots ==
 
-1. Displaying Google Map in the front-end.
+1. Google Map displaying in the front-end.
 2. Plugin setting page.
 3. Manager of saved maps.
 4. Google Maps Editor.
 
 == Changelog ==
+
+= V1.3.6 - 17.04.2017 =
+* Bugfix : Multiple Cross-Site Scripting (XSS) vulnerability was fixed.
 
 = V1.3.5 - 12.08.2016 =
 * Update : All functionality for WordPress 4.6 was updated.
@@ -223,6 +220,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<http:
 * NEW : Release of Google Maps by BestWebSoft plugin.
 
 == Upgrade Notice ==
+
+= V1.3.6 =
+* Bugs fixed.
 
 = V1.3.5 =
 * The compatibility with new WordPress version updated.
