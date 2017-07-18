@@ -6,7 +6,7 @@ Description: Add customized Google maps to WordPress posts, pages and widgets.
 Author: BestWebSoft
 Text Domain: bws-google-maps
 Domain Path: /languages
-Version: 1.3.6
+Version: 1.3.7
 Author URI: https://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -71,7 +71,7 @@ if ( ! function_exists ( 'gglmps_init' ) ) {
 		}
 
 		/* Function check if plugin is compatible with current WP version  */
-		bws_wp_min_version_check( plugin_basename( __FILE__ ), $gglmps_plugin_info, '3.8' );
+		bws_wp_min_version_check( plugin_basename( __FILE__ ), $gglmps_plugin_info, '3.9' );
 
 		if ( ! is_admin() || isset( $_GET['page'] ) && ( $_GET['page'] == 'bws-google-maps.php' || $_GET['page'] == 'gglmps_manager' || $_GET['page'] == 'gglmps_editor' ) ) {
 			gglmps_default_options();
@@ -135,15 +135,6 @@ if ( ! function_exists ( 'gglmps_default_options' ) ) {
 		$gglmps_maps = get_option( 'gglmps_maps' );
 
 		if ( ! isset( $gglmps_options['plugin_option_version'] ) || $gglmps_options['plugin_option_version'] != $gglmps_plugin_info['Version'] ) {
-			/**
-			* @since 1.3.4
-			* @todo remove after 01.02.2017
-			*/
-			if ( ! isset( $gglmps_options['basic']['width_unit'] ) )
-				$gglmps_options['basic']['width_unit'] = 'px';
-			$gglmps_default_options['display_settings_notice'] = 0;
-			/* end @todo */
-
 			/* show pro features */
 			$gglmps_options['hide_premium_options'] = array();
 			$gglmps_options = array_merge( $gglmps_default_options, $gglmps_options );
@@ -278,16 +269,12 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 						<?php printf( 
 							__( 'Please add the map by clicking on %s button', 'bws-google-maps' ), 
 							'<span class="bws_code"><span class="bwsicons bwsicons-shortcode"></span></span>'
-						); ?>
-						<div class="bws_help_box dashicons dashicons-editor-help">
-							<div class="bws_hidden_help_text" style="min-width: 180px;">
-								<?php printf( 
-									__( "You can add the map to your content by clicking on %s button in the content edit block using the Visual mode. If the button isn't displayed, please use the shortcode %s, where * stands for map ID", 'bws-google-maps' ), 
-									'<span class="bws_code"><span class="bwsicons bwsicons-shortcode"></span></span>',
-									'<span class="bws_code">[bws_googlemaps id=*]</span>'
-								); ?>
-							</div>
-						</div>
+						);
+						echo bws_add_help_box( sprintf( 
+							__( "You can add the map to your content by clicking on %s button in the content edit block using the Visual mode. If the button isn't displayed, please use the shortcode %s, where * stands for map ID", 'bws-google-maps' ), 
+							'<span class="bws_code"><span class="bwsicons bwsicons-shortcode"></span></span>',
+							'<span class="bws_code">[bws_googlemaps id=*]</span>'
+						) ); ?>
 					</div><!-- #gglmps_settings_notice -->
 					<form id="gglmps_settings_form" class="bws_form" name="gglmps_settings_form" method="post" action="admin.php?page=bws-google-maps.php">
 						<table class="gglmps_settings_table form-table">
@@ -299,7 +286,7 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 											<input id="gglmps_main_api_key" name="gglmps_main_api_key" type="text" maxlength='250' value="<?php echo $gglmps_options['api_key']; ?>">
 											<span class="gglmps_settings_tooltip">
 												<?php printf(
-													'%1$s <a href="https://developers.google.com/maps/documentation/javascript/usage#usage_limits" target="_blank">%2$s</a>, %3$s <a href="https://developers.google.com/maps/documentation/javascript/tutorial#api_key" target="_blank">%4$s</a>.',
+													'%1$s <a href="https://developers.google.com/maps/documentation/javascript/usage#usage_limits" target="_blank">%2$s</a>, %3$s <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">%4$s</a>.',
 													__( 'Using an API key enables you to monitor your application Maps API usage, and ensures that Google can contact you about your application if necessary. If your application Maps API usage exceeds the', 'bws-google-maps' ),
 													__( 'Usage Limits', 'bws-google-maps' ),
 													__( 'you must load the Maps API using an API key in order to purchase additional quota. How to create a API key you can find', 'bws-google-maps' ),
@@ -452,11 +439,6 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 													<label><?php _e( 'Scroll Wheel', 'bws-google-maps' ); ?></label>
 												</p>
 											</td>
-										</tr>
-										<tr valign="top">
-											<th scope="row" colspan="2">
-												* <?php _e( 'If you upgrade to Pro version all your settings will be saved.', 'bws-google-maps' ); ?>
-											</th>
 										</tr>
 									</table>
 								</div>
@@ -1033,16 +1015,12 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 					<?php printf( 
 						__( 'To insert this map use %s button', 'bws-google-maps' ), 
 						'<span class="bws_code"><span class="bwsicons bwsicons-shortcode"></span></span>'
-					); ?>
-					<div class="bws_help_box dashicons dashicons-editor-help">
-						<div class="bws_hidden_help_text" style="min-width: 180px;">
-							<?php printf( 
-								__( "You can add the map to your content by clicking on %s button in the content edit block using the Visual mode. If the button isn't displayed, please use the shortcode %s", 'bws-google-maps' ), 
-								'<span class="bws_code"><span class="bwsicons bwsicons-shortcode"></span></span>',
-								'<span class="bws_code">[bws_googlemaps id=' . $gglmps_editor_mapid . ']</span>'
-							); ?>
-						</div>
-					</div>
+					);
+					echo bws_add_help_box( sprintf( 
+						__( "You can add the map to your content by clicking on %s button in the content edit block using the Visual mode. If the button isn't displayed, please use the shortcode %s", 'bws-google-maps' ), 
+						'<span class="bws_code"><span class="bwsicons bwsicons-shortcode"></span></span>',
+						'<span class="bws_code">[bws_googlemaps id=' . $gglmps_editor_mapid . ']</span>'
+					) ); ?>
 				</div><!-- #gglmps_editor_notice -->
 			<?php } ?>			
 			<div id="gglmps_editor_settings">
@@ -1245,11 +1223,6 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 											</p>
 										</td>
 									</tr>
-									<tr valign="top">
-										<th scope="row" colspan="2">
-											* <?php _e( 'If you upgrade to Pro version all your settings will be saved.', 'bws-google-maps' ); ?>
-										</th>
-									</tr>
 								</table>
 							</div>
 							<div class="bws_pro_version_tooltip">
@@ -1327,7 +1300,7 @@ if ( ! function_exists( 'gglmps_admin_head' ) ) {
 			$gglmps_api_key = ! empty( $gglmps_options['api_key'] ) ? sprintf( '&key=%s', $gglmps_options['api_key'] ) : '';
 			$gglmps_language = sprintf( '&language=%s', $gglmps_options['language'] );
 			$gglmps_api = sprintf(
-				'https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places%1$s%2$s',
+				'https://maps.googleapis.com/maps/api/js?libraries=places%1$s%2$s',
 				$gglmps_api_key,
 				$gglmps_language
 			);
@@ -1341,17 +1314,19 @@ if ( ! function_exists( 'gglmps_admin_head' ) ) {
 				'getCoordinates' => __( 'Get coordinates', 'bws-google-maps' )
 			);
 			wp_localize_script( 'gglmps_editor_script', 'gglmps_translation', $gglmps_translation_array );
+
+			bws_enqueue_settings_scripts();
 		}
 		if ( isset( $_GET['page'] ) && $_GET['page'] == 'bws-google-maps.php' ) {
 			wp_enqueue_script( 'gglmps_script', plugins_url( 'js/script.js', __FILE__ ), array( 'jquery' ) );
 			wp_enqueue_script( 'gglmps_settings_script', plugins_url( 'js/settings.js', __FILE__ ), array( 'jquery-ui-slider', 'jquery-touch-punch' ) );
 
+			bws_enqueue_settings_scripts();
 			if ( isset( $_GET['action'] ) && 'custom_code' == $_GET['action'] )
 				bws_plugins_include_codemirror();
-		}
-		if ( isset( $_GET['action'] ) && 'appearance' == $_GET['action'] ) {
-			wp_enqueue_style( 'gglmps_appearance_stylesheet', plugins_url( 'css/appearance-style.css', __FILE__ ) );
-		}
+			elseif ( isset( $_GET['action'] ) && 'appearance' == $_GET['action'] )
+				wp_enqueue_style( 'gglmps_appearance_stylesheet', plugins_url( 'css/appearance-style.css', __FILE__ ) );
+		}		
 	}
 }
 
@@ -1394,10 +1369,10 @@ if ( ! function_exists( 'gglmps_front_end_scripts' ) ) {
 			if ( empty( $gglmps_options ) )
 				$gglmps_options = get_option( 'gglmps_options' );
 
-			$api_key = ! empty( $gglmps_options['api_key'] ) ? sprintf( '&key=%s', $gglmps_options['api_key'] ) : '';
-			$language = sprintf( '&language=%s', $gglmps_options['language'] );
+			$api_key = ! empty( $gglmps_options['api_key'] ) ? sprintf( 'key=%s&', $gglmps_options['api_key'] ) : '';
+			$language = sprintf( 'language=%s', $gglmps_options['language'] );
 			$api = sprintf(
-				'https://maps.googleapis.com/maps/api/js?sensor=false%1$s%2$s',
+				'https://maps.googleapis.com/maps/api/js?%1$s%2$s',
 				$api_key,
 				$language
 			);
@@ -1495,8 +1470,7 @@ if ( ! function_exists( 'gglmps_shortcode' ) ) {
 
 /* add shortcode content  */
 if ( ! function_exists( 'gglmps_shortcode_button_content' ) ) {
-	function gglmps_shortcode_button_content( $content ) {
-		global $wp_version; ?>
+	function gglmps_shortcode_button_content( $content ) { ?>
 		<div id="gglmps" style="display:none;">
 			<fieldset>
 				<label>					
@@ -1524,18 +1498,12 @@ if ( ! function_exists( 'gglmps_shortcode_button_content' ) ) {
 			<?php } ?>
 			<script type="text/javascript">
 				function gglmps_shortcode_init() {
-					(function($) {	
-						<?php if ( $wp_version < '3.9' ) { ?>	
-							var current_object = '#TB_ajaxContent';
-						<?php } else { ?>
-							var current_object = '.mce-reset';
-						<?php } ?>			
-
-						$( current_object + ' #gglmps_shortcode_list' ).on( 'change', function() {
-							var map = $( current_object + ' #gglmps_shortcode_list option:selected' ).val();
+					(function($) {
+						$( '.mce-reset #gglmps_shortcode_list' ).on( 'change', function() {
+							var map = $( '.mce-reset #gglmps_shortcode_list option:selected' ).val();
 							var shortcode = '[bws_googlemaps id=' + map + ']';
 
-							$( current_object + ' #bws_shortcode_display' ).text( shortcode );
+							$( '.mce-reset #bws_shortcode_display' ).text( shortcode );
 						});	         
 					})(jQuery);
 				}
