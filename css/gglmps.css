@@ -1,6 +1,7 @@
 .gglmps_container_map {
 	overflow: hidden;
 	clear: both;
+	padding:  10px 0;
 }
 .gglmps_map {
 	max-width: 100%;
@@ -12,6 +13,9 @@
 }
 .gglmps_map img {
 	max-width: none !important;
+	-moz-box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
 }
 .gglmps_no_script {
 	margin: 0;

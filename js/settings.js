@@ -1,42 +1,48 @@
 ( function( $ ) {
 	$( document ).ready(function() {
-		// Check availability Map View 45°
+		/* Check availability Map View 45° */
 		if ( $( '#gglmps_basic_map_type' ).find( 'option:selected' ).val() == 'roadmap' || $( '#gglmps_basic_map_type' ).find( 'option:selected' ).val() == 'terrain' ) {
 			$( '#gglmps_basic_tilt45' ).attr( 'disabled', true );
+			$( '#gglmps_control_rotate' ).attr( 'disabled', true );
 		}
 		
-		// Change map type in the preview map and check availability Map View 45° when changed map type
+		/* Change map type in the preview map and check availability Map View 45° when changed map type */
 		$( '#gglmps_basic_map_type' ).on( 'change', function() {
 			if ( $( this ).find( 'option:selected' ).val() == 'satellite' || $( this ).find( 'option:selected' ).val() == 'hybrid' ) {
-				$( '#gglmps_basic_tilt45' ).attr( 'disabled', false );
+				$( '#gglmps_basic_tilt45' ).removeAttr( 'disabled' );
+				if ( $( '#gglmps_basic_tilt45' ).is( ':checked' ) ) {
+					$( '#gglmps_control_rotate' ).removeAttr( 'disabled' );
+				} else {
+					$( '#gglmps_control_rotate' ).attr( 'disabled', true );
+				}	
 			} else {
 				$( '#gglmps_basic_tilt45' ).attr( 'disabled', true );
+				$( '#gglmps_control_rotate' ).attr( 'disabled', true );
 			}
 		});
 
-
 		/* Check availability of Rotate Map control */
-		if ( $( '#gglmps_basic_tilt45' ).is( ':checked' ) ) {
-			$( '#gglmps_control_rotate' ).attr( 'disabled', false );
+		if ( $( '#gglmps_basic_tilt45' ).is(':enabled') && $( '#gglmps_basic_tilt45' ).is( ':checked' ) ) {
+			$( '#gglmps_control_rotate' ).removeAttr( 'disabled' );
 		} else {
 			$( '#gglmps_control_rotate' ).attr( 'disabled', true );
 		}
 
-		/* Disable rotate map control if Map View 45° is not checked  */
+		/* Disable rotate map control if Map View 45° is not checked */
 		$( '#gglmps_basic_tilt45' ).on( 'change', function() {
 			if ( $( this ).is( ':checked' ) ) {
-				$( '#gglmps_control_rotate' ).attr( 'disabled', false );
+				$( '#gglmps_control_rotate' ).removeAttr( 'disabled' );
 			} else {
 				$( '#gglmps_control_rotate' ).attr( 'disabled', true );
 			}
 		} );
 
-		// Check availability preview map auto zoom
+		/* Check availability preview map auto zoom */
 		if ( $( '#gglmps_basic_auto_zoom' ).is( ':checked' ) ) {
 			$( '#gglmps_zoom_wrap' ).hide();
 		}
 
-		// Switching between auto zoom and manual zoom
+		/* Switching between auto zoom and manual zoom */
 		$( '#gglmps_basic_auto_zoom' ).on( 'change', function() {
 			switch ( $( this ).is( ':checked' ) ) {
 				case true:
@@ -48,18 +54,18 @@
 			}
 		});
 
-		// Set up max zoom to map types
+		/* Set up max zoom to map types */
 		$( '#gglmps_basic_map_type' ).data( 'maxZoom', {
 			'roadmap'   : 21,
 			'terrain'   : 15,
 			'satellite' : 19,
-			'hybrid'    : 19 
+			'hybrid'    : 19
 		});
 
-		// Get max zoom
+		/* Get max zoom */
 		$( '#gglmps_basic_map_type' ).on( 'change', function() {
 			var maxZoom = $( '#gglmps_basic_map_type' ).data( 'maxZoom' )[ $( this ).find( 'option:selected' ).val() ];
-			if ( $( '#gglmps_basic_zoom' ).val() >  maxZoom ) {
+			if ( $( '#gglmps_basic_zoom' ).val() > maxZoom ) {
 				$( '#gglmps_basic_zoom' ).val( maxZoom );
 			}
 			$( '#gglmps_zoom_slider' ).slider({
@@ -68,7 +74,7 @@
 			});
 		});
 
-		// Zoom slider
+		/* Zoom slider */
 		if ( typeof $( '#gglmps_basic_map_type' ).find( 'option:selected' ).val() != 'undefined' ) {
 			$( '#gglmps_zoom_slider' ).slider({
 				value  : $( '#gglmps_basic_zoom' ).val(),
@@ -89,28 +95,28 @@
 			});
 		}
 
-		// Checking visibility additional options on the settings page
+		/* Checking visibility additional options on the settings page */
 		if ( $( '#gglmps_settings_additional_options' ).is( ':checked' ) == false ) {
 			$( '.gglmps_settings_additional_options' ).hide();
 		}
 
-		// Show or hide additional options on the settings page
+		/* Show or hide additional options on the settings page */
 		$( '#gglmps_settings_additional_options' ).on( 'click', function() {
 			if ( $( this ).is( ':checked' ) ) {
 				$( '.gglmps_settings_additional_options' ).show();
 			} else {
 				$( '.gglmps_settings_additional_options' ).hide();
 			}
-		});		
+		});
 
-		// Show or hide overview map control
+		/* Show or hide overview map control */
 		$( '#gglmps_control_overview_map' ).on( 'change', function() {
-			if ( $( this ).is( ':checked' )  == false ) {
+			if ( $( this ).is( ':checked' ) == false ) {
 				$( '#gglmps_control_overview_map_opened' ).attr( 'checked', false );
 			}
 		});
 
-		// Open overview map control
+		/* Open overview map control */
 		$( '#gglmps_control_overview_map_opened' ).on( 'change', function() {
 			if ( $( this ).is( ':checked' ) ) {
 				$( '#gglmps_control_overview_map' ).attr( 'checked', true );
@@ -119,7 +125,7 @@
 			}
 		});
 
-		/* Resizing width of the map*/
+		/* Resizing width of the map */
 		$( '#gglmps_basic_width, select[name="gglmps_basic_width_unit"]' ).on( 'change', function() {
 			if ( 'px' == $( 'select[name=gglmps_basic_width_unit]' ).val() ) {
 				if ( $( '#gglmps_basic_width' ).val() < 150 ) {

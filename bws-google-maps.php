@@ -6,25 +6,25 @@ Description: Add customized Google maps to WordPress posts, pages and widgets.
 Author: BestWebSoft
 Text Domain: bws-google-maps
 Domain Path: /languages
-Version: 1.3.7
+Version: 1.3.8
 Author URI: https://bestwebsoft.com/
 License: GPLv2 or later
 */
 
-/*  © Copyright 2017 BestWebSoft  ( https://support.bestwebsoft.com )
+/* © Copyright 2017 BestWebSoft ( https://support.bestwebsoft.com )
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License, version 2, as
-    published by the Free Software Foundation.
+	This program is free software; you can redistribute it and/or modify
+	it under the terms of the GNU General Public License, version 2, as
+	published by the Free Software Foundation.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 /*
@@ -37,11 +37,11 @@ if ( ! function_exists( 'gglmps_admin_menu' ) ) {
 		$settings = add_submenu_page( 'bws_panel', __( 'Google Maps Settings', 'bws-google-maps' ), 'Google Maps', 'manage_options', 'bws-google-maps.php', 'gglmps_settings_page' );
 		$hook = add_menu_page( 'Google Maps', 'Google Maps', 'edit_posts', 'gglmps_manager', 'gglmps_manager_page', 'dashicons-location', '54.1' );
 		$gglmps_manager = add_submenu_page( 'gglmps_manager', __( 'Google Maps Editor', 'bws-google-maps' ), __( 'Add New', 'bws-google-maps' ), 'manage_options', 'gglmps_editor', 'gglmps_editor_page' );
-		
+
 		add_action( "load-$hook", 'gglmps_screen_options' );
 		add_action( 'load-' . $settings, 'gglmps_add_tabs' );
 		add_action( 'load-' . $gglmps_manager, 'gglmps_add_tabs' );
-		
+
 		if ( isset( $submenu['gglmps_manager'] ) )
 			$submenu['gglmps_manager'][] = array( __( 'Settings', 'bws-google-maps' ), 'manage_options', admin_url( 'admin.php?page=bws-google-maps.php' ) );
 	}
@@ -60,17 +60,17 @@ if ( ! function_exists( 'gglmps_plugins_loaded' ) ) {
 if ( ! function_exists ( 'gglmps_init' ) ) {
 	function gglmps_init() {
 		global $gglmps_plugin_info;
-		
+
 		require_once( dirname( __FILE__ ) . '/bws_menu/bws_include.php' );
 		bws_include_init( plugin_basename( __FILE__ ) );
-		
+
 		if ( empty( $gglmps_plugin_info ) ) {
 			if ( ! function_exists( 'get_plugin_data' ) )
 				require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 			$gglmps_plugin_info = get_plugin_data( __FILE__ );
 		}
 
-		/* Function check if plugin is compatible with current WP version  */
+		/* Function check if plugin is compatible with current WP version */
 		bws_wp_min_version_check( plugin_basename( __FILE__ ), $gglmps_plugin_info, '3.9' );
 
 		if ( ! is_admin() || isset( $_GET['page'] ) && ( $_GET['page'] == 'bws-google-maps.php' || $_GET['page'] == 'gglmps_manager' || $_GET['page'] == 'gglmps_editor' ) ) {
@@ -88,7 +88,7 @@ if ( ! function_exists ( 'gglmps_admin_init' ) ) {
 
 		if ( empty( $bws_plugin_info ) )
 			$bws_plugin_info = array( 'id' => '124', 'version' => $gglmps_plugin_info['Version'] );
-		/* add Google Maps to global $bws_shortcode_list  */
+		/* add Google Maps to global $bws_shortcode_list */
 		$bws_shortcode_list['gglmps'] = array( 'name' => 'Google Maps', 'js_function' => 'gglmps_shortcode_init' );
 	}
 }
@@ -122,11 +122,12 @@ if ( ! function_exists ( 'gglmps_default_options' ) ) {
 				'rotate'              => 1,
 				'zoom'                => 1,
 				'scale'               => 1
-			)			
+			)
 		);
-		if ( ! get_option( 'gglmps_options' ) )
-			add_option( 'gglmps_options', $gglmps_default_options );
 
+		if ( ! get_option( 'gglmps_options' ) ) {
+			add_option( 'gglmps_options', $gglmps_default_options );
+		}
 		$gglmps_options = get_option( 'gglmps_options' );
 
 		if ( ! get_option( 'gglmps_maps' ) )
@@ -139,11 +140,28 @@ if ( ! function_exists ( 'gglmps_default_options' ) ) {
 			$gglmps_options['hide_premium_options'] = array();
 			$gglmps_options = array_merge( $gglmps_default_options, $gglmps_options );
 			$gglmps_options['plugin_option_version'] = $gglmps_plugin_info['Version'];
+
+			gglmps_plugin_activate();
 			update_option( 'gglmps_options', $gglmps_options );
 		}
 	}
 }
 
+/**
+ * Activation plugin function
+ */
+if ( ! function_exists( 'gglmps_plugin_activate' ) ) {
+	function gglmps_plugin_activate( $networkwide = '' ) {
+		/* Activation function for network, check if it is a network activation - if so, run the activation function for each blog id */
+		if ( is_multisite() ) {
+			switch_to_blog( 1 );
+			register_uninstall_hook( __FILE__, 'gglmps_delete_options' );
+			restore_current_blog();
+		} else {
+			register_uninstall_hook( __FILE__, 'gglmps_delete_options' );
+		}
+	}
+}
 
 /*
 * Function to display plugin main settings page.
@@ -178,15 +196,29 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 				'tilt45'    => isset( $_REQUEST['gglmps_basic_tilt45'] ) ? 1 : 0,
 				'zoom'      => isset( $_REQUEST['gglmps_basic_zoom'] ) && is_numeric( intval( $_REQUEST['gglmps_basic_zoom'] ) ) ? intval( $_REQUEST['gglmps_basic_zoom'] ) : $gglmps_default_options['basic']['zoom']
 			);
-
 			$gglmps_options['basic']['width_unit'] = ( 'px' == $_REQUEST['gglmps_basic_width_unit'] ) ? 'px' : '%';
 
-			if ( 'px' == $gglmps_options['basic']['width_unit'] ) 
-				$gglmps_options['basic']['width'] = isset( $_REQUEST['gglmps_basic_width'] ) && intval( $_REQUEST['gglmps_basic_width'] ) > 150 ? intval( $_REQUEST['gglmps_basic_width'] ) : 150;
-			else
-				$gglmps_options['basic']['width'] = isset( $_REQUEST['gglmps_basic_width'] ) && intval( $_REQUEST['gglmps_basic_width'] ) < 100 ? intval( $_REQUEST['gglmps_basic_width'] ) : 100;
+			if ( 'px' == $gglmps_options['basic']['width_unit'] && isset( $_REQUEST['gglmps_basic_width'] ) ) {
+				if ( absint( $_REQUEST['gglmps_basic_width'] ) < 150 ) {
+					$gglmps_options['basic']['width'] = 150;
+				} elseif ( absint( $_REQUEST['gglmps_basic_width'] ) > 1000 ) {
+					$gglmps_options['basic']['width'] = 1000;
+				} else {
+					$gglmps_options['basic']['width'] = absint( $_REQUEST['gglmps_basic_width'] );
+				}
+			} else {
+				$gglmps_options['basic']['width'] = isset( $_REQUEST['gglmps_basic_width'] ) && absint( $_REQUEST['gglmps_basic_width'] ) < 100 ? absint( $_REQUEST['gglmps_basic_width'] ) : 100;
+			}
 
-			$gglmps_options['basic']['height'] = isset( $_REQUEST['gglmps_basic_height'] ) && intval( $_REQUEST['gglmps_basic_height'] ) > 150 ? intval( $_REQUEST['gglmps_basic_height'] ) : 150;
+			if ( isset( $_REQUEST['gglmps_basic_height'] ) ) {
+				if ( absint( $_REQUEST['gglmps_basic_height'] ) < 150 ) {
+					$gglmps_options['basic']['height'] = 150;
+				} elseif ( absint( $_REQUEST['gglmps_basic_height'] ) > 1000 ) {
+					$gglmps_options['basic']['height'] = 1000;
+				} else {
+					$gglmps_options['basic']['height'] = absint( $_REQUEST['gglmps_basic_height'] );
+				}
+			}
 
 			$gglmps_options['controls'] 			= array(
 					'map_type'            => isset( $_REQUEST['gglmps_control_map_type'] ) ? 1 : 0,
@@ -257,21 +289,21 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 					bws_form_restore_default_confirm( $plugin_basename );
 				} else { ?>
 					<div id="gglmps_settings_notice" class="updated below-h2">
-						<?php _e( 'These settings are used as default when you create a new map.', 'bws-google-maps' ); ?>
+						<?php _e( 'These settings will be applied to newly added maps by default.', 'bws-google-maps' ); ?>
 						<p><?php printf(
 							'%1$s <a href="admin.php?page=gglmps_editor">%2$s</a> %3$s <a href="admin.php?page=gglmps_manager">%4$s</a> %5$s',
 							__( 'In the', 'bws-google-maps' ),
 							__( 'Google Maps editor', 'bws-google-maps' ),
 							__( 'you can create a new map and in the', 'bws-google-maps' ),
 							__( 'Google Maps manager', 'bws-google-maps' ),
-							__( 'you can find maps that have been previously saved.', 'bws-google-maps' )
+							__( 'you can find previously saved maps.', 'bws-google-maps' )
 						 ); ?></p>
-						<?php printf( 
-							__( 'Please add the map by clicking on %s button', 'bws-google-maps' ), 
+						<?php printf(
+							__( 'Please add the map by clicking on %s button', 'bws-google-maps' ),
 							'<span class="bws_code"><span class="bwsicons bwsicons-shortcode"></span></span>'
 						);
-						echo bws_add_help_box( sprintf( 
-							__( "You can add the map to your content by clicking on %s button in the content edit block using the Visual mode. If the button isn't displayed, please use the shortcode %s, where * stands for map ID", 'bws-google-maps' ), 
+						echo bws_add_help_box( sprintf(
+							__( "You can add the map to your content by clicking on %s button in the content edit block using the Visual mode. If the button isn't displayed, please use the shortcode %s, where * stands for map ID", 'bws-google-maps' ),
 							'<span class="bws_code"><span class="bwsicons bwsicons-shortcode"></span></span>',
 							'<span class="bws_code">[bws_googlemaps id=*]</span>'
 						) ); ?>
@@ -286,11 +318,12 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 											<input id="gglmps_main_api_key" name="gglmps_main_api_key" type="text" maxlength='250' value="<?php echo $gglmps_options['api_key']; ?>">
 											<span class="gglmps_settings_tooltip">
 												<?php printf(
-													'%1$s <a href="https://developers.google.com/maps/documentation/javascript/usage#usage_limits" target="_blank">%2$s</a>, %3$s <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">%4$s</a>.',
+													'%1$s <a href="https://developers.google.com/maps/documentation/javascript/usage#usage_limits" target="_blank">%2$s</a>, %3$s <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">%4$s</a>, %5$s.',
 													__( 'Using an API key enables you to monitor your application Maps API usage, and ensures that Google can contact you about your application if necessary. If your application Maps API usage exceeds the', 'bws-google-maps' ),
 													__( 'Usage Limits', 'bws-google-maps' ),
-													__( 'you must load the Maps API using an API key in order to purchase additional quota. How to create a API key you can find', 'bws-google-maps' ),
-													__( 'here', 'bws-google-maps' )
+													__( 'you must load the Maps API using an API key in order to purchase additional quota. Click', 'bws-google-maps' ),
+													__( 'here','bws-google-maps' ),
+													__( 'to know how to get the API key','bws-google-maps' )
 												); ?>
 											</span>
 										</div>
@@ -357,55 +390,56 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 									<th><label for="gglmps_basic_tilt45"><?php _e( 'View', 'bws-google-maps' ); ?>&nbsp;45&deg;</label></th>
 									<td>
 										<input id="gglmps_basic_tilt45" name="gglmps_basic_tilt45" type="checkbox" <?php if ( $gglmps_options['basic']['tilt45'] == 1 ) echo 'checked="checked"'; ?> />
-										<span class="gglmps_settings_tooltip"><?php _e( 'This option is only available for the types of map Satellite and Hybrid (if such snapshots are available).', 'bws-google-maps' ); ?></span>
+										<span class="gglmps_settings_tooltip"><?php _e( 'This option is only available for Satellite and Hybrid map types (if such snapshots are available).', 'bws-google-maps' ); ?></span>
 									</td>
 								</tr>
 								<tr valign="middle">
 									<th><label for="gglmps_basic_auto_zoom"><?php _e( 'Zoom', 'bws-google-maps' ); ?></label></th>
 									<td>
+										<input id="gglmps_basic_zoom" name="gglmps_basic_zoom" type="number" min='0' max='21' value="<?php echo $gglmps_options['basic']['zoom']; ?>">
 										<div id="gglmps_zoom_wrap">
 											<div id="gglmps_zoom_slider"></div>
 											<span id="gglmps_zoom_value"></span>
 										</div>
-										<input id="gglmps_basic_zoom" name="gglmps_basic_zoom" type="number" min='0' max='21' value="<?php echo $gglmps_options['basic']['zoom']; ?>">
 									</td>
 								</tr>
 								<tr valign="middle">
 									<th>
-										<input id="gglmps_settings_additional_options" name="gglmps_settings_additional_options" type="checkbox" <?php if ( $gglmps_options['additional_options'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_settings_additional_options"><?php _e( 'Controls options', 'bws-google-maps' ); ?></label>
+										<?php _e( 'Controls options', 'bws-google-maps' ); ?>
 									</th>
 									<td>
-										<span class="gglmps_settings_tooltip"><?php _e( 'Visibility and actions controls of the map.', 'bws-google-maps' ); ?></span>
-									</td>
-								</tr>
-								<tr class="gglmps_settings_additional_options" valign="middle">
-									<th>&nbsp;</th>
-									<td>
-										<p class="gglmps_settings_additional_option">
-											<input id="gglmps_control_map_type" name="gglmps_control_map_type" type="checkbox" <?php if ( $gglmps_options['controls']['map_type'] == 1 ) echo 'checked="checked"'; ?> />
-											<label for="gglmps_control_map_type"><?php _e( 'Type', 'bws-google-maps' ); ?></label>
-										</p>
-										<p class="gglmps_settings_additional_option">
-											<input id="gglmps_control_rotate" name="gglmps_control_rotate" type="checkbox" <?php if ( $gglmps_options['controls']['rotate'] == 1 ) echo 'checked="checked"'; ?> />
-											<label for="gglmps_control_rotate"><?php _e( 'Rotate', 'bws-google-maps' ); ?></label>
-											<span class="gglmps_settings_tooltip"><?php _e( 'This option is only available if View 45° option is checked', 'bws-google-maps' ); ?></span>
-										</p>
-										<p class="gglmps_settings_additional_option">
-											<input id="gglmps_control_zoom" name="gglmps_control_zoom" type="checkbox" <?php if ( $gglmps_options['controls']['zoom'] == 1 ) echo 'checked="checked"'; ?> />
-											<label for="gglmps_control_zoom"><?php _e( 'Zoom', 'bws-google-maps' ); ?></label>
-										</p>
-										<p class="gglmps_settings_additional_option">
-											<input id="gglmps_control_scale" name="gglmps_control_scale" type="checkbox" <?php if ( $gglmps_options['controls']['scale'] == 1 ) echo 'checked="checked"'; ?> />
-											<label for="gglmps_control_scale"><?php _e( 'Scale', 'bws-google-maps' ); ?></label>
-										</p>
+										<fieldset>
+											<p>
+												<input id="gglmps_settings_additional_options" name="gglmps_settings_additional_options" type="checkbox" <?php if ( $gglmps_options['additional_options'] == 1 ) echo 'checked="checked"'; ?> />
+												<label class="gglmps_settings_tooltip" for="gglmps_settings_additional_options"><?php _e( 'Visibility and map action controls.', 'bws-google-maps' ); ?></label>
+											</p>
+											<div class="gglmps_settings_additional_options">
+												<p class="gglmps_settings_additional_option">
+													<input id="gglmps_control_map_type" name="gglmps_control_map_type" type="checkbox" <?php if ( $gglmps_options['controls']['map_type'] == 1 ) echo 'checked="checked"'; ?> />
+													<label for="gglmps_control_map_type"><?php _e( 'Type', 'bws-google-maps' ); ?></label>
+												</p>
+												<p class="gglmps_settings_additional_option">
+													<input id="gglmps_control_rotate" name="gglmps_control_rotate" type="checkbox" <?php if ( $gglmps_options['controls']['rotate'] == 1 ) echo 'checked="checked"'; ?> />
+													<label for="gglmps_control_rotate"><?php _e( 'Rotate', 'bws-google-maps' ); ?></label>
+													<span class="gglmps_settings_tooltip"><?php _e( 'This option is only available if View 45° option is checked', 'bws-google-maps' ); ?></span>
+												</p>
+												<p class="gglmps_settings_additional_option">
+													<input id="gglmps_control_zoom" name="gglmps_control_zoom" type="checkbox" <?php if ( $gglmps_options['controls']['zoom'] == 1 ) echo 'checked="checked"'; ?> />
+													<label for="gglmps_control_zoom"><?php _e( 'Zoom', 'bws-google-maps' ); ?></label>
+												</p>
+												<p class="gglmps_settings_additional_option">
+													<input id="gglmps_control_scale" name="gglmps_control_scale" type="checkbox" <?php if ( $gglmps_options['controls']['scale'] == 1 ) echo 'checked="checked"'; ?> />
+													<label for="gglmps_control_scale"><?php _e( 'Scale', 'bws-google-maps' ); ?></label>
+												</p>
+											</div>
+										</fieldset>
 									</td>
 								</tr>
 							</tbody>
 						</table><!-- .gglmps_settings_table -->
 						<?php if ( ! $bws_hide_premium_options_check ) { ?>
 							<div class="bws_pro_version_bloc">
-								<div class="bws_pro_version_table_bloc">	
+								<div class="bws_pro_version_table_bloc">
 									<button type="submit" name="bws_hide_premium_options" class="notice-dismiss bws_hide_premium_options" title="<?php _e( 'Close', 'bws-google-maps' ); ?>"></button>
 									<div class="bws_table_bg"></div>
 									<table class="form-table bws_pro_version">
@@ -456,14 +490,14 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 					</form><!-- #gglmps_settings_form -->
 					<?php bws_form_restore_default_settings( $plugin_basename );
 				}
-			} elseif ( 'appearance' == $_GET['action'] ) { ?>				
+			} elseif ( 'appearance' == $_GET['action'] ) { ?>
 				<div class="bws_pro_version_bloc">
 					<div class="bws_pro_version_table_bloc">
 						<div class="bws_table_bg" style="top: 0;"></div>
 						<div id="gglmps_appearance_block" style="margin: 10px;">
 							<div id="gglmps_settings_notice" class="updated below-h2">
-								<?php _e( 'Install required styles in order to apply them to certain maps on Google Maps Editor page', 'bws-google-maps' ); ?>
-							</div><!-- #gglmps_settings_notice -->	
+								<?php _e( 'Install required styles in order to apply them to certain maps on Google Maps Editor page', 'bws-google-maps' ); ?>.
+							</div><!-- #gglmps_settings_notice -->
 							<table class="gglmps_settings_table form-table">
 								<tbody>
 									<tr>
@@ -471,13 +505,13 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 										<td>
 											<div class="gglmps-snazzymaps-api">
 												<input type="text" id="gglmps_snazzymaps_api_key_value" disabled="disabled" size="36" value="">
-												<input type="submit" class="button-primary" id="gglmps_snazzymaps_key_submit" disabled="disabled" value="Save">
+												<input type="submit" class="button-primary" id="gglmps_snazzymaps_key_submit" disabled="disabled" value="<?php _e( 'Save', 'bws-google-maps' ) ?>">
 											</div>
 											<p>
 												<span class="gglmps_settings_tooltip">
 													<?php printf(
 														'%1$s. <a>%2$s</a> %3$s <a>%4$s</a>.',
-														__( 'You can use your own API key which allows using favorite styles from  your Snazzymaps account', 'bws-google-maps' ),
+														__( 'You can use your own API key which allows using favorite styles from your Snazzymaps account', 'bws-google-maps' ),
 														__( 'Personal API key', 'bws-google-maps' ),
 														__( 'is available after', 'bws-google-maps' ),
 														__( 'registration', 'bws-google-maps' )
@@ -514,7 +548,7 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 														<?php _e( 'Filter by Tag', 'bws-google-maps' ); ?>
 													</option>
 												</select>
-												<input class="wp-filter-search gglmps-filter" id="gglmps-search" disabled="disabled" type="text" placeholder="Search..." value="">
+												<input class="wp-filter-search gglmps-filter" id="gglmps-search" disabled="disabled" type="text" placeholder="<?php _e( 'Search...', 'bws-google-maps' ); ?>" value="">
 												<select class="gglmps-orderby gglmps-filter" disabled="disabled">
 													<option value="" selected="">
 														<?php _e( 'Sort by', 'bws-google-maps' ); ?>...
@@ -545,44 +579,44 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 										<div class="theme-browser content-filterable rendered">
 											<div class="themes">
 												<?php $themes = array(
-													array( 
-														'name' 			=> 'Midnight Commander',
-														'is-installed' 	=> 1,
+													array(
+														'name'			=> 'Midnight Commander',
+														'is-installed'	=> 1,
 														'default'		=> 1
 													),
-													array( 
-														'name' 			=> 'Unsaturated Browns',
-														'is-installed' 	=> 1,
+													array(
+														'name'			=> 'Unsaturated Browns',
+														'is-installed'	=> 1,
 														'default'		=> 0
 													),
-													array( 
-														'name' 			=> 'Bentley',
-														'is-installed' 	=> 0,
+													array(
+														'name'			=> 'Bentley',
+														'is-installed'	=> 0,
 														'default'		=> 0
 													),
-													array( 
+													array(
 														'name' 			=> 'Blue Essence',
 														'is-installed' 	=> 0,
 														'default'		=> 0
 													),
-													array( 
-														'name' 			=> 'Nature',
-														'is-installed' 	=> 0,
+													array(
+														'name'			=> 'Nature',
+														'is-installed'	=> 0,
 														'default'		=> 0
 													),
-													array( 
-														'name' 			=> 'Just Retro',
-														'is-installed' 	=> 0,
+													array(
+														'name'			=> 'Just Retro',
+														'is-installed'	=> 0,
 														'default'		=> 0
 													),
-													array( 
-														'name' 			=> 'İnturlam Style',
-														'is-installed' 	=> 0,
+													array(
+														'name'			=> 'İnturlam Style',
+														'is-installed'	=> 0,
 														'default'		=> 0
 													),
-													array( 
-														'name' 			=> 'Sin City',
-														'is-installed' 	=> 1,
+													array(
+														'name'			=> 'Sin City',
+														'is-installed'	=> 1,
 														'default'		=> 0
 													)
 												);
@@ -593,23 +627,25 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 																<img src="<?php echo plugins_url( 'images/style-' . $key . '.png', __FILE__ ); ?>">
 															</div>
 														</span>
-														<h2 class="theme-name">
-															<?php if ( 1 == $value['default'] ) { ?>
-																<span class="active"><?php _e( 'Default', 'bws-google-maps' ); ?>:</span> 
-															<?php }
-															echo $value['name']; ?>						
-														</h2>
-														<div class="theme-actions">
-															<?php if ( 0 == $value['default'] ) { ?>
-																<button disabled="disabled" class="button"><?php _e( 'Set as default', 'bws-google-maps' ); ?></button>
-															<?php }
-															if ( 1 == $value['is-installed'] ) { ?>
-																<button disabled="disabled" class="button button-remove" value=""><?php _e( 'Delete', 'bws-google-maps' ); ?></button>
-															<?php } else { ?>
-																<button disabled="disabled" class="button button-primary"><?php _e( 'Install', 'bws-google-maps' ); ?></button>
-															<?php } ?>
+														<div class="theme-id-container">
+															<h2 class="theme-name">
+																<?php if ( 1 == $value['default'] ) { ?>
+																	<span class="active"><?php _e( 'Default', 'bws-google-maps' ); ?>:</span>
+																<?php }
+																echo $value['name']; ?>
+															</h2>
+															<div class="theme-actions">
+																<?php if ( 0 == $value['default'] ) { ?>
+																	<button disabled="disabled" class="button"><?php _e( 'Set as default', 'bws-google-maps' ); ?></button>
+																<?php }
+																if ( 1 == $value['is-installed'] ) { ?>
+																	<button disabled="disabled" class="button button-remove" value=""><?php _e( 'Delete', 'bws-google-maps' ); ?></button>
+																<?php } else { ?>
+																	<button disabled="disabled" class="button button-primary"><?php _e( 'Install', 'bws-google-maps' ); ?></button>
+																<?php } ?>
+															</div>
 														</div>
-														<?php if ( 1 == $value['is-installed'] ) { 
+														<?php if ( 1 == $value['is-installed'] ) {
 															if ( $wp_version < '4.6' ) { ?>
 																<div class="theme-installed"><?php _ex( 'Already Installed', 'style is installed', 'bws-google-maps' ); ?></div>
 															<?php } else { ?>
@@ -651,9 +687,9 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 				</div>
 			<?php } elseif ( 'custom_code' == $_GET['action'] ) {
 				bws_custom_code_tab();
-			} elseif ( 'go_pro' == $_GET['action'] ) { 
-				bws_go_pro_tab_show( $bws_hide_premium_options_check, $gglmps_plugin_info, $plugin_basename, 'bws-google-maps.php', 'bws-google-maps-pro.php', 'bws-google-maps-pro/bws-google-maps-pro.php', 'bws-google-maps', 'f546edd672c2e16f8359dcb48f9d2fff', '124', isset( $go_pro_result['pro_plugin_is_activated'] ) ); 
-			} 
+			} elseif ( 'go_pro' == $_GET['action'] ) {
+				bws_go_pro_tab_show( $bws_hide_premium_options_check, $gglmps_plugin_info, $plugin_basename, 'bws-google-maps.php', 'bws-google-maps-pro.php', 'bws-google-maps-pro/bws-google-maps-pro.php', 'bws-google-maps', 'f546edd672c2e16f8359dcb48f9d2fff', '124', isset( $go_pro_result['pro_plugin_is_activated'] ) );
+			}
 			bws_plugin_reviews_block( $gglmps_plugin_info['Name'], 'bws-google-maps' ); ?>
 		</div><!-- #gglmps_settings_wrap -->
 	<?php }
@@ -753,7 +789,7 @@ if ( class_exists( 'WP_List_Table' ) && ! class_exists( 'Gglmps_Manager' ) ) {
 		*/
 		function get_columns() {
 			$columns = array(
-				'cb'        => '<input type="checkbox" />',				
+				'cb'        => '<input type="checkbox" />',
 				'title'     => __( 'Title', 'bws-google-maps' ),
 				'shortcode' => __( 'Shortcode', 'bws-google-maps' ),
 				'date'      => __( 'Date', 'bws-google-maps' ),
@@ -790,7 +826,7 @@ if ( class_exists( 'WP_List_Table' ) && ! class_exists( 'Gglmps_Manager' ) ) {
 		function column_title( $item ) {
 			$gglmps_manager_paged = isset( $_GET['paged'] ) ? '&paged=' . $_GET['paged'] : '';
 			$actions = array(
-				'edit'   => sprintf( '<a href="admin.php?page=gglmps_editor&gglmps_editor_action=%1$s&gglmps_editor_mapid=%2$d">%3$s</a>', 'edit', $item['gglmps-id'],  __( 'Edit', 'bws-google-maps' ) ),
+				'edit'   => sprintf( '<a href="admin.php?page=gglmps_editor&gglmps_editor_action=%1$s&gglmps_editor_mapid=%2$d">%3$s</a>', 'edit', $item['gglmps-id'], __( 'Edit', 'bws-google-maps' ) ),
 				'delete' => sprintf( '<a href="admin.php?page=gglmps_manager&gglmps_manager_action=%1$s&gglmps_manager_mapid=%2$d%3$s">%4$s</a>', 'delete', $item['gglmps-id'], $gglmps_manager_paged, __( 'Delete', 'bws-google-maps' ) )
 			);
 			return sprintf( '%1$s %2$s', $item['title'], $this->row_actions( $actions ) );
@@ -854,7 +890,7 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 		$gglmps_editor_mapid = isset( $_REQUEST['gglmps_editor_mapid'] ) ? $_REQUEST['gglmps_editor_mapid'] : '';
 		$gglmps_editor_shortcode = 0;
 		$gglmps_editor_status = 0;
-		
+
 		switch ( $gglmps_editor_action ) {
 			case 'new':
 				$gglmps_map_title = '';
@@ -900,24 +936,38 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 						),
 						'markers' => array()
 					);
-
 					$gglmps_map_data['basic']['width_unit'] = ( isset( $_REQUEST['gglmps_basic_width_unit'] ) && 'px' == $_REQUEST['gglmps_basic_width_unit'] ) ? 'px' : '%';
-					if ( 'px' == $gglmps_map_data['basic']['width_unit'] ) 
-						$gglmps_map_data['basic']['width'] = isset( $_REQUEST['gglmps_basic_width'] ) && intval( $_REQUEST['gglmps_basic_width'] ) > 150 ? intval( $_REQUEST['gglmps_basic_width'] ) : 150;
-					else
-						$gglmps_map_data['basic']['width'] = isset( $_REQUEST['gglmps_basic_width'] ) && intval( $_REQUEST['gglmps_basic_width'] ) < 100 ? intval( $_REQUEST['gglmps_basic_width'] ) : 100;
+					if ( 'px' == $gglmps_map_data['basic']['width_unit'] && isset( $_REQUEST['gglmps_basic_width'] ) ) {
+						if ( absint( $_REQUEST['gglmps_basic_width'] ) < 150 ) {
+							$gglmps_map_data['basic']['width'] = 150;
+						} elseif ( absint( $_REQUEST['gglmps_basic_width'] ) > 1000 ) {
+							$gglmps_map_data['basic']['width'] = 1000;
+						} else {
+							$gglmps_map_data['basic']['width'] = absint( $_REQUEST['gglmps_basic_width'] );
+						}
+					} else {
+						$gglmps_map_data['basic']['width'] = isset( $_REQUEST['gglmps_basic_width'] ) && absint( $_REQUEST['gglmps_basic_width'] ) < 100 ? absint( $_REQUEST['gglmps_basic_width'] ) : 100;
+					}
 
-					$gglmps_map_data['basic']['height'] = isset( $_REQUEST['gglmps_basic_height'] ) && intval( $_REQUEST['gglmps_basic_height'] ) > 150 ? intval( $_REQUEST['gglmps_basic_height'] ) : 150;
+					if ( isset( $_REQUEST['gglmps_basic_height'] ) ) {
+						if ( absint( $_REQUEST['gglmps_basic_height'] ) < 150 ) {
+							$gglmps_map_data['basic']['height'] = 150;
+						} elseif ( absint( $_REQUEST['gglmps_basic_height'] ) >  1000 ) {
+							$gglmps_map_data['basic']['height'] = 1000;
+						} else {
+							$gglmps_map_data['basic']['height'] = absint( $_REQUEST['gglmps_basic_height'] );
+						}
+					}
 
 					if ( isset( $_REQUEST['gglmps_list_marker_latlng'] ) && isset( $_REQUEST['gglmps_list_marker_location'] ) ) {
 						$gglmps_marker_latlng = $_REQUEST['gglmps_list_marker_latlng'];
 						$gglmps_marker_location = $_REQUEST['gglmps_list_marker_location'];
 						$gglmps_marker_tooltip = $_REQUEST['gglmps_list_marker_tooltip'];
 						foreach ( $gglmps_marker_location as $key => $value ) {
-                            $gglmps_marker_location[ $key ] = stripslashes( esc_html( $value ) );
-                            $gglmps_marker_latlng[ $key ] = stripslashes( esc_html( $gglmps_marker_latlng[ $key ] ) );
-                            $gglmps_marker_tooltip[ $key ] = stripslashes( esc_html( $gglmps_marker_tooltip[ $key ] ) );
-                        }
+							$gglmps_marker_location[ $key ] = stripslashes( esc_html( $value ) );
+							$gglmps_marker_latlng[ $key ] = stripslashes( esc_html( $gglmps_marker_latlng[ $key ] ) );
+							$gglmps_marker_tooltip[ $key ] = stripslashes( esc_html( $gglmps_marker_tooltip[ $key ] ) );
+						}
 						$gglmps_map_data['markers'] = array_map( null, $gglmps_marker_latlng, $gglmps_marker_location, $gglmps_marker_tooltip );
 					}
 
@@ -952,7 +1002,7 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 									'<div class="error"><p>%1$s <strong>ID#%2$s</strong> %3$s <a href="admin.php?page=gglmps_manager">%4$s</a> %5$s <a href="admin.php?page=gglmps_editor">%6$s</a>.</p></div>',
 									__( 'Map with', 'bws-google-maps' ),
 									$gglmps_editor_mapid,
-									__( 'not found! You can return to the', 'bws-google-maps' ),
+									__( 'not found. You can return to the', 'bws-google-maps' ),
 									__( 'Google Maps manager', 'bws-google-maps' ),
 									__( 'or create new map in the', 'bws-google-maps' ),
 									__( 'Google Maps editor', 'bws-google-maps' )
@@ -972,7 +1022,7 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 								'<div class="error"><p>%1$s <strong>ID#%2$s</strong> %3$s <a href="admin.php?page=gglmps_manager">%4$s</a> %5$s <a href="admin.php?page=gglmps_editor">%6$s</a>.</p></div>',
 								__( 'Map with', 'bws-google-maps' ),
 								$gglmps_editor_mapid,
-								__( 'not found! You can return to the', 'bws-google-maps' ),
+								__( 'not found. You can return to the', 'bws-google-maps' ),
 								__( 'Google Maps manager', 'bws-google-maps' ),
 								__( 'or create new map in the', 'bws-google-maps' ),
 								__( 'Google Maps editor', 'bws-google-maps' )
@@ -1003,6 +1053,17 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 					</p>
 				</div><!-- .error -->
 			</noscript><!-- noscript -->
+			<?php if( $gglmps_options['api_key'] == '' ){ ?>
+				<div class="error">
+					<p>
+						<?php printf( '<strong>%1$s</strong> %2$s <a href="admin.php?page=bws-google-maps.php">%3$s</a>.',
+							__( 'Notice:', 'bws-google-maps' ),
+							__( 'In order to create a new map, you must enter the API key on the', 'bws-google-maps' ),
+							__( 'Google Maps settings page', 'bws-google-maps' )
+						); ?>
+					</p>
+				</div>
+			<?php }  ?>
 			<?php if ( $gglmps_editor_status == 1 ) { ?>
 				<div class="updated">
 					<p>
@@ -1012,17 +1073,17 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 			<?php }
 			if ( $gglmps_editor_shortcode == 1 ) { ?>
 				<div id="gglmps_editor_notice" class="updated">
-					<?php printf( 
-						__( 'To insert this map use %s button', 'bws-google-maps' ), 
+					<?php printf(
+						__( 'To insert this map use %s button', 'bws-google-maps' ),
 						'<span class="bws_code"><span class="bwsicons bwsicons-shortcode"></span></span>'
 					);
-					echo bws_add_help_box( sprintf( 
-						__( "You can add the map to your content by clicking on %s button in the content edit block using the Visual mode. If the button isn't displayed, please use the shortcode %s", 'bws-google-maps' ), 
+					echo bws_add_help_box( sprintf(
+						__( "You can add the map to your content by clicking on %s button in the content edit block using the Visual mode. If the button isn't displayed, please use the shortcode %s", 'bws-google-maps' ),
 						'<span class="bws_code"><span class="bwsicons bwsicons-shortcode"></span></span>',
 						'<span class="bws_code">[bws_googlemaps id=' . $gglmps_editor_mapid . ']</span>'
 					) ); ?>
 				</div><!-- #gglmps_editor_notice -->
-			<?php } ?>			
+			<?php } ?>
 			<div id="gglmps_editor_settings">
 				<form id="gglmps_editor_form" name="gglmps_editor_form" method="post" action="<?php echo $gglmps_editor_form_action; ?>">
 					<table class="gglmps_editor_table form-table">
@@ -1088,7 +1149,7 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 								<th><label for="gglmps_basic_width"><?php _e( 'Width', 'bws-google-maps' ); ?></label></th>
 								<td>
 									<div class="gglmps_inline">
-										<input id="gglmps_basic_width" name="gglmps_basic_width" type="number" min="1" max="10000" value="<?php echo $gglmps_map_data['basic']['width']; ?>" placeholder="<?php _e( 'Enter width', 'bws-google-maps' ); ?>">
+										<input id="gglmps_basic_width" name="gglmps_basic_width" type="number" min="1" max="1000" value="<?php echo $gglmps_map_data['basic']['width']; ?>" placeholder="<?php _e( 'Enter width', 'bws-google-maps' ); ?>">
 										<select name="gglmps_basic_width_unit">
 											<option value="px" <?php if ( isset( $gglmps_map_data['basic']['width_unit'] ) && 'px' == $gglmps_map_data['basic']['width_unit'] ) echo 'selected'; ?>><?php _e( 'px', 'bws-google-maps' ); ?></option>
 											<option value="%" <?php if ( isset( $gglmps_map_data['basic']['width_unit'] ) && '%' == $gglmps_map_data['basic']['width_unit'] ) echo 'selected'; ?>>%</option>
@@ -1100,7 +1161,7 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 								<th><label for="gglmps_basic_height"><?php _e( 'Height', 'bws-google-maps' ); ?></label></th>
 								<td>
 									<div class="gglmps_inline">
-										<input id="gglmps_basic_height" name="gglmps_basic_height" type="number" min="150" max="10000" value="<?php echo $gglmps_map_data['basic']['height']; ?>" placeholder="<?php _e( 'Enter height', 'bws-google-maps' ); ?>">
+										<input id="gglmps_basic_height" name="gglmps_basic_height" type="number" min="150" max="1000" value="<?php echo $gglmps_map_data['basic']['height']; ?>" placeholder="<?php _e( 'Enter height', 'bws-google-maps' ); ?>">
 										<?php _e( 'px', 'bws-google-maps' ); ?>
 									</div>
 								</td>
@@ -1130,48 +1191,47 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 								<th><label for="gglmps_basic_tilt45"><?php _e( 'View', 'bws-google-maps' ); ?>&nbsp;45&deg;</label></th>
 								<td>
 									<input id="gglmps_basic_tilt45" name="gglmps_basic_tilt45" type="checkbox" <?php if ( $gglmps_map_data['basic']['tilt45'] == 1 ) echo 'checked="checked"'; ?> />
-									<span class="gglmps_editor_tooltip"><?php _e( 'This option is only available for the types of map Satellite and Hybrid (if such snapshots are available).', 'bws-google-maps' ); ?></span>
+									<span class="gglmps_editor_tooltip"><?php _e( 'This option is only available for Satellite and Hybrid map types (if such snapshots are available).', 'bws-google-maps' ); ?></span>
 								</td>
 							</tr>
 							<tr valign="middle">
 								<th><label for="gglmps_basic_auto_zoom"><?php _e( 'Zoom', 'bws-google-maps' ); ?></label></th>
 								<td>
+									<input id="gglmps_basic_zoom" name="gglmps_basic_zoom" type="number" min='0' max='21' value="<?php echo $gglmps_options['basic']['zoom']; ?>">
 									<div id="gglmps_zoom_wrap">
 										<div id="gglmps_zoom_slider"></div>
 										<span id="gglmps_zoom_value"></span>
 									</div>
-									<input id="gglmps_basic_zoom" name="gglmps_basic_zoom" type="number" min='0' max='21' value="<?php echo $gglmps_map_data['basic']['zoom']; ?>">
 								</td>
 							</tr>
 							<tr valign="middle">
-								<th>
-									<input id="gglmps_editor_additional_options" name="gglmps_editor_additional_options" type="checkbox" <?php if ( $gglmps_map_data['additional_options'] == 1 ) echo 'checked="checked"'; ?> />
-									<label for="gglmps_editor_additional_options"><?php _e( 'Controls options', 'bws-google-maps' ); ?></label>
-								</th>
+								<th><?php _e( 'Controls options', 'bws-google-maps' ); ?></th>
 								<td>
-									<span class="gglmps_editor_tooltip"><?php _e( 'Visibility and actions controls of the map.', 'bws-google-maps' ); ?></span>
-								</td>
-							</tr>
-							<tr class="gglmps_editor_additional_options" valign="middle">
-								<th>&nbsp;</th>
-								<td>
-									<p class="gglmps_editor_additional_option">
-										<input id="gglmps_control_map_type" name="gglmps_control_map_type" type="checkbox" <?php if ( $gglmps_map_data['controls']['map_type'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_map_type"><?php _e( 'Type', 'bws-google-maps' ); ?></label>
-									</p>
-									<p class="gglmps_editor_additional_option">
-										<input id="gglmps_control_rotate" name="gglmps_control_rotate" type="checkbox" <?php if ( $gglmps_map_data['controls']['rotate'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_rotate"><?php _e( 'Rotate', 'bws-google-maps' ); ?></label>
-										<span class="gglmps_settings_tooltip"><?php _e( 'This option is only available if View 45° option is checked', 'bws-google-maps' ); ?></span>
-									</p>
-									<p class="gglmps_editor_additional_option">
-										<input id="gglmps_control_zoom" name="gglmps_control_zoom" type="checkbox" <?php if ( $gglmps_map_data['controls']['zoom'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_zoom"><?php _e( 'Zoom', 'bws-google-maps' ); ?></label>
-									</p>
-									<p class="gglmps_editor_additional_option">
-										<input id="gglmps_control_scale" name="gglmps_control_scale" type="checkbox" <?php if ( $gglmps_map_data['controls']['scale'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_scale"><?php _e( 'Scale', 'bws-google-maps' ); ?></label>
-									</p>
+									<fieldset>
+										<p>
+											<input id="gglmps_editor_additional_options" name="gglmps_editor_additional_options" type="checkbox" <?php if ( $gglmps_options['additional_options'] == 1 ) echo 'checked="checked"'; ?> />
+											<label class="gglmps_settings_tooltip" for="gglmps_editor_additional_options"><?php _e( 'Visibility and map action controls.', 'bws-google-maps' ); ?></label>
+										</p>
+										<div class="gglmps_editor_additional_options">
+											<p class="gglmps_editor_additional_option">
+												<input id="gglmps_control_map_type" name="gglmps_control_map_type" type="checkbox" <?php if ( $gglmps_options['controls']['map_type'] == 1 ) echo 'checked="checked"'; ?> />
+												<label for="gglmps_control_map_type"><?php _e( 'Type', 'bws-google-maps' ); ?></label>
+											</p>
+											<p class="gglmps_editor_additional_option">
+												<input id="gglmps_control_rotate" name="gglmps_control_rotate" type="checkbox" <?php if ( $gglmps_options['controls']['rotate'] == 1 ) echo 'checked="checked"'; ?> />
+												<label for="gglmps_control_rotate"><?php _e( 'Rotate', 'bws-google-maps' ); ?></label>
+												<span class="gglmps_settings_tooltip"><?php _e( 'This option is only available if View 45° option is checked', 'bws-google-maps' ); ?></span>
+											</p>
+											<p class="gglmps_editor_additional_option">
+												<input id="gglmps_control_zoom" name="gglmps_control_zoom" type="checkbox" <?php if ( $gglmps_options['controls']['zoom'] == 1 ) echo 'checked="checked"'; ?> />
+												<label for="gglmps_control_zoom"><?php _e( 'Zoom', 'bws-google-maps' ); ?></label>
+											</p>
+											<p class="gglmps_editor_additional_option">
+												<input id="gglmps_control_scale" name="gglmps_control_scale" type="checkbox" <?php if ( $gglmps_options['controls']['scale'] == 1 ) echo 'checked="checked"'; ?> />
+												<label for="gglmps_control_scale"><?php _e( 'Scale', 'bws-google-maps' ); ?></label>
+											</p>
+										</div>
+									</fieldset>
 								</td>
 							</tr>
 						</tbody>
@@ -1187,7 +1247,7 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 											<select id="gglmps_snazzymaps_style" disabled="disabled">
 												<option>Midnight Commander (<?php _e( 'Default', 'bws-google-maps' ); ?>)</option>
 											</select><br>
-											<span class="gglmps_editor_tooltip"><?php _e( 'This option is only available for the types of map Roadmap, Terrain and Hybrid.', 'bws-google-maps' ); ?></span>
+											<span class="gglmps_editor_tooltip"><?php _e( 'This option is only available for Roadmap, Terrain, and Hybrid map types.', 'bws-google-maps' ); ?></span>
 										</td>
 									</tr>
 									<tr valign="middle">
@@ -1276,7 +1336,7 @@ if ( ! function_exists ( 'gglmps_screen_options' ) ) {
 	}
 }
 
-/* add help tab  */
+/* add help tab */
 if ( ! function_exists( 'gglmps_add_tabs' ) ) {
 	function gglmps_add_tabs() {
 		$screen = get_current_screen();
@@ -1326,7 +1386,7 @@ if ( ! function_exists( 'gglmps_admin_head' ) ) {
 				bws_plugins_include_codemirror();
 			elseif ( isset( $_GET['action'] ) && 'appearance' == $_GET['action'] )
 				wp_enqueue_style( 'gglmps_appearance_stylesheet', plugins_url( 'css/appearance-style.css', __FILE__ ) );
-		}		
+		}
 	}
 }
 
@@ -1362,7 +1422,7 @@ if ( ! function_exists( 'gglmps_frontend_head' ) ) {
 
 if ( ! function_exists( 'gglmps_front_end_scripts' ) ) {
 	function gglmps_front_end_scripts() {
-		global $gglmps_options;	
+		global $gglmps_options;
 
 		if ( wp_script_is( 'gglmps_script', 'registered' ) && ! wp_script_is( 'gglmps_script', 'enqueued' ) ) {
 
@@ -1387,15 +1447,9 @@ if ( ! function_exists( 'gglmps_front_end_scripts' ) ) {
 */
 if ( ! function_exists( 'gglmps_shortcode' ) ) {
 	function gglmps_shortcode( $atts ) {
-		global $gglmps_maps, $gglmps_count;
-		if ( empty( $gglmps_count ) )
-			$gglmps_count = 1;
-
-		if ( $gglmps_count > 1 )
-			return;
+		global $gglmps_maps;
 
 		if ( ! isset( $atts['id'] ) ) {
-			$gglmps_count++;
 			return sprintf(
 				'<div class="gglmps_map_error">[Google Maps: %s]</div>',
 				__( 'You have not specified map ID', 'bws-google-maps' )
@@ -1423,18 +1477,18 @@ if ( ! function_exists( 'gglmps_shortcode' ) ) {
 					break;
 			}
 
-			if ( count( $gglmps_map_data['markers'] ) ) {				
+			if ( count( $gglmps_map_data['markers'] ) ) {
 				foreach ( $gglmps_map_data['markers'] as $key => $gglmps_marker ) {
-					$gglmps_map_markers[ $key ] = array( 
+					$gglmps_map_markers[ $key ] = array(
 						'latlng' => $gglmps_marker[0],
 						'location' => $gglmps_marker[1],
 						'tooltip' => preg_replace( "|<script.*?>.*?</script>|", "", html_entity_decode( $gglmps_marker[2] ) )
 					);
 				}
 			}
-			$gglmps_count++;
 
-			wp_register_script( 'gglmps_script', plugins_url( 'js/gglmps.js' , __FILE__ ), array( 'jquery' ), false, true );
+			if ( ! wp_script_is( 'gglmps_script', 'registered' ) )
+				wp_register_script( 'gglmps_script', plugins_url( 'js/gglmps.js' , __FILE__ ), array( 'jquery' ), false, true );
 
 			return sprintf(
 				'<div class="gglmps_container_map">
@@ -1457,7 +1511,6 @@ if ( ! function_exists( 'gglmps_shortcode' ) ) {
 				htmlspecialchars( json_encode( $gglmps_map_markers ) )
 			);
 		} else {
-			$gglmps_count++;
 			return sprintf(
 				'<div class="gglmps_map_error">[Google Maps: %1$s ID#%2$d %3$s]</div>',
 				__( 'Map with', 'bws-google-maps' ),
@@ -1468,27 +1521,27 @@ if ( ! function_exists( 'gglmps_shortcode' ) ) {
 	}
 }
 
-/* add shortcode content  */
+/* add shortcode content */
 if ( ! function_exists( 'gglmps_shortcode_button_content' ) ) {
 	function gglmps_shortcode_button_content( $content ) { ?>
 		<div id="gglmps" style="display:none;">
 			<fieldset>
-				<label>					
+				<label>
 					<?php $gglmps_maps = get_option( 'gglmps_maps' );
 					if ( ! empty( $gglmps_maps ) ) {
 						$result = '<select name="gglmps_list" id="gglmps_shortcode_list">';
-						foreach ( $gglmps_maps as $key => $value ) { 
+						foreach ( $gglmps_maps as $key => $value ) {
 							if ( ! empty( $value ) ) {
 								if ( ! isset( $map_first ) )
 									$map_first = $key;
 								$result .= '<option value="' . $key . '"><h2>' . $value['title'] . '</h2></option>';
 							}
-							}
-						$result .= '</select> 
+						}
+						$result .= '</select>
 						<span class="title">' . __( 'Google Map', 'bws-google-maps' ) . '</span>';
 					}
 					if ( ! isset( $map_first ) ) { ?>
-						<span class="title"><?php _e( 'Maps not found.', 'bws-google-maps' ); ?></span>						
+						<span class="title"><?php _e( 'Maps not found.', 'bws-google-maps' ); ?></span>
 					<?php } else
 						echo $result; ?>
 				</label>
@@ -1504,7 +1557,7 @@ if ( ! function_exists( 'gglmps_shortcode_button_content' ) ) {
 							var shortcode = '[bws_googlemaps id=' + map + ']';
 
 							$( '.mce-reset #bws_shortcode_display' ).text( shortcode );
-						});	         
+						});
 					})(jQuery);
 				}
 			</script>
@@ -1553,10 +1606,10 @@ if ( ! function_exists ( 'gglmps_plugin_banner' ) ) {
 			global $gglmps_options;
 			if ( empty( $gglmps_options ) )
 				$gglmps_options = get_option( 'gglmps_options' );
-			
+
 			if ( isset( $gglmps_options['first_install'] ) && strtotime( '-1 week' ) > $gglmps_options['first_install'] )
 				bws_plugin_banner( $gglmps_plugin_info, 'gglmps', 'bws-google-maps', 'f546edd672c2e16f8359dcb48f9d2fff', '124', '//ps.w.org/bws-google-maps/assets/icon-128x128.png' );
-		
+
 			bws_plugin_banner_to_settings( $gglmps_plugin_info, 'gglmps_options', 'bws-google-maps', 'admin.php?page=bws-google-maps.php', 'admin.php?page=gglmps_editor' );
 		}
 
@@ -1567,18 +1620,18 @@ if ( ! function_exists ( 'gglmps_plugin_banner' ) ) {
 }
 
 /*
-* Function to uninstall Google Maps.
+* Function to uninstall plugin.
 */
-if ( ! function_exists( 'gglmps_uninstall' ) ) {
-	function gglmps_uninstall() {
-		global $wpdb;
-
-		if ( ! function_exists( 'get_plugins' ) )
+if ( ! function_exists( 'gglmps_delete_options' ) ) {
+	function gglmps_delete_options() {
+		if ( ! function_exists( 'get_plugins' ) ) {
 			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		}
 		$all_plugins = get_plugins();
 
 		if ( ! array_key_exists( 'bws-google-maps-pro/bws-google-maps-pro.php', $all_plugins ) ) {
-			if ( is_multisite() ) {
+			global $wpdb;
+			if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 				$old_blog = $wpdb->blogid;
 				/* Get all blog ids */
 				$blogids = $wpdb->get_col( "SELECT `blog_id` FROM $wpdb->blogs" );
@@ -1588,6 +1641,8 @@ if ( ! function_exists( 'gglmps_uninstall' ) ) {
 					delete_option( 'gglmps_maps' );
 				}
 				switch_to_blog( $old_blog );
+				delete_site_option( 'gglmps_options' );
+
 			} else {
 				delete_option( 'gglmps_options' );
 				delete_option( 'gglmps_maps' );
@@ -1600,6 +1655,8 @@ if ( ! function_exists( 'gglmps_uninstall' ) ) {
 	}
 }
 
+
+register_activation_hook( __FILE__, 'gglmps_plugin_activate' );
 /* Displaying admin menu */
 add_action( 'admin_menu', 'gglmps_admin_menu' );
 /* Initialization */
@@ -1624,5 +1681,3 @@ add_filter( 'plugin_action_links', 'gglmps_plugin_action_links', 10, 2 );
 add_filter( 'plugin_row_meta', 'gglmps_register_action_links', 10, 2 );
 
 add_action( 'admin_notices', 'gglmps_plugin_banner' );
-/* Uninstall plugin */
-register_uninstall_hook( __FILE__, 'gglmps_uninstall' );

@@ -10,7 +10,7 @@ function gglmps_map() {
 		$( '.gglmps_map' ).each( function() {
 			var map_data_basic =  JSON.parse( $( this ).attr( 'data-basic' ) ),
 				map_data_controls = JSON.parse( $( this ).attr( 'data-controls' ) ),
-				map_data_markers = JSON.parse( $( this ).attr( 'data-markers' ) );		
+				map_data_markers = JSON.parse( $( this ).attr( 'data-markers' ) );
 
 			$( this ).bws_googlemaps( {
 				'mapType'                   : map_data_basic['map_type'],
@@ -112,7 +112,7 @@ function gglmps_map() {
 		}
 
 		if ( ! mapOptions.autoZoom ) {
-			var boundsListener = google.maps.event.addListener( map, 'bounds_changed', function() {					
+			var boundsListener = google.maps.event.addListener( map, 'bounds_changed', function() {
 				map.setZoom( mapOptions.zoom );
 				google.maps.event.removeListener( boundsListener );
 			});

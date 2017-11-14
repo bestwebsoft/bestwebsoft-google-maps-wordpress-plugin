@@ -11,23 +11,7 @@
 	border-left: none !important;
 	border-right: 4px solid #2ea2cc !important;
 }
-@media screen and (min-width: 800px) {
-	#gglmps_settings_notice .bws_help_box.dashicons,
-	#gglmps_editor_notice .bws_help_box.dashicons {
-		vertical-align: top;
-	}
-}
-@media screen and (max-width: 600px) {
-	#gglmps_settings_notice .bws_help_box,
-	#gglmps_editor_notice .bws_help_box {
-		display: block;
-		text-align: left;
-	}
-	.rtl #gglmps_settings_notice .bws_help_box,
-	.rtl #gglmps_editor_notice .bws_help_box {
-		text-align: right;
-	}
-}
+
 .gglmps_settings_title,
 .gglmps_editor_title {
 	margin: 0 0 20px !important;
@@ -152,10 +136,10 @@
 	line-height: normal;
 }
 #gglmps_zoom_wrap {
-	position: relative;
-	margin: 0;
-	padding: 0 0 0 35px;
-	width: 165px;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 165px;
 }
 #gglmps_zoom_wrap .ui-slider {
 	position: relative;
@@ -192,7 +176,7 @@
 #gglmps_zoom_value {
 	position: absolute;
 	top: -3px;
-	left: 0;
+	right: -30px;
 	color: #444;
 }
 .gglmps_editor_error {
@@ -242,11 +226,15 @@
 .gglmps_settings_tooltip,
 .gglmps_editor_tooltip {
 	color: rgb(136, 136, 136);
-	font-size: 10px;
+	font-size: 12px;
 	text-align: justify;
 }
 #gglmps_update_notice {
     display: none;
+}
+.gglmps_settings_additional_options,
+.gglmps_editor_additional_options {
+	padding-top: 10px;
 }
 .gglmps_settings_additional_option,
 .gglmps_editor_additional_option {
@@ -263,12 +251,34 @@
 .rtl .gglmps_how_to_use {
 	float: left;
 }
-@media only screen and ( max-width: 782px ) {
+
+@media only screen and ( max-width: 1088px ) {
 	.gglmps_how_to_use {
 		float: none;
 		text-align: left;
+		font-size: 16px;
+		margin-bottom: 15px;
 	}
 	.rtl .gglmps_how_to_use {
+		text-align: right;
+	}
+}
+
+@media screen and (min-width: 800px) {
+	#gglmps_settings_notice .bws_help_box.dashicons,
+	#gglmps_editor_notice .bws_help_box.dashicons {
+		vertical-align: top;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	#gglmps_settings_notice .bws_help_box,
+	#gglmps_editor_notice .bws_help_box {
+		display: block;
+		text-align: left;
+	}
+	.rtl #gglmps_settings_notice .bws_help_box,
+	.rtl #gglmps_editor_notice .bws_help_box {
 		text-align: right;
 	}
 }

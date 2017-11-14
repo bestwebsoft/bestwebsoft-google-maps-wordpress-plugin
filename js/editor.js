@@ -69,7 +69,7 @@
 			});
 		});
 
-		// Editing marker
+		 /* Editing marker */
 		$( '#gglmps_markers_container' ).on( 'click', '.gglmps_marker_edit', function() {
 			var markerIndex = $( this ).parents( '.gglmps_marker' ).index(),
 				$marker = $( '#gglmps_markers_container .gglmps_marker' ).eq( markerIndex );
@@ -82,7 +82,7 @@
 			$( '#gglmps_marker_location' ).autocomplete( 'disabled', true );
 		});
 
-		// Deleting marker from the list markers
+		/* Deleting marker from the list markers */
 		$( '#gglmps_markers_container' ).on( 'click', '.gglmps_marker_delete', function() {
 			var markerIndex = $( this ).parents( '.gglmps_marker' ).index(),
 				$marker = $( '#gglmps_markers_container .gglmps_marker' ).eq( markerIndex );
@@ -93,7 +93,7 @@
 			}
 		});
 
-		// Cancel editing marker
+		/* Cancel editing marker */
 		$( '#gglmps_marker_cancel' ).on( 'click', function() {
 			$( '#gglmps_marker_update' ).data( 'markerIndex', null ).hide();
 			$( '#gglmps_marker_cancel' ).hide();
@@ -102,7 +102,7 @@
 			$( '#gglmps_marker_location' ).autocomplete( 'disabled', false );
 		});
 
-		// Update edited marker
+		/* Update edited marker */
 		$( '#gglmps_marker_update' ).on( 'click', function() {
 			if ( $( '#gglmps_marker_location' ).val() == '' ) {
 				$( '#gglmps_marker_location' ).addClass( 'gglmps_editor_error' );
@@ -119,18 +119,19 @@
 			$( '#gglmps_marker_cancel' ).hide();
 			$( '#gglmps_marker_add' ).show();
 			$( '#gglmps_marker_location, #gglmps_marker_tooltip, #gglmps_marker_latlng' ).val( '' );
-			$( '#gglmps_marker_latlng' ).attr( 'disabled', false );
+			$( '#gglmps_marker_latlng' ).removeAttr( 'disabled' );
 			$( '#gglmps_marker_location' ).autocomplete( 'disabled', false );
 		});
 
-		// Check availability Map View 45°
+		/* Check availability Map View 45° */
 		if ( $( '#gglmps_basic_map_type' ).find( 'option:selected' ).val() == 'roadmap' || $( '#gglmps_basic_map_type' ).find( 'option:selected' ).val() == 'terrain' ) {
 			$( '#gglmps_basic_tilt45' ).attr( 'disabled', true );
+			$( '#gglmps_control_rotate' ).attr( 'disabled', true );
 		}
 
 		/* Check availability of Rotate Map control */
-		if ( $( '#gglmps_basic_tilt45' ).is( ':checked' ) ) {
-			$( '#gglmps_control_rotate' ).attr( 'disabled', false );
+		if ( $( '#gglmps_basic_tilt45' ).is(':enabled') && $( '#gglmps_basic_tilt45' ).is( ':checked' ) ) {
+			$( '#gglmps_control_rotate' ).removeAttr( 'disabled' );
 		} else {
 			$( '#gglmps_control_rotate' ).attr( 'disabled', true );
 		}
@@ -138,31 +139,37 @@
 		/* Disable rotate map control if Map View 45° is not checked */
 		$( '#gglmps_basic_tilt45' ).on( 'change', function() {
 			if ( $( this ).is( ':checked' ) ) {
-				$( '#gglmps_control_rotate' ).attr( 'disabled', false );
+				$( '#gglmps_control_rotate' ).removeAttr( 'disabled' );
 			} else {
 				$( '#gglmps_control_rotate' ).attr( 'disabled', true );
 			}
 		} );
 
-		// Change map type in the preview map and check availability Map View 45° when changed map type
+		/* Change map type in the preview map and check availability Map View 45° when changed map type*/
 		$( '#gglmps_basic_map_type' ).on( 'change', function() {
 			if ( $( this ).find( 'option:selected' ).val() == 'satellite' || $( this ).find( 'option:selected' ).val() == 'hybrid' ) {
-				$( '#gglmps_basic_tilt45' ).attr( 'disabled', false );
+				$( '#gglmps_basic_tilt45' ).removeAttr( 'disabled' );
+				if ( $( '#gglmps_basic_tilt45' ).is( ':checked' ) ) {
+					$( '#gglmps_control_rotate' ).removeAttr( 'disabled' );
+				} else {
+					$( '#gglmps_control_rotate' ).attr( 'disabled', true );
+				}
 			} else {
 				$( '#gglmps_basic_tilt45' ).attr( 'disabled', true );
+				$( '#gglmps_control_rotate' ).attr( 'disabled', true );
 			}
 			$( '#gglmps_zoom_slider' ).slider( {
 				max : $( '#gglmps_basic_map_type' ).data( 'maxZoom' )[ $( '#gglmps_basic_map_type' ).find( 'option:selected' ).val() ],
-				value  : $( '#gglmps_basic_zoom' ).val(),
+				value : $( '#gglmps_basic_zoom' ).val(),
 			} );
 		});
 
-		// Hide zoom slider if auto zoom is checked
+		/* Hide zoom slider if auto zoom is checked */
 		if ( $( '#gglmps_basic_auto_zoom' ).is( ':checked' ) ) {
 			$( '#gglmps_zoom_wrap' ).hide();
 		}
 
-		// Switching between auto zoom and manual zoom
+		/* Switching between auto zoom and manual zoom */
 		$( '#gglmps_basic_auto_zoom' ).on( 'change', function() {
 			if ( $( this ).is( ':checked' ) ) {
 				$( '#gglmps_zoom_wrap' ).hide();
@@ -171,8 +178,8 @@
 			}
 		});
 
-		// Zoom slider
-		// Set up max zoom to map types
+		/* Zoom slider */
+		/* Set up max zoom to map types */
 		$( '#gglmps_basic_map_type' ).data( 'maxZoom', {
 			'roadmap'   : 21,
 			'terrain'   : 15,
@@ -183,7 +190,7 @@
 		/* Get max zoom */
 		$( '#gglmps_basic_map_type' ).on( 'change', function() {
 			var maxZoom = $( '#gglmps_basic_map_type' ).data( 'maxZoom' )[ $( this ).find( 'option:selected' ).val() ];
-			if ( $( '#gglmps_basic_zoom' ).val() >  maxZoom ) {
+			if ( $( '#gglmps_basic_zoom' ).val() > maxZoom ) {
 				$( '#gglmps_basic_zoom' ).val( maxZoom );
 			}
 			$( '#gglmps_zoom_slider' ).slider({
@@ -210,12 +217,12 @@
 			}
 		});
 
-		// Checking visibility additional options on the editor page
+		/* Checking visibility additional options on the editor page */
 		if ( $( '#gglmps_editor_additional_options' ).is( ':checked' ) == false ) {
 			$( '.gglmps_editor_additional_options' ).hide();
 		}
 
-		// Show or hide additional options on the editor page
+		/* Show or hide additional options on the editor page */
 		$( '#gglmps_editor_additional_options' ).on( 'click', function() {
 			if ( $( this ).is( ':checked' ) ) {
 				$( '.gglmps_editor_additional_options' ).show();
@@ -224,7 +231,7 @@
 			}
 		});
 
-		/* Resizing width of the map*/
+		/* Resizing width of the map */
 		$( '#gglmps_basic_width, select[name="gglmps_basic_width_unit"]' ).on( 'change', function() {
 			if ( 'px' == $( 'select[name=gglmps_basic_width_unit]' ).val() ) {
 				if ( $( '#gglmps_basic_width' ).val() < 150 ) {
@@ -239,7 +246,7 @@
 	});
 })( jQuery );
 
-// Autocomplete plugin
+/* Autocomplete plugin */
 ( function( $ ) {
 	var methods = {
 		'init' : function( options ) {

@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add custom markers, add maps, add google maps, add new map, address marker, google maps, coordinates marker, google maps manager, marker tooltip, widget map, google maps editor, saved google maps
 Requires at least: 3.9
-Tested up to: 4.8
-Stable tag: 1.3.7
+Tested up to: 4.9
+Stable tag: 1.3.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Add customized Google maps to WordPress posts, pages and widgets.
 
 == Description ==
 
-Google Maps plugin adds custom maps to WordPress website posts, pages and widgets. Add unlimited markers, configure type, alignment and styles. Choose the control options, customize the appearance, view and edit your saved maps easily. 
+Google Maps plugin adds custom maps to WordPress website posts, pages and widgets. Add unlimited markers, configure type, alignment and styles. Choose the control options, customize the appearance, view and edit your saved maps easily.
 
 Let your customers find any location quickly!
 
@@ -156,6 +156,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 
 == Changelog ==
 
+= V1.3.8 - 14.11.2017 =
+* Bugfix : The bug with displaying the list of maps has been fixed.
+* Update : All functionality for WordPress 4.9 was updated.
+
 = V1.3.7 - 18.07.2017 =
 * Update : All functionality for WordPress 4.8 was updated.
 
@@ -223,6 +227,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * NEW : Release of Google Maps by BestWebSoft plugin.
 
 == Upgrade Notice ==
+
+= V1.3.8 =
+* Bugs fixed.
+* The compatibility with new WordPress version updated.
 
 = V1.3.7 =
 * The compatibility with new WordPress version updated.
