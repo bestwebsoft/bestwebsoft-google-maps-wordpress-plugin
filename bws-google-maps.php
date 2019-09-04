@@ -6,7 +6,7 @@ Description: Add customized Google maps to WordPress posts, pages and widgets.
 Author: BestWebSoft
 Text Domain: bws-google-maps
 Domain Path: /languages
-Version: 1.3.9
+Version: 1.4.0
 Author URI: https://bestwebsoft.com/
 License: GPLv2 or later
 */
