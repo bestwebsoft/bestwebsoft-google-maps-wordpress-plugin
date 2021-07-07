@@ -37,23 +37,6 @@
 			}
 		} );
 
-		/* Check availability preview map auto zoom */
-		if ( $( '#gglmps_basic_auto_zoom' ).is( ':checked' ) ) {
-			$( '#gglmps_zoom_wrap' ).hide();
-		}
-
-		/* Switching between auto zoom and manual zoom */
-		$( '#gglmps_basic_auto_zoom' ).on( 'change', function() {
-			switch ( $( this ).is( ':checked' ) ) {
-				case true:
-					$( '#gglmps_zoom_wrap' ).hide();
-					break;
-				case false:
-					$( '#gglmps_zoom_wrap' ).show();
-					break;
-			}
-		});
-
 		/* Set up max zoom to map types */
 		$( '#gglmps_basic_map_type' ).data( 'maxZoom', {
 			'roadmap'   : 21,
@@ -94,20 +77,6 @@
 				}
 			});
 		}
-
-		/* Checking visibility additional options on the settings page */
-		if ( $( '#gglmps_settings_additional_options' ).is( ':checked' ) == false ) {
-			$( '.gglmps_settings_additional_options' ).hide();
-		}
-
-		/* Show or hide additional options on the settings page */
-		$( '#gglmps_settings_additional_options' ).on( 'click', function() {
-			if ( $( this ).is( ':checked' ) ) {
-				$( '.gglmps_settings_additional_options' ).show();
-			} else {
-				$( '.gglmps_settings_additional_options' ).hide();
-			}
-		});
 
 		/* Show or hide overview map control */
 		$( '#gglmps_control_overview_map' ).on( 'change', function() {

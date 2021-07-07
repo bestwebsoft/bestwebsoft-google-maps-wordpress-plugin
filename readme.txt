@@ -1,10 +1,10 @@
-=== Google Maps by BestWebSoft ===
+=== Maps by BestWebSoft ===
 Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add custom markers, add maps, add google maps, add new map, address marker, google maps, coordinates marker, google maps manager, marker tooltip, widget map, google maps editor, saved google maps
-Requires at least: 3.9
-Tested up to: 5.2.2
-Stable tag: 1.4.0
+Requires at least: 4.5
+Tested up to: 5.7.2
+Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,11 +12,11 @@ Add customized Google maps to WordPress posts, pages and widgets.
 
 == Description ==
 
-Google Maps plugin adds custom maps to WordPress website posts, pages and widgets. Add unlimited markers, configure type, alignment and styles. Choose the control options, customize the appearance, view and edit your saved maps easily.
+Maps plugin adds custom maps to WordPress website posts, pages and widgets. Add unlimited markers, configure type, alignment and styles. Choose the control options, customize the appearance, view and edit your saved maps easily.
 
 Let your customers find any location quickly!
 
-[View Demo](https://bestwebsoft.com/demo-for-google-maps-pro/)
+[View Demo](https://bestwebsoft.com/demo-for-google-maps-pro/?ref=readme)
 
 https://www.youtube.com/watch?v=F0YonG9-rus
 
@@ -75,9 +75,9 @@ If you have a feature suggestion or idea you'd like to see in the plugin, we'd l
 
 = Documentation & Videos =
 
-* [[Doc] How to Use](https://docs.google.com/document/d/1sY7nLypbL7Mv_F95eQ_xFkdRs_VjG8h2kBpuRg_IbxY/)
-* [[Doc] Installation](https://docs.google.com/document/d/1-hvn6WRvWnOqj5v5pLUk7Awyu87lq5B_dO-Tv-MC9JQ/)
-* [[Doc] Purchase](https://docs.google.com/document/d/1EUdBVvnm7IHZ6y0DNyldZypUQKpB8UVPToSc_LdOYQI/)
+* [[Doc] How to Use](https://bestwebsoft.com/documentation/maps/google-maps-by-bestwebsoft-how-to-use-instruction/)
+* [[Doc] Installation](https://bestwebsoft.com/documentation/how-to-install-a-wordpress-product/how-to-install-a-wordpress-plugin/)
+* [[Doc] Purchase](https://bestwebsoft.com/documentation/how-to-purchase-a-wordpress-plugin/how-to-purchase-wordpress-plugin-from-bestwebsoft/)
 * [[Video] Installation Instruction](https://www.youtube.com/watch?v=3pXs5t18vL4)
 
 = Help & Support =
@@ -99,12 +99,12 @@ Some of these translations are not complete. We are constantly adding new featur
 
 1. Upload the `bws-google-maps` folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin using the 'Plugins' menu in your WordPress admin panel.
-3. You can configure main settings in WordPress admin panel in the "BWS Panel"> "Google Maps".
-4. To create a new map, use the Google Maps editor in WordPress admin panel in the "Google Maps"> "Add New".
-5. You can manage your saved maps in WordPress admin panel in "Google Maps".
+3. You can configure main settings in WordPress admin panel in the "Maps"> "Settings".
+4. To create a new map, use the Maps editor in WordPress admin panel in the "Maps"> "Add New".
+5. You can manage your saved maps in WordPress admin panel in "Maps".
 6. Create a page or post or add a text widget and insert the shortcode [bws_googlemaps id=*] in the text, where * is the map ID.
 
-[View a PDF version of Step-by-step Instruction on Google Maps by BestWebSoft Installation](https://docs.google.com/document/d/1-hvn6WRvWnOqj5v5pLUk7Awyu87lq5B_dO-Tv-MC9JQ/)
+[View a PDF version of Step-by-step Instruction on Maps by BestWebSoft Installation](https://bestwebsoft.com/documentation/how-to-install-a-wordpress-product/how-to-install-a-wordpress-plugin/)
 
 https://www.youtube.com/watch?v=3pXs5t18vL4
 
@@ -145,16 +145,24 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 - The link to the page where the problem occurs
 - The name of the plugin and its version. If you are using a pro version - your order number.
 - The version of your WordPress installation
-- Copy and paste into the message your system status report. Please read more here:: [Instruction on System Status](https://docs.google.com/document/d/1Wi2X8RdRGXk9kMszQy1xItJrpN0ncXgioH935MaBKtc/)
+- Copy and paste into the message your system status report. Please read more here:: [Instruction on System Status](https://bestwebsoft.com/documentation/admin-panel-issues/system-status/)
 
 == Screenshots ==
 
-1. Google Map displaying in the front-end.
+1. Map displaying in the front-end.
 2. Plugin setting page.
 3. Manager of saved maps.
-4. Google Maps Editor.
+4. Maps Editor.
 
 == Changelog ==
+
+= V1.4.2 - 06.07.2021 =
+* Update : We updated all functionality for wordpress 5.7.2.
+* Update : BWS plugins section is updated.
+
+= V1.4.1 - 27.12.2019 =
+* Update : Plugin was renamed.
+* Bugfix : Vulnerabilities and security issues were fixed.
 
 = V1.4.0 - 04.09.2019 =
 * Update: The deactivation feedback has been changed. Misleading buttons have been removed.
@@ -233,6 +241,13 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * NEW : Release of Google Maps by BestWebSoft plugin.
 
 == Upgrade Notice ==
+
+= V1.4.2 =
+* The compatibility with new WordPress version updated.
+* Plugin optimization completed.
+
+= V1.4.1 =
+* Bugs fixed.
 
 = V1.4.0 =
 * Usability improved.

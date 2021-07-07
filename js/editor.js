@@ -217,20 +217,6 @@
 			}
 		});
 
-		/* Checking visibility additional options on the editor page */
-		if ( $( '#gglmps_editor_additional_options' ).is( ':checked' ) == false ) {
-			$( '.gglmps_editor_additional_options' ).hide();
-		}
-
-		/* Show or hide additional options on the editor page */
-		$( '#gglmps_editor_additional_options' ).on( 'click', function() {
-			if ( $( this ).is( ':checked' ) ) {
-				$( '.gglmps_editor_additional_options' ).show();
-			} else {
-				$( '.gglmps_editor_additional_options' ).hide();
-			}
-		});
-
 		/* Resizing width of the map */
 		$( '#gglmps_basic_width, select[name="gglmps_basic_width_unit"]' ).on( 'change', function() {
 			if ( 'px' == $( 'select[name=gglmps_basic_width_unit]' ).val() ) {

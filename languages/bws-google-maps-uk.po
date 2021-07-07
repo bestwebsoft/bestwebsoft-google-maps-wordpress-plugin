@@ -2,121 +2,548 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bws-google-maps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-09 08:18+0200\n"
-"PO-Revision-Date: 2017-11-09 08:19+0200\n"
+"POT-Creation-Date: 2019-12-27 12:58+0200\n"
+"PO-Revision-Date: 2019-12-27 12:58+0200\n"
 "Last-Translator: bestwebsoft.com <plugins@bestwebsoft.com>\n"
 "Language-Team: bestwebsoft <plugin@bestwebsoft.com>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%100/10==1 ? 2 : n%10==1 ? 0 : (n"
-"+9)%10>3 ? 2 : 1;\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n;_x:1,2c;_ex:1,2c;_n:1,2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Textdomain-Support: yes\n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: bws_menu\n"
 
-#: bws-google-maps.php:37 bws-google-maps.php:254
-msgid "Google Maps Settings"
-msgstr "Налаштування Google Maps"
+#: bws-google-maps.php:39
+msgid "Maps Editor"
+msgstr "Редактор Maps"
 
-#: bws-google-maps.php:39 bws-google-maps.php:1044
-msgid "Google Maps Editor"
-msgstr "Редактор Google Maps"
-
-#: bws-google-maps.php:39 bws-google-maps.php:741
+#: bws-google-maps.php:39 includes/class-gglmps-add-new.php:223
 msgid "Add New"
 msgstr "Додати нову"
 
-#: bws-google-maps.php:46 bws-google-maps.php:1579 bws-google-maps.php:1594
+#: bws-google-maps.php:41 bws-google-maps.php:212
+msgid "Maps Appearance"
+msgstr "Вигляд Maps"
+
+#: bws-google-maps.php:41
+msgid "Appearance"
+msgstr "Вигляд"
+
+#: bws-google-maps.php:43 includes/class-gglmps-settings.php:140
+msgid "Maps Settings"
+msgstr "Налаштування Maps"
+
+#: bws-google-maps.php:43 bws-google-maps.php:201 bws-google-maps.php:886
+#: bws-google-maps.php:901 includes/class-gglmps-add-new.php:22
+#: includes/class-gglmps-settings.php:23
 msgid "Settings"
 msgstr "Налаштування"
 
-#: bws-google-maps.php:232
-msgid "Settings saved."
-msgstr "Налаштування збережено."
-
-#: bws-google-maps.php:242
-msgid "All plugin settings were restored."
-msgstr "Всі налаштування плагіну було скинуто до стандартних."
-
-#: bws-google-maps.php:256
-msgid "How to Use Step-by-step Instruction"
-msgstr "Інструкція з використання"
-
-#: bws-google-maps.php:260
-msgid "Basic"
-msgstr "Базові налаштування"
-
-#: bws-google-maps.php:263
-msgid "Appearance"
-msgstr "Налаштування стилю"
-
-#: bws-google-maps.php:266
-msgid "Custom code"
-msgstr "Користувацький код"
-
-#: bws-google-maps.php:269
-msgid "Go PRO"
+#: bws-google-maps.php:50 bws-google-maps.php:401
+msgid "Upgrade to Pro"
 msgstr "Оновити до Pro"
 
-#: bws-google-maps.php:277 bws-google-maps.php:748 bws-google-maps.php:1050
+#: bws-google-maps.php:218
+msgid ""
+"Install required styles in order to apply them to certain maps on Maps "
+"Editor page"
+msgstr ""
+"Встановіть потрібні стилі для подальшого їх застосування на сторінці "
+"редактора Maps"
+
+#: bws-google-maps.php:223
+msgid "Snazzymaps API Key"
+msgstr "API ключ Snazzymaps"
+
+#: bws-google-maps.php:227
+msgid "Save"
+msgstr "Зберегти"
+
+#: bws-google-maps.php:232
+msgid ""
+"You can use your own API key which allows using favorite styles from your "
+"Snazzymaps account"
+msgstr ""
+"Ви можете використовувати власний API ключ, щоб застосовувати обрані стилі "
+"вашого акаунту в Snazzymaps"
+
+#: bws-google-maps.php:233
+msgid "Personal API key"
+msgstr "Ваш персональний API ключ"
+
+#: bws-google-maps.php:234
+msgid "is available after"
+msgstr "Ви отримаєте після"
+
+#: bws-google-maps.php:235
+msgid "registration"
+msgstr "реєстрації"
+
+#: bws-google-maps.php:249
+msgctxt "view all styles"
+msgid "All"
+msgstr "Всі"
+
+#: bws-google-maps.php:252
+msgctxt "view all installed styles"
+msgid "Installed"
+msgstr "Встановлені"
+
+#: bws-google-maps.php:255
+msgid "Favorites"
+msgstr "Улюблені"
+
+#: bws-google-maps.php:260
+msgid "Filter by color"
+msgstr "Вибір за кольором"
+
+#: bws-google-maps.php:265
+msgid "Filter by Tag"
+msgstr "Вибір за тегами"
+
+#: bws-google-maps.php:268
+msgid "Search..."
+msgstr "Шукати..."
+
+#: bws-google-maps.php:271
+msgid "Sort by"
+msgstr "Сортувати по"
+
+#: bws-google-maps.php:274
+msgid "Apply"
+msgstr "Застосувати"
+
+#: bws-google-maps.php:281 bws-google-maps.php:380
+msgid "items"
+msgstr "елементів"
+
+#: bws-google-maps.php:287 bws-google-maps.php:386
+msgid "Page"
+msgstr "Сторінка"
+
+#: bws-google-maps.php:287 bws-google-maps.php:386
+msgid "of"
+msgstr "з"
+
+#: bws-google-maps.php:350 includes/class-gglmps-add-new.php:452
+msgid "Default"
+msgstr "За замовчуванням"
+
+#: bws-google-maps.php:356
+msgid "Set as default"
+msgstr "Встановити за замовчуванням"
+
+#: bws-google-maps.php:359 bws-google-maps.php:562 bws-google-maps.php:605
+#: bws-google-maps.php:678 includes/class-gglmps-add-new.php:337
+msgid "Delete"
+msgstr "Видалити"
+
+#: bws-google-maps.php:361
+msgid "Install"
+msgstr "Встановити"
+
+#: bws-google-maps.php:367
+msgctxt "style is installed"
+msgid "Already Installed"
+msgstr "Збережено"
+
+#: bws-google-maps.php:369
+msgid "Installed"
+msgstr "Встановлена"
+
+#: bws-google-maps.php:438
+#, php-format
+msgid "%s maps deleted."
+msgstr "%s карт видалено."
+
+#: bws-google-maps.php:447
+msgid "Map deleted."
+msgstr "Карту видалено."
+
+#: bws-google-maps.php:479 includes/class-gglmps-add-new.php:97
+#: includes/class-gglmps-settings.php:69
 msgid "WARNING:"
 msgstr "УВАГА:"
 
-#: bws-google-maps.php:278 bws-google-maps.php:749 bws-google-maps.php:1051
-msgid "Google Maps only works with JavaScript enabled"
-msgstr "Google Maps працює тільки з увімкненим JavaScript"
+#: bws-google-maps.php:480 includes/class-gglmps-add-new.php:98
+#: includes/class-gglmps-settings.php:70
+msgid "Maps only works with JavaScript enabled."
+msgstr "Maps працює тільки з увімкненим JavaScript."
 
-#: bws-google-maps.php:294
+#: bws-google-maps.php:512
+msgid "map"
+msgstr "карта"
+
+#: bws-google-maps.php:513
+msgid "maps"
+msgstr "карти"
+
+#: bws-google-maps.php:525
+msgid "Title"
+msgstr "Назва"
+
+#: bws-google-maps.php:526
+msgid "Shortcode"
+msgstr "Шорткод"
+
+#: bws-google-maps.php:527
+msgid "Date"
+msgstr "Дата"
+
+#: bws-google-maps.php:528
+msgid "ID"
+msgstr "ID"
+
+#: bws-google-maps.php:561 bws-google-maps.php:679
+#: includes/class-gglmps-add-new.php:338
+msgid "Edit"
+msgstr "Змінити"
+
+#: bws-google-maps.php:572 bws-google-maps.php:850
+msgid "Maps not found."
+msgstr "Карт не знайдено."
+
+#: bws-google-maps.php:638
+msgid "Map(s)"
+msgstr "Карт(а)"
+
+#: bws-google-maps.php:680 includes/class-gglmps-add-new.php:331
+msgid "No markers"
+msgstr "Немає маркерів"
+
+#: bws-google-maps.php:681
+msgid "Get coordinates"
+msgstr "Отримати координати"
+
+#: bws-google-maps.php:761
+msgid "You have not specified map ID"
+msgstr "Ви не вказали ID карти"
+
+#: bws-google-maps.php:813
+msgid "Please, enable JavaScript!"
+msgstr "Будь ласка, увімкніть JavaScript!"
+
+#: bws-google-maps.php:814
+msgid "HELP"
+msgstr "ДОПОМОГА"
+
+#: bws-google-maps.php:822 includes/class-gglmps-add-new.php:68
+msgid "Map with"
+msgstr "Карту з"
+
+#: bws-google-maps.php:824
+msgid "not found"
+msgstr "не знайдено"
+
+#: bws-google-maps.php:847
+msgid "Map"
+msgstr "Карта"
+
+#: bws-google-maps.php:902
+msgid "FAQ"
+msgstr "FAQ"
+
+#: bws-google-maps.php:903
+msgid "Support"
+msgstr "Техпідтримка"
+
+#: includes/class-gglmps-add-new.php:70
+msgid "not found. You can return to the"
+msgstr "не знайдена. Ви можете повернутися в"
+
+#: includes/class-gglmps-add-new.php:71
+msgid "Maps manager"
+msgstr "менеджер Maps"
+
+#: includes/class-gglmps-add-new.php:72
+msgid "or create new map in the"
+msgstr "чи створити нову карту в"
+
+#: includes/class-gglmps-add-new.php:73
+msgid "Maps editor"
+msgstr "редакторі Maps"
+
+#: includes/class-gglmps-add-new.php:107
+msgid "Notice:"
+msgstr "Зауважте:"
+
+#: includes/class-gglmps-add-new.php:108
+msgid "In order to create a new map, you must enter the API key on the"
+msgstr "Щоб створити нову карту, потрібно ввести ключ API у"
+
+#: includes/class-gglmps-add-new.php:109
+msgid "Maps settings page"
+msgstr "налаштуваннях Maps"
+
+#: includes/class-gglmps-add-new.php:127
+msgid "No title"
+msgstr "Без назви"
+
+#: includes/class-gglmps-add-new.php:195
+msgid "Map created."
+msgstr "Карту створено."
+
+#: includes/class-gglmps-add-new.php:202
+msgid "Map updated."
+msgstr "Карту оновлено."
+
+#: includes/class-gglmps-add-new.php:223
+msgid "Edit Map"
+msgstr "Змінити Карту"
+
+#: includes/class-gglmps-add-new.php:225
+msgid "Add New Map"
+msgstr "Додати нову карту"
+
+#: includes/class-gglmps-add-new.php:235
+msgid "Enter title here"
+msgstr "Введіть назву тут"
+
+#: includes/class-gglmps-add-new.php:244 includes/class-gglmps-add-new.php:250
+msgid "Publish"
+msgstr "Опублікувати"
+
+#: includes/class-gglmps-add-new.php:250
+msgid "Update"
+msgstr "Оновити"
+
+#: includes/class-gglmps-add-new.php:261
+msgid "Map Shortcode"
+msgstr "Шорткод карти"
+
+#: includes/class-gglmps-add-new.php:264
+msgid ""
+"Add Map to your posts, pages, custom post types or widgets by using the "
+"following shortcode:"
+msgstr ""
+"Додати карту на ваші записи, сторінки, користувацькі типи записів за "
+"допомогою даного шорткода:"
+
+#: includes/class-gglmps-add-new.php:275
+msgid "Map Preview"
+msgstr "Попередній перегляд карти"
+
+#: includes/class-gglmps-add-new.php:280 includes/class-gglmps-add-new.php:445
+#: includes/class-gglmps-settings.php:266
+msgid "Close"
+msgstr "Закрити"
+
+#: includes/class-gglmps-add-new.php:299
+msgid "Map Settings"
+msgstr "Налаштування карти"
+
+#: includes/class-gglmps-add-new.php:304
+msgid "Marker Location"
+msgstr "Місцезнаходження маркеру"
+
+#: includes/class-gglmps-add-new.php:306
+msgid "Enter location or coordinates"
+msgstr "Введіть місцезнаходження чи координати"
+
+#: includes/class-gglmps-add-new.php:308
+msgid ""
+"You should enter coordinates in decimal degrees with no spaces. Example "
+"coordinates:"
+msgstr ""
+"Координати мають бути введені в десяткових градусах без пробілів. Приклад "
+"координат:"
+
+#: includes/class-gglmps-add-new.php:314
+msgid "Marker Tooltip"
+msgstr "Підказка маркеру"
+
+#: includes/class-gglmps-add-new.php:316
+msgid "Enter tooltip"
+msgstr "Введіть підказку"
+
+#: includes/class-gglmps-add-new.php:317
+msgid "You can use HTML tags and attributes."
+msgstr "Ви можете використовувати HTML теги та атрибути."
+
+#: includes/class-gglmps-add-new.php:319
+msgid "Add marker to list"
+msgstr "Додати маркер у список"
+
+#: includes/class-gglmps-add-new.php:320
+msgid "Update marker"
+msgstr "Оновити маркер"
+
+#: includes/class-gglmps-add-new.php:321
+msgid "Cancel"
+msgstr "Відміна"
+
+#: includes/class-gglmps-add-new.php:326
+msgid "Markers List"
+msgstr "Список маркерів"
+
+#: includes/class-gglmps-add-new.php:355 includes/class-gglmps-settings.php:176
+msgid "Width"
+msgstr "Ширина"
+
+#: includes/class-gglmps-add-new.php:357 includes/class-gglmps-settings.php:178
+msgid "Enter width"
+msgstr "Введіть ширину"
+
+#: includes/class-gglmps-add-new.php:359 includes/class-gglmps-add-new.php:368
+#: includes/class-gglmps-settings.php:180
+#: includes/class-gglmps-settings.php:189
+msgid "px"
+msgstr "пікс"
+
+#: includes/class-gglmps-add-new.php:365 includes/class-gglmps-settings.php:186
+msgid "Height"
+msgstr "Висота"
+
+#: includes/class-gglmps-add-new.php:367 includes/class-gglmps-settings.php:188
+msgid "Enter height"
+msgstr "Введіть висоту"
+
+#: includes/class-gglmps-add-new.php:372 includes/class-gglmps-settings.php:193
+msgid "Alignment"
+msgstr "Вирівнювання"
+
+#: includes/class-gglmps-add-new.php:375 includes/class-gglmps-settings.php:196
+msgid "Left"
+msgstr "По лівому краю"
+
+#: includes/class-gglmps-add-new.php:376 includes/class-gglmps-settings.php:197
+msgid "Center"
+msgstr "По центру"
+
+#: includes/class-gglmps-add-new.php:377 includes/class-gglmps-settings.php:198
+msgid "Right"
+msgstr "По правому краю"
+
+#: includes/class-gglmps-add-new.php:382 includes/class-gglmps-add-new.php:420
+#: includes/class-gglmps-settings.php:203
+#: includes/class-gglmps-settings.php:241
+msgid "Type"
+msgstr "Тип"
+
+#: includes/class-gglmps-add-new.php:385 includes/class-gglmps-settings.php:206
+msgid "Roadmap"
+msgstr "Дорожній"
+
+#: includes/class-gglmps-add-new.php:386 includes/class-gglmps-settings.php:207
+msgid "Terrain"
+msgstr "Рельєфний"
+
+#: includes/class-gglmps-add-new.php:387 includes/class-gglmps-settings.php:208
+msgid "Satellite"
+msgstr "Супутниковий"
+
+#: includes/class-gglmps-add-new.php:388 includes/class-gglmps-settings.php:209
+msgid "Hybrid"
+msgstr "Гібридний"
+
+#: includes/class-gglmps-add-new.php:393 includes/class-gglmps-settings.php:214
+msgid "View"
+msgstr "Вид"
+
+#: includes/class-gglmps-add-new.php:396 includes/class-gglmps-settings.php:217
+msgid ""
+"This option is only available for Satellite and Hybrid map types (if such "
+"snapshots are available)."
+msgstr ""
+"Ця опція доступна тільки для Супутникового і Гібридного типів карт (якщо "
+"такі знімки є)."
+
+#: includes/class-gglmps-add-new.php:400 includes/class-gglmps-add-new.php:431
+#: includes/class-gglmps-add-new.php:458 includes/class-gglmps-settings.php:221
+#: includes/class-gglmps-settings.php:252
+#: includes/class-gglmps-settings.php:270
+msgid "Zoom"
+msgstr "Масштаб"
+
+#: includes/class-gglmps-add-new.php:410 includes/class-gglmps-add-new.php:466
+#: includes/class-gglmps-settings.php:231
+#: includes/class-gglmps-settings.php:278
+msgid "Controls Options"
+msgstr "Налаштування елементів управління"
+
+#: includes/class-gglmps-add-new.php:414 includes/class-gglmps-settings.php:235
+msgid "Visibility and map action controls."
+msgstr "Видимість і дії елементів управління карти."
+
+#: includes/class-gglmps-add-new.php:425 includes/class-gglmps-settings.php:246
+msgid "Rotate"
+msgstr "Обертати"
+
+#: includes/class-gglmps-add-new.php:426 includes/class-gglmps-settings.php:247
+msgid "This option is only available if View 45° option is checked."
+msgstr "Дана опція доступна лише якщо включена опція \"Вид 45°\"."
+
+#: includes/class-gglmps-add-new.php:436 includes/class-gglmps-settings.php:257
+msgid "Scale"
+msgstr "Шкала"
+
+#: includes/class-gglmps-add-new.php:449
+msgid "Style"
+msgstr "Стиль"
+
+#: includes/class-gglmps-add-new.php:454
+msgid ""
+"This option is only available for Roadmap, Terrain, and Hybrid map types."
+msgstr ""
+"Ця опція доступна тільки для Дорожнього, Рельєфного і Гібридного типів карт."
+
+#: includes/class-gglmps-add-new.php:461 includes/class-gglmps-settings.php:273
+msgid "Auto"
+msgstr "Авто"
+
+#: includes/class-gglmps-add-new.php:462 includes/class-gglmps-settings.php:274
+msgid "The map will be scaled to display all markers."
+msgstr "Карта буде масштабуватись для відображення всіх маркерів."
+
+#: includes/class-gglmps-add-new.php:470 includes/class-gglmps-settings.php:283
+msgid "Street View"
+msgstr "Перегляд вулиць"
+
+#: includes/class-gglmps-add-new.php:473 includes/class-gglmps-settings.php:288
+msgid "Draggable"
+msgstr "Переміщення мишкою"
+
+#: includes/class-gglmps-add-new.php:476 includes/class-gglmps-settings.php:293
+msgid "Double Click"
+msgstr "Подвійний клік"
+
+#: includes/class-gglmps-add-new.php:479 includes/class-gglmps-settings.php:298
+msgid "Scroll Wheel"
+msgstr "Колесо мишки"
+
+#: includes/class-gglmps-settings.php:24
+msgid "Misc"
+msgstr "Різне"
+
+#: includes/class-gglmps-settings.php:25
+msgid "Custom Code"
+msgstr "Користувацький код"
+
+#: includes/class-gglmps-settings.php:26
+msgid "License Key"
+msgstr "Ліцензійний ключ"
+
+#: includes/class-gglmps-settings.php:76
 msgid "These settings will be applied to newly added maps by default."
 msgstr ""
 "Ці налаштування будуть застосовуватися до доданих карт за замовчуванням."
 
-#: bws-google-maps.php:297
-msgid "In the"
-msgstr "У"
+#: includes/class-gglmps-settings.php:130
+msgid "Settings saved."
+msgstr "Налаштування збережено."
 
-#: bws-google-maps.php:298 bws-google-maps.php:1008 bws-google-maps.php:1028
-msgid "Google Maps editor"
-msgstr "редакторі Google Maps"
-
-#: bws-google-maps.php:299
-msgid "you can create a new map and in the"
-msgstr "ви можете створити нову карту та "
-
-#: bws-google-maps.php:300 bws-google-maps.php:1006 bws-google-maps.php:1026
-msgid "Google Maps manager"
-msgstr "менеджер Google Maps"
-
-#: bws-google-maps.php:301
-msgid "you can find previously saved maps."
-msgstr "покаже збережені раніше карти."
-
-#: bws-google-maps.php:304
-#, php-format
-msgid "Please add the map by clicking on %s button"
-msgstr "Додайте карту, натиснувши на кнопку %s"
-
-#: bws-google-maps.php:308
-#, php-format
-msgid ""
-"You can add the map to your content by clicking on %s button in the content "
-"edit block using the Visual mode. If the button isn't displayed, please use "
-"the shortcode %s, where * stands for map ID"
-msgstr ""
-"Ви можете додати карту в контент натиснувши на кнопку %s в блоці редагування "
-"контенту в режимі Visual. Якщо не відображається кнопка, то використовуйте "
-"шорткод %s, де * означає ID карти"
-
-#: bws-google-maps.php:317
+#: includes/class-gglmps-settings.php:145
 msgid "API Key"
 msgstr "API Ключ"
 
-#: bws-google-maps.php:324
+#: includes/class-gglmps-settings.php:151
 msgid ""
 "Using an API key enables you to monitor your application Maps API usage, and "
 "ensures that Google can contact you about your application if necessary. If "
@@ -127,11 +554,11 @@ msgstr ""
 "вами з приводу вашого додатку. Якщо показники використання API Google Maps "
 "додатком перевищать передбачені"
 
-#: bws-google-maps.php:325
+#: includes/class-gglmps-settings.php:152
 msgid "Usage Limits"
 msgstr "ліміти користування"
 
-#: bws-google-maps.php:326
+#: includes/class-gglmps-settings.php:153
 msgid ""
 "you must load the Maps API using an API key in order to purchase additional "
 "quota. Click"
@@ -139,452 +566,77 @@ msgstr ""
 "то  замовлення додаткових квот завантаження інтерфейсу повинне виконуватися "
 "з використанням ключа API. Натисніть"
 
-#: bws-google-maps.php:327
+#: includes/class-gglmps-settings.php:154
 msgid "here"
 msgstr "тут"
 
-#: bws-google-maps.php:328
+#: includes/class-gglmps-settings.php:155
 msgid "to know how to get the API key"
 msgstr "щоб створити API ключ"
 
-#: bws-google-maps.php:335
+#: includes/class-gglmps-settings.php:161
 msgid "Language"
 msgstr "Мова"
 
-#: bws-google-maps.php:350 bws-google-maps.php:1149
-msgid "Width"
-msgstr "Ширина"
+#~ msgid "Google Map"
+#~ msgstr "Google Map"
 
-#: bws-google-maps.php:353 bws-google-maps.php:1152
-msgid "Enter width"
-msgstr "Введіть ширину"
+#~ msgid "All plugin settings were restored."
+#~ msgstr "Всі налаштування плагіну було скинуто до стандартних."
 
-#: bws-google-maps.php:355 bws-google-maps.php:366 bws-google-maps.php:1154
-#: bws-google-maps.php:1165
-msgid "px"
-msgstr "пікс"
+#~ msgid "How to Use Step-by-step Instruction"
+#~ msgstr "Інструкція з використання"
 
-#: bws-google-maps.php:362 bws-google-maps.php:1161
-msgid "Height"
-msgstr "Висота"
+#~ msgid "Basic"
+#~ msgstr "Базові налаштування"
 
-#: bws-google-maps.php:365 bws-google-maps.php:1164
-msgid "Enter height"
-msgstr "Введіть висоту"
+#~ msgid "Go PRO"
+#~ msgstr "Оновити до Pro"
 
-#: bws-google-maps.php:371 bws-google-maps.php:1170
-msgid "Alignment"
-msgstr "Вирівнювання"
+#~ msgid "In the"
+#~ msgstr "У"
 
-#: bws-google-maps.php:374 bws-google-maps.php:1173
-msgid "Left"
-msgstr "По лівому краю"
+#~ msgid "you can create a new map and in the"
+#~ msgstr "ви можете створити нову карту та "
 
-#: bws-google-maps.php:375 bws-google-maps.php:1174
-msgid "Center"
-msgstr "По центру"
+#~ msgid "you can find previously saved maps."
+#~ msgstr "покаже збережені раніше карти."
 
-#: bws-google-maps.php:376 bws-google-maps.php:1175
-msgid "Right"
-msgstr "По правому краю"
+#~ msgid "Please add the map by clicking on %s button"
+#~ msgstr "Додайте карту, натиснувши на кнопку %s"
 
-#: bws-google-maps.php:381 bws-google-maps.php:421 bws-google-maps.php:1180
-#: bws-google-maps.php:1218
-msgid "Type"
-msgstr "Тип"
+#~ msgid ""
+#~ "You can add the map to your content by clicking on %s button in the "
+#~ "content edit block using the Visual mode. If the button isn't displayed, "
+#~ "please use the shortcode %s, where * stands for map ID"
+#~ msgstr ""
+#~ "Ви можете додати карту в контент натиснувши на кнопку %s в блоці "
+#~ "редагування контенту в режимі Visual. Якщо не відображається кнопка, то "
+#~ "використовуйте шорткод %s, де * означає ID карти"
 
-#: bws-google-maps.php:384 bws-google-maps.php:1183
-msgid "Roadmap"
-msgstr "Дорожній"
+#~ msgid "Learn More"
+#~ msgstr "Дізнатись більше"
 
-#: bws-google-maps.php:385 bws-google-maps.php:1184
-msgid "Terrain"
-msgstr "Рельєфний"
+#~ msgid "Google Maps"
+#~ msgstr "Google Maps"
 
-#: bws-google-maps.php:386 bws-google-maps.php:1185
-msgid "Satellite"
-msgstr "Супутниковий"
+#~ msgid "Save Map"
+#~ msgstr "Зберегти Карту"
 
-#: bws-google-maps.php:387 bws-google-maps.php:1186
-msgid "Hybrid"
-msgstr "Гібридний"
+#~ msgid "Update Map"
+#~ msgstr "Оновити Карту"
 
-#: bws-google-maps.php:392 bws-google-maps.php:1191
-msgid "View"
-msgstr "Вид"
+#~ msgid "To insert this map use %s button"
+#~ msgstr "Для вставки цієї карти використайте кнопку %s"
 
-#: bws-google-maps.php:395 bws-google-maps.php:1194
-msgid ""
-"This option is only available for Satellite and Hybrid map types (if such "
-"snapshots are available)."
-msgstr ""
-"Ця опція доступна тільки для Супутникового і Гібридного типів карт (якщо "
-"такі знімки є)."
-
-#: bws-google-maps.php:399 bws-google-maps.php:430 bws-google-maps.php:449
-#: bws-google-maps.php:1198 bws-google-maps.php:1227 bws-google-maps.php:1255
-msgid "Zoom"
-msgstr "Масштаб"
-
-#: bws-google-maps.php:410 bws-google-maps.php:459 bws-google-maps.php:1208
-#: bws-google-maps.php:1266
-msgid "Controls options"
-msgstr "Налаштування елементів управління"
-
-#: bws-google-maps.php:416 bws-google-maps.php:1213
-msgid "Visibility and map action controls."
-msgstr "Видимість і дії елементів управління карти."
-
-#: bws-google-maps.php:425 bws-google-maps.php:1222
-msgid "Rotate"
-msgstr "Обертати"
-
-#: bws-google-maps.php:426 bws-google-maps.php:1223
-msgid "This option is only available if View 45° option is checked"
-msgstr "Дана опція доступна лише якщо включена опція \"Вид 45°\""
-
-#: bws-google-maps.php:434 bws-google-maps.php:1231
-msgid "Scale"
-msgstr "Шкала"
-
-#: bws-google-maps.php:445
-msgid "Close"
-msgstr "Закрити"
-
-#: bws-google-maps.php:453 bws-google-maps.php:1260
-msgid "Auto"
-msgstr "Авто"
-
-#: bws-google-maps.php:454 bws-google-maps.php:1261
-msgid "The map will be scaled to display all markers."
-msgstr "Карта буде масштабуватись для відображення всіх маркерів."
-
-#: bws-google-maps.php:463 bws-google-maps.php:1270
-msgid "Street View"
-msgstr "Перегляд вулиць"
-
-#: bws-google-maps.php:467 bws-google-maps.php:1274
-msgid "Draggable"
-msgstr "Переміщення мишкою"
-
-#: bws-google-maps.php:471 bws-google-maps.php:1278
-msgid "Double Click"
-msgstr "Подвійний клік"
-
-#: bws-google-maps.php:475 bws-google-maps.php:1282
-msgid "Scroll Wheel"
-msgstr "Колесо мишки"
-
-#: bws-google-maps.php:482 bws-google-maps.php:684 bws-google-maps.php:1289
-#: bws-google-maps.php:1315
-msgid "Learn More"
-msgstr "Дізнатись більше"
-
-#: bws-google-maps.php:490
-msgid "Save Settings"
-msgstr "Зберегти налаштування"
-
-#: bws-google-maps.php:501
-msgid ""
-"Install required styles in order to apply them to certain maps on Google "
-"Maps Editor page"
-msgstr ""
-"Встановіть потрібні стилі для подальшого їх застосування на сторінці "
-"редактора Google Maps"
-
-#: bws-google-maps.php:506
-msgid "Snazzymaps API Key"
-msgstr "API ключ Snazzymaps"
-
-#: bws-google-maps.php:510
-msgid "Save"
-msgstr "Зберегти"
-
-#: bws-google-maps.php:516
-msgid ""
-"You can use your own API key which allows using favorite styles from your "
-"Snazzymaps account"
-msgstr ""
-"Ви можете використовувати власний API ключ, щоб застосовувати обрані стилі "
-"вашого акаунту в Snazzymaps"
-
-#: bws-google-maps.php:517
-msgid "Personal API key"
-msgstr "Ваш персональний API ключ"
-
-#: bws-google-maps.php:518
-msgid "is available after"
-msgstr "Ви отримаєте після"
-
-#: bws-google-maps.php:519
-msgid "registration"
-msgstr "реєстрації"
-
-#: bws-google-maps.php:534
-msgctxt "view all styles"
-msgid "All"
-msgstr "Всі"
-
-#: bws-google-maps.php:537
-msgctxt "view all installed styles"
-msgid "Installed"
-msgstr "Встановлені"
-
-#: bws-google-maps.php:540
-msgid "Favorites"
-msgstr "Улюблені"
-
-#: bws-google-maps.php:545
-msgid "Filter by color"
-msgstr "Вибір за кольором"
-
-#: bws-google-maps.php:550
-msgid "Filter by Tag"
-msgstr "Вибір за тегами"
-
-#: bws-google-maps.php:553
-msgid "Search..."
-msgstr "Шукати..."
-
-#: bws-google-maps.php:556
-msgid "Sort by"
-msgstr "Сортувати по"
-
-#: bws-google-maps.php:559
-msgid "Apply"
-msgstr "Застосувати"
-
-#: bws-google-maps.php:566 bws-google-maps.php:663
-msgid "items"
-msgstr "елементів"
-
-#: bws-google-maps.php:572 bws-google-maps.php:669
-msgid "Page"
-msgstr "Сторінка"
-
-#: bws-google-maps.php:572 bws-google-maps.php:669
-msgid "of"
-msgstr "з"
-
-#: bws-google-maps.php:634 bws-google-maps.php:1248
-msgid "Default"
-msgstr "За замовчуванням"
-
-#: bws-google-maps.php:640
-msgid "Set as default"
-msgstr "Встановити за замовчуванням"
-
-#: bws-google-maps.php:643 bws-google-maps.php:830 bws-google-maps.php:872
-#: bws-google-maps.php:1131 bws-google-maps.php:1371
-msgid "Delete"
-msgstr "Видалити"
-
-#: bws-google-maps.php:645
-msgid "Install"
-msgstr "Встановити"
-
-#: bws-google-maps.php:650
-msgctxt "style is installed"
-msgid "Already Installed"
-msgstr "Збережено"
-
-#: bws-google-maps.php:652
-msgid "Installed"
-msgstr "Встановлена"
-
-#: bws-google-maps.php:740
-msgid "Google Maps"
-msgstr "Google Maps"
-
-#: bws-google-maps.php:780
-msgid "map"
-msgstr "карта"
-
-#: bws-google-maps.php:781
-msgid "maps"
-msgstr "карти"
-
-#: bws-google-maps.php:793
-msgid "Title"
-msgstr "Назва"
-
-#: bws-google-maps.php:794
-msgid "Shortcode"
-msgstr "Шорткод"
-
-#: bws-google-maps.php:795
-msgid "Date"
-msgstr "Дата"
-
-#: bws-google-maps.php:796
-msgid "ID"
-msgstr "ID"
-
-#: bws-google-maps.php:829 bws-google-maps.php:1132 bws-google-maps.php:1372
-msgid "Edit"
-msgstr "Змінити"
-
-#: bws-google-maps.php:839 bws-google-maps.php:1544
-msgid "Maps not found."
-msgstr "Карт не знайдено."
-
-#: bws-google-maps.php:886
-msgid "Save Map"
-msgstr "Зберегти Карту"
-
-#: bws-google-maps.php:887
-msgid "Update Map"
-msgstr "Оновити Карту"
-
-#: bws-google-maps.php:922
-msgid "No title"
-msgstr "Без назви"
-
-#: bws-google-maps.php:1003 bws-google-maps.php:1023 bws-google-maps.php:1516
-msgid "Map with"
-msgstr "Карту з"
-
-#: bws-google-maps.php:1005 bws-google-maps.php:1025
-msgid "not found. You can return to the"
-msgstr "не знайдена. Ви можете повернутися в"
-
-#: bws-google-maps.php:1007 bws-google-maps.php:1027
-msgid "or create new map in the"
-msgstr "чи створити нову карту в"
-
-#: bws-google-maps.php:1060
-msgid "Notice:"
-msgstr "Зауважте:"
-
-#: bws-google-maps.php:1061
-msgid "In order to create a new map, you must enter the API key on the"
-msgstr "Щоб створити нову карту, потрібно ввести ключ API у"
-
-#: bws-google-maps.php:1062
-msgid "Google Maps settings page"
-msgstr "налаштуваннях Google Maps"
-
-#: bws-google-maps.php:1070
-msgid "Map has been updated."
-msgstr "Карту оновлено."
-
-#: bws-google-maps.php:1077
-#, php-format
-msgid "To insert this map use %s button"
-msgstr "Для вставки цієї карти використайте кнопку %s"
-
-#: bws-google-maps.php:1081
-#, php-format
-msgid ""
-"You can add the map to your content by clicking on %s button in the content "
-"edit block using the Visual mode. If the button isn't displayed, please use "
-"the shortcode %s"
-msgstr ""
-"Ви можете додати карту в контент натиснувши на кнопку %s в блоці редагування "
-"контенту в режимі Visual. Якщо не відображається кнопка, то використовуйте "
-"шорткод %s"
-
-#: bws-google-maps.php:1092
-msgid "Map Title"
-msgstr "Назва карти"
-
-#: bws-google-maps.php:1094
-msgid "Enter title"
-msgstr "Введіть назву"
-
-#: bws-google-maps.php:1098
-msgid "Marker Location"
-msgstr "Місцезнаходження маркеру"
-
-#: bws-google-maps.php:1100
-msgid "Enter location or coordinates"
-msgstr "Введіть місцезнаходження чи координати"
-
-#: bws-google-maps.php:1102
-msgid ""
-"You should enter coordinates in decimal degrees with no spaces. Example "
-"coordinates:"
-msgstr ""
-"Координати мають бути введені в десяткових градусах без пробілів. Приклад "
-"координат:"
-
-#: bws-google-maps.php:1108
-msgid "Marker Tooltip"
-msgstr "Підказка маркеру"
-
-#: bws-google-maps.php:1110
-msgid "Enter tooltip"
-msgstr "Введіть підказку"
-
-#: bws-google-maps.php:1111
-msgid "You can use HTML tags and attributes."
-msgstr "Ви можете використовувати HTML теги та атрибути."
-
-#: bws-google-maps.php:1113
-msgid "Add marker to list"
-msgstr "Додати маркер у список"
-
-#: bws-google-maps.php:1114
-msgid "Update marker"
-msgstr "Оновити маркер"
-
-#: bws-google-maps.php:1115
-msgid "Cancel"
-msgstr "Відміна"
-
-#: bws-google-maps.php:1120
-msgid "Markers List"
-msgstr "Список маркерів"
-
-#: bws-google-maps.php:1125 bws-google-maps.php:1373
-msgid "No markers"
-msgstr "Немає маркерів"
-
-#: bws-google-maps.php:1245
-msgid "Style"
-msgstr "Стиль"
-
-#: bws-google-maps.php:1250
-msgid ""
-"This option is only available for Roadmap, Terrain, and Hybrid map types."
-msgstr ""
-"Ця опція доступна тільки для Дорожнього, Рельєфного і Гібридного типів карт."
-
-#: bws-google-maps.php:1331
-msgid "Map(s)"
-msgstr "Карт(а)"
-
-#: bws-google-maps.php:1374
-msgid "Get coordinates"
-msgstr "Отримати координати"
-
-#: bws-google-maps.php:1455
-msgid "You have not specified map ID"
-msgstr "Ви не вказали ID карти"
-
-#: bws-google-maps.php:1507
-msgid "Please, enable JavaScript!"
-msgstr "Будь ласка, увімкніть JavaScript!"
-
-#: bws-google-maps.php:1508
-msgid "HELP"
-msgstr "ДОПОМОГА"
-
-#: bws-google-maps.php:1518
-msgid "not found"
-msgstr "не знайдено"
-
-#: bws-google-maps.php:1541
-msgid "Google Map"
-msgstr "Google Map"
-
-#: bws-google-maps.php:1595
-msgid "FAQ"
-msgstr "FAQ"
-
-#: bws-google-maps.php:1596
-msgid "Support"
-msgstr "Техпідтримка"
+#~ msgid ""
+#~ "You can add the map to your content by clicking on %s button in the "
+#~ "content edit block using the Visual mode. If the button isn't displayed, "
+#~ "please use the shortcode %s"
+#~ msgstr ""
+#~ "Ви можете додати карту в контент натиснувши на кнопку %s в блоці "
+#~ "редагування контенту в режимі Visual. Якщо не відображається кнопка, то "
+#~ "використовуйте шорткод %s"
 
 #~ msgid "Notice: "
 #~ msgstr "Зауважте: "
@@ -755,9 +807,6 @@ msgstr "Техпідтримка"
 #~ msgid "Plugins page"
 #~ msgstr "Страницу плагинов"
 
-#~ msgid "Wrong license key"
-#~ msgstr "Неправильный лицензионный ключ"
-
 #~ msgid ""
 #~ "Something went wrong. Try again later. If the error will appear again, "
 #~ "please, contact us <a href=https://support.bestwebsoft.com>BestWebSoft</"
@@ -858,11 +907,6 @@ msgstr "Техпідтримка"
 
 #~ msgid "Extend standard plugin functionality with new great options"
 #~ msgstr "Расширение стандартного функционала плагина новыми опциями"
-
-# @ gglmps
-#, fuzzy
-#~ msgid "Update"
-#~ msgstr "Обновить Карту"
 
 # @ gglmps
 #, fuzzy
