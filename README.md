@@ -77,9 +77,9 @@
 <p>If you have a feature suggestion or idea you&#8217;d like to see in the plugin, we&#8217;d love to hear about it! <a href="https://support.bestwebsoft.com/hc/en-us/requests/new" rel="nofollow">Suggest a Feature</a></p>
 <h4>Documentation &amp; Videos</h4>
 <ul>
-<li><a href="https://docs.google.com/document/d/1sY7nLypbL7Mv_F95eQ_xFkdRs_VjG8h2kBpuRg_IbxY/" rel="nofollow">[Doc] How to Use</a></li>
-<li><a href="https://docs.google.com/document/d/1-hvn6WRvWnOqj5v5pLUk7Awyu87lq5B_dO-Tv-MC9JQ/" rel="nofollow">[Doc] Installation</a></li>
-<li><a href="https://docs.google.com/document/d/1EUdBVvnm7IHZ6y0DNyldZypUQKpB8UVPToSc_LdOYQI/" rel="nofollow">[Doc] Purchase</a></li>
+<li><a href="https://bestwebsoft.com/documentation/maps/google-maps-by-bestwebsoft-how-to-use-instruction/" rel="nofollow">[Doc] How to Use</a></li>
+<li><a href="https://bestwebsoft.com/documentation/how-to-purchase-a-wordpress-plugin/how-to-purchase-wordpress-plugin-from-bestwebsoft/" rel="nofollow">[Doc] Installation</a></li>
+<li><a href="https://bestwebsoft.com/documentation/how-to-purchase-a-wordpress-plugin/how-to-purchase-wordpress-plugin-from-bestwebsoft/" rel="nofollow">[Doc] Purchase</a></li>
 <li><a href="https://www.youtube.com/watch?v=3pXs5t18vL4" rel="nofollow">[Video] Installation Instruction</a></li>
 </ul>
 <h4>Help &amp; Support</h4>
