@@ -4,7 +4,7 @@ Donate link: https://bestwebsoft.com/donate/
 Tags: add custom markers, add maps, add google maps, add new map, address marker, google maps, coordinates marker, google maps manager, marker tooltip, widget map, google maps editor, saved google maps
 Requires at least: 4.5
 Tested up to: 5.9
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -156,6 +156,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 
 == Changelog ==
 
+= V1.4.4 - 236.04.2022 =
+* Bugfix : Deactivation Feedback fix.
+
 = V1.4.3 - 23.03.2022 =
 * Update : We updated all functionality for wordpress 5.9.
 * Update : BWS plugins section is updated.
@@ -245,6 +248,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * NEW : Release of Google Maps by BestWebSoft plugin.
 
 == Upgrade Notice ==
+
+= V1.4.4 =
+* Bugs fixed.
 
 = V1.4.3 =
 * Usability improved.
